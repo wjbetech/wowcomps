@@ -7,10 +7,10 @@
   - [x] Main nav (logo, links)
   - [x] Sub nav (expansion picker)
   - [-] Classes and specs panel
-  - Raid grid
-    - Raid slots
-    - An icon-only group based important buffs only counter
-    - A raid-wide total buffs/debuffs counter
+  - [x] Raid grid
+    - [x] Raid slots
+    - [] An icon-only group based important buffs only counter
+    - [] A raid-wide total buffs/debuffs counter
 - Define raid size availability by expansion.
 - Define class/spec availability by expansion.
 - Define localStorage saved raid comp shape with `storageVersion`.

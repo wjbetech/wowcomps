@@ -13,8 +13,8 @@
 
 export default function SpecsPanel() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-2">
-      <div className="rounded-3xl p-4">
+    <section className="mx-auto w-full max-w-5xl py-8">
+      <div className="rounded-3xl">
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <h1 className="text-xl font-bold">Raid Composition</h1>

@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import RaidGrid from "./components/RaidGrid";
 import SpecsPanel from "./components/SpecsPanel";
 import SubNav from "./components/SubNav";
 
@@ -10,6 +11,7 @@ export function App({}: Props) {
       <Navbar />
       <SubNav />
       <SpecsPanel />
+      <RaidGrid />
     </main>
   );
 }
