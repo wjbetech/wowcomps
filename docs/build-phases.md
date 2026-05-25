@@ -20,6 +20,7 @@
     - [ ] Clicking the edit button should open an input inside the raid slot to enter a character name up to 12 characters
   - [ ] An icon-only group based important buffs only counter
   - [ ] A raid-wide total buffs/debuffs counter
+  - [ ] Adding x spec should add to the Class Breakdown counter on the right side panel
   - [-] Build the extra raid grids.
     - 10man -> 2 columns side-by-side
     - 20man -> 2 rows of 2 columns.

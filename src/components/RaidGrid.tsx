@@ -54,9 +54,11 @@ function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSp
     ? {
         background: `linear-gradient(
           180deg,
-          rgb(from ${slotColor} r g b / 1),
-          rgb(from ${slotColor} calc(r - 36) calc(g - 36) calc(b - 36) / 0.75)
+          rgb(23 20 23  / 1),
+          rgb(50 50 50 / 0.75)
         )`,
+        borderColor: slotColor,
+        color: slotColor,
       }
     : undefined;
 
@@ -71,7 +73,7 @@ function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSp
           ? "border-black/20"
           : isOver
             ? "border-stone-400 bg-stone-800/90"
-            : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone-500 hover:bg-stone-800/80",
+            : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone hover:bg-stone-800/80",
       ].join(" ")}
     >
       {placedSpec ? (
@@ -80,12 +82,10 @@ function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSp
             <img
               src={placedSpec.iconLink}
               alt={placedSpec.label}
-              className="h-6 w-6 rounded-sm object-cover"
+              className="h-6 w-6 zoom-110 rounded-sm object-cover"
             />
           ) : null}
-          <span className={`text-sm ${placedSpec.classId === "priest" ? "text-stone-600" : ""}`}>
-            {placedSpec.label}
-          </span>
+          <span className="text-sm font-extrabold">{placedSpec.label}</span>
         </div>
       ) : (
         <span className="w-full text-center text-sm text-stone-400/50">-</span>
