@@ -2,9 +2,55 @@ import { expansionClasses } from "../data/expansionClasses";
 import type { Expansion } from "../data/expansionData";
 import classColors from "../data/classColors";
 
+// dnd-kit
+import { useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+
 type SpecsPanelProps = {
   selectedExpansion: Expansion;
 };
+
+type DraggableSpecButtonProps = {
+  classId: string;
+  specId: string;
+  label: string;
+  iconLink?: string;
+};
+
+function DraggableSpecButton({ classId, specId, label, iconLink }: DraggableSpecButtonProps) {
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
+    id: `spec:${classId}:${specId}`,
+    data: {
+      classId,
+      specId,
+      label,
+      iconLink,
+    },
+  });
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    opacity: isDragging ? 0.65 : 1,
+  };
+
+  return (
+    <button
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+      type="button"
+      className="group flex items-center justify-center rounded-lg transition"
+      title={label}
+    >
+      {iconLink ? (
+        <img src={iconLink} alt={label} className="h-8 w-8 rounded-sm object-cover" />
+      ) : (
+        <span className="text-[10px] text-stone-500">?</span>
+      )}
+    </button>
+  );
+}
 
 export default function SpecsPanel({ selectedExpansion }: SpecsPanelProps) {
   const classGroups = expansionClasses[selectedExpansion];
@@ -29,22 +75,13 @@ export default function SpecsPanel({ selectedExpansion }: SpecsPanelProps) {
             </div>
             <div className="mb-1 flex flex-wrap justify-center gap-2">
               {group.specs.map((spec) => (
-                <button
+                <DraggableSpecButton
                   key={`${group.classId}-${spec.specId}`}
-                  type="button"
-                  className="group flex items-center justify-center rounded-lg transition"
-                  title={spec.label}
-                >
-                  {spec.iconLink ? (
-                    <img
-                      src={spec.iconLink}
-                      alt={spec.label}
-                      className="h-8 w-8 rounded-sm object-cover"
-                    />
-                  ) : (
-                    <span className="text-[10px] text-stone-500">?</span>
-                  )}
-                </button>
+                  classId={group.classId}
+                  specId={spec.specId}
+                  label={spec.label}
+                  iconLink={spec.iconLink}
+                />
               ))}
             </div>
           </article>

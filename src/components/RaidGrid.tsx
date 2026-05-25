@@ -1,3 +1,10 @@
+import { useDroppable } from "@dnd-kit/core";
+import type { PlacedSpec, RaidSlots } from "../types/grid";
+
+type RaidGridProps = {
+  raidSlots: RaidSlots;
+};
+
 const GROUP_COUNT = 8;
 const SLOTS_PER_GROUP = 5;
 
@@ -9,7 +16,7 @@ const groups = Array.from({ length: GROUP_COUNT }, (_, groupIndex) => ({
   })),
 }));
 
-export default function RaidGrid() {
+export default function RaidGrid({ raidSlots }: RaidGridProps) {
   return (
     <section className="mx-auto w-full max-w-5xl">
       <div className="rounded-3xl">
@@ -24,13 +31,7 @@ export default function RaidGrid() {
 
               <div className="space-y-2">
                 {group.slots.map((slot) => (
-                  <button
-                    key={slot.id}
-                    type="button"
-                    className="flex h-10 w-full items-center justify-between rounded-xl border border-dashed border-stone-700 bg-stone-900/70 px-4 text-left transition hover:border-stone-500 hover:bg-stone-800/80"
-                  >
-                    <span className="text-sm w-full text-center text-stone-400/50">-</span>
-                  </button>
+                  <RaidSlot key={slot.id} slotId={slot.id} placedSpec={raidSlots[slot.id]} />
                 ))}
               </div>
             </article>
@@ -38,5 +39,39 @@ export default function RaidGrid() {
         </div>
       </div>
     </section>
+  );
+}
+
+function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSpec | null }) {
+  const { isOver, setNodeRef } = useDroppable({
+    id: slotId,
+  });
+
+  return (
+    <button
+      ref={setNodeRef}
+      type="button"
+      className={[
+        "flex h-10 w-full items-center justify-between rounded-xl border px-4 text-left transition",
+        isOver
+          ? "border-stone-400 bg-stone-800/90"
+          : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone-500 hover:bg-stone-800/80",
+      ].join(" ")}
+    >
+      {placedSpec ? (
+        <div className="flex w-full items-center gap-2">
+          {placedSpec.iconLink ? (
+            <img
+              src={placedSpec.iconLink}
+              alt={placedSpec.label}
+              className="h-6 w-6 rounded-sm object-cover"
+            />
+          ) : null}
+          <span className="text-sm text-stone-200">{placedSpec.label}</span>
+        </div>
+      ) : (
+        <span className="w-full text-center text-sm text-stone-400/50">-</span>
+      )}
+    </button>
   );
 }
