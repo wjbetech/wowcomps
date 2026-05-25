@@ -3,9 +3,9 @@
 ### Phase 1: Foundation
 
 - [x] Set up app structure.
-- Define basic components
-  - Main nav (logo, links)
-  - Sub nav (expansion picker)
+- [-] Define basic components
+  - [x] Main nav (logo, links)
+  - [x] Sub nav (expansion picker)
   - Classes and specs panel
   - Raid grid
     - Raid slots
