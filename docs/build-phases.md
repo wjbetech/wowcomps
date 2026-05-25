@@ -6,7 +6,7 @@
 - [-] Define basic components
   - [x] Main nav (logo, links)
   - [x] Sub nav (expansion picker)
-  - Classes and specs panel
+  - [-] Classes and specs panel
   - Raid grid
     - Raid slots
     - An icon-only group based important buffs only counter
