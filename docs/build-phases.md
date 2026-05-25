@@ -14,6 +14,10 @@
 
 - [x] Raid grid
   - [x] Raid slots
+  - [x] Color code slots based on spec-class
+  - [x] Click a spec to place in the next free raid slot
+  - [ ] An edit button on the right side of each filled raid slot
+    - [ ] Clicking the edit button should open an input inside the raid slot to enter a character name up to 12 characters
   - [ ] An icon-only group based important buffs only counter
   - [ ] A raid-wide total buffs/debuffs counter
   - [-] Build the extra raid grids.
@@ -24,10 +28,10 @@
 - [x] Build the draggable class/spec list.
   - [x] Class colored background,
   - [x] Differentiation between feral(cat) and feral(bear)
-- Add drag-and-drop placement.
-  - Dragging an icon from the class/spec container should attach an icon to the mouse, without removing the icon from the original class/spec container.
-- Add slot clearing on left click.
-- Define localStorage saved raid comp shape with `storageVersion`.
+- [x] Add drag-and-drop placement.
+  - [x] Dragging an icon from the class/spec container should attach an icon to the mouse, without removing the icon from the original class/spec container.
+- [ ] Add slot clearing on left click.
+- [ ] Define localStorage saved raid comp shape with `storageVersion`.
 
 ### Phase 3: Buff & Debuff Trackers
 

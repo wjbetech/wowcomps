@@ -10,7 +10,7 @@
   - Classic/Classic+ -> Yellow/gold
   - TBC -> Fel green
   - WotLK -> Icy blue
-  - SoD -> Discord blue/purple
+  - SoD -> Terracotta
 
 ### 2. Raid Size Selection
 
@@ -54,7 +54,7 @@
   - Classic+ -> Not releasing until Classic+ is released
 - The UI should also show what buffs/debuffs are missing, and on hover each buff or debuff, reveal what specs can apply them.
 - The UI should show only the icons of important party buffs below each group.
-- A separate 'Raid Buffs' section should show the total breakdown of buffs and debuffs.
+- A separate 'Raid Buffs' right side panel section should show the total breakdown of buffs and debuffs.
 
 ### 6. Player Name Editing
 
@@ -77,6 +77,7 @@
   - Closing the tab should reset the raid composition and drop any temp storage.
 - A proper backend may be developed later to allow permanent storage.
 - Can add some template raid compositions to get people started.
+- A left side panel can show some recent raid comps you made and store some template raid comps.
 
 ### 9. Linking
 
@@ -87,3 +88,7 @@
 
 - The link that takes players to the Classic+ raid comp page should render a coming soon page.
 - Try to get an image of a gnome tinkering away at something as a placeholder image.
+
+### Ideations
+
+- A discord hook-in so that leaders can import their discord-organised raids straight in, or vice versa.
