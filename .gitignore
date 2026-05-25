@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # App documentation for development
-/docs
+# docs
