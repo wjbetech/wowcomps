@@ -35,6 +35,10 @@ export default function RightSidebar() {
               <span className="text-stone-400">0</span>
             </div>
             <div className="flex justify-between">
+              <span className="text-[#AAD372]">Hunter</span>
+              <span className="text-stone-400">0</span>
+            </div>
+            <div className="flex justify-between">
               <span className="text-[#3FC7EB]">Mage</span>
               <span className="text-stone-400">0</span>
             </div>

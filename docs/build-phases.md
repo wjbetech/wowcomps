@@ -8,8 +8,7 @@
   - [x] Sub nav (expansion picker)
   - [-] Classes and specs panel
 - [x] Define raid size availability by expansion.
-- Define class/spec availability by expansion.
-- Define localStorage saved raid comp shape with `storageVersion`.
+- [x] Define class/spec availability by expansion.
 
 ### Phase 2: Raid Composition UI
 
@@ -28,6 +27,7 @@
 - Add drag-and-drop placement.
   - Dragging an icon from the class/spec container should attach an icon to the mouse, without removing the icon from the original class/spec container.
 - Add slot clearing on left click.
+- Define localStorage saved raid comp shape with `storageVersion`.
 
 ### Phase 3: Buff & Debuff Trackers
 

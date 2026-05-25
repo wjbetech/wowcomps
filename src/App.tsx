@@ -21,14 +21,14 @@ export function App() {
             linear-gradient(to bottom, rgb(${theme.glow} / 0.12), transparent 7%),
             linear-gradient(to right, rgb(${theme.glow} / 0.08), transparent 6%),
             linear-gradient(to left, rgb(${theme.glow} / 0.08), transparent 6%),
-            radial-gradient(circle at top left, rgb(${theme.glow} / 0.32), transparent 10%),
-            radial-gradient(circle at top right, rgb(${theme.glow} / 0.32), transparent 10%),
-            radial-gradient(circle at bottom left, rgb(${theme.glow} / 0.24), transparent 10%),
-            radial-gradient(circle at bottom right, rgb(${theme.glow} / 0.24), transparent 10%)
+            radial-gradient(circle at top left, rgb(${theme.glow} / 0.1), transparent 10%),
+            radial-gradient(circle at top right, rgb(${theme.glow} / 0.1), transparent 10%),
+            radial-gradient(circle at bottom left, rgb(${theme.glow} / 0.1), transparent 10%),
+            radial-gradient(circle at bottom right, rgb(${theme.glow} / 0.1), transparent 10%)
           `,
           boxShadow: `
-            inset 0 0 18px rgb(${theme.glow} / 0.3),
-            inset 0 0 36px rgb(${theme.glow} / 0.2),
+            inset 0 0 18px rgb(${theme.glow} / 0.1),
+            inset 0 0 36px rgb(${theme.glow} / 0.1),
             inset 0 0 64px rgb(${theme.glow} / 0.1)
           `,
         }}
