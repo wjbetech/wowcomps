@@ -2,7 +2,7 @@
 
 ### Phase 1: Foundation
 
-- Set up app structure.
+- [x] Set up app structure.
 - Define basic components
   - Main nav (logo, links)
   - Sub nav (expansion picker)
