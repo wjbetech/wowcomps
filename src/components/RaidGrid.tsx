@@ -13,14 +13,6 @@ export default function RaidGrid() {
   return (
     <section className="mx-auto w-full max-w-5xl">
       <div className="rounded-3xl">
-        <div className="flex flex-col gap-3 border-stone-700/60 pb-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex items-center gap-3 text-sm">
-            <span className="rounded-full border border-stone-700 bg-stone-950 px-3 py-1 text-stone-300">
-              0 / 40
-            </span>
-          </div>
-        </div>
-
         <div className="grid gap-4 xl:grid-cols-4">
           {groups.map((group) => (
             <article key={group.id} className="rounded-2xl">

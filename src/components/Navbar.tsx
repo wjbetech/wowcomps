@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="bg-stone-900 border-b border-stone-500 p-6 flex flex-row justify-between backdrop-blur items-center">
+    <nav className="border-b border-stone-500 p-6 flex flex-row justify-between backdrop-blur items-center">
       <a
         href="/"
         className="text-lg font-bold text-amber-300 transition-colors hover:text-amber-400"
@@ -18,7 +18,7 @@ export default function Navbar() {
             id="raid-comp-search"
             type="search"
             placeholder="Search raid comps..."
-            className="w-full bg-stone-800 px-4 py-1 rounded-full font-normal text-sm"
+            className="w-full bg-stone-700 px-4 py-1 rounded-full font-normal text-sm"
           />
         </div>
       </form>

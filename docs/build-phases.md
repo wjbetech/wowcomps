@@ -7,7 +7,7 @@
   - [x] Main nav (logo, links)
   - [x] Sub nav (expansion picker)
   - [-] Classes and specs panel
-- Define raid size availability by expansion.
+- [x] Define raid size availability by expansion.
 - Define class/spec availability by expansion.
 - Define localStorage saved raid comp shape with `storageVersion`.
 
