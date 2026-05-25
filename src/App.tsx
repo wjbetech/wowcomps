@@ -20,14 +20,16 @@ export function App() {
         <Navbar />
         <SubNav selectedExpansion={selectedExpansion} onSelectExpansion={setSelectedExpansion} />
 
-        <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
-          <div className="lg:col-span-1"></div>
-          <div className="lg:col-span-3">
-            <SpecsPanel />
-            <RaidGrid />
-          </div>
-          <div className="lg:col-span-1">
-            <RightSideBar />
+        <div className="pt-28">
+          <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
+            <div className="lg:col-span-1"></div>
+            <div className="lg:col-span-3">
+              <SpecsPanel selectedExpansion={selectedExpansion} />
+              <RaidGrid />
+            </div>
+            <div className="lg:col-span-1">
+              <RightSideBar />
+            </div>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="border-b border-stone-500 p-6 flex flex-row justify-between backdrop-blur items-center">
+    <nav className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b border-stone-500 bg-stone-900/80 px-6 backdrop-blur">
       <a
         href="/"
         className="text-lg font-bold text-amber-300 transition-colors hover:text-amber-400"

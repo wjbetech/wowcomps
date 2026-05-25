@@ -8,7 +8,7 @@ type SubNavProps = {
 
 export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavProps) {
   return (
-    <header className="mx-auto grid w-full grid-cols-5 border-b border-stone-500 py-2 text-center">
+    <header className="fixed inset-x-0 top-16 z-40 grid h-12 w-full grid-cols-5 items-center border-b border-stone-500 bg-stone-850/80 py-2 text-center backdrop-blur">
       {expansionsData.map((expansion) => {
         const currentExp = expansion.id === selectedExpansion;
         const theme = expansionColors[expansion.id];
