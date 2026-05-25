@@ -7,21 +7,21 @@
   - [x] Main nav (logo, links)
   - [x] Sub nav (expansion picker)
   - [-] Classes and specs panel
-  - [x] Raid grid
-    - [x] Raid slots
-    - [] An icon-only group based important buffs only counter
-    - [] A raid-wide total buffs/debuffs counter
 - Define raid size availability by expansion.
 - Define class/spec availability by expansion.
 - Define localStorage saved raid comp shape with `storageVersion`.
 
 ### Phase 2: Raid Composition UI
 
-- Build the raid grid.
-  - 10man -> 2 columns side-by-side
-  - 20man -> 2 rows of 2 columns.
-  - 25man -> 5 columns on larger screens, 3 and 2 on smaller screens, 5 individual rows on very narrow screens
-  - 40man -> 4 columns on top, 4 columns on bottom, 2 x 4 on smaller screens
+- [x] Raid grid
+  - [x] Raid slots
+  - [ ] An icon-only group based important buffs only counter
+  - [ ] A raid-wide total buffs/debuffs counter
+  - [-] Build the extra raid grids.
+    - 10man -> 2 columns side-by-side
+    - 20man -> 2 rows of 2 columns.
+    - 25man -> 5 columns on larger screens, 3 and 2 on smaller screens, 5 individual rows on very narrow screens
+    - [x] 40man -> 4 columns on top, 4 columns on bottom, 2 x 4 on smaller screens
 - Build the draggable class/spec list.
   - Class colored background,
   - Differentiation between feral(cat) and feral(bear)
