@@ -1,3 +1,4 @@
+// core
 import { useState } from "react";
 import ExpansionGlow from "./styles/expansionGlow";
 
@@ -19,12 +20,20 @@ import type { Expansion } from "./data/expansionData";
 import type { PlacedSpec, RaidSlots } from "./types/grid";
 
 // dnd-kit
-import { DndContext, type DragEndEvent } from "@dnd-kit/core";
+import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
   const theme = expansionColors[selectedExpansion];
   const [raidSlots, setRaidSlots] = useState<RaidSlots>(() => createInitialRaidSlots());
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+  );
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -41,11 +50,26 @@ export function App() {
     }));
   }
 
+  function nextEmptySlot(spec: PlacedSpec) {
+    setRaidSlots((prev) => {
+      const nextEmptySlotId = Object.keys(prev).find((slotId) => prev[slotId] === null);
+
+      if (!nextEmptySlotId) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        [nextEmptySlotId]: spec,
+      };
+    });
+  }
+
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
       <ExpansionGlow glow={theme.glow} />
 
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <div className="relative z-10">
           <Navbar />
           <SubNav selectedExpansion={selectedExpansion} onSelectExpansion={setSelectedExpansion} />
@@ -54,7 +78,7 @@ export function App() {
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
               <div className="lg:col-span-1"></div>
               <div className="lg:col-span-3">
-                <SpecsPanel selectedExpansion={selectedExpansion} />
+                <SpecsPanel selectedExpansion={selectedExpansion} fillNextSlot={nextEmptySlot} />
                 <RaidGrid raidSlots={raidSlots} />
               </div>
               <div className="lg:col-span-1">

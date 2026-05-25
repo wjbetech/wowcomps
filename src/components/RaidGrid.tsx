@@ -1,5 +1,6 @@
 import { useDroppable } from "@dnd-kit/core";
 import type { PlacedSpec, RaidSlots } from "../types/grid";
+import classColors from "../data/classColors";
 
 type RaidGridProps = {
   raidSlots: RaidSlots;
@@ -47,15 +48,30 @@ function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSp
     id: slotId,
   });
 
+  const slotColor = placedSpec ? classColors[placedSpec.classId] : undefined;
+
+  const slotStyle = slotColor
+    ? {
+        background: `linear-gradient(
+          180deg,
+          rgb(from ${slotColor} r g b / 1),
+          rgb(from ${slotColor} calc(r - 36) calc(g - 36) calc(b - 36) / 0.75)
+        )`,
+      }
+    : undefined;
+
   return (
     <button
       ref={setNodeRef}
+      style={slotStyle}
       type="button"
       className={[
         "flex h-10 w-full items-center justify-between rounded-xl border px-4 text-left transition",
-        isOver
-          ? "border-stone-400 bg-stone-800/90"
-          : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone-500 hover:bg-stone-800/80",
+        placedSpec
+          ? "border-black/20"
+          : isOver
+            ? "border-stone-400 bg-stone-800/90"
+            : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone-500 hover:bg-stone-800/80",
       ].join(" ")}
     >
       {placedSpec ? (
@@ -67,7 +83,9 @@ function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSp
               className="h-6 w-6 rounded-sm object-cover"
             />
           ) : null}
-          <span className="text-sm text-stone-200">{placedSpec.label}</span>
+          <span className={`text-sm ${placedSpec.classId === "priest" ? "text-stone-600" : ""}`}>
+            {placedSpec.label}
+          </span>
         </div>
       ) : (
         <span className="w-full text-center text-sm text-stone-400/50">-</span>

@@ -21,9 +21,9 @@
     - 20man -> 2 rows of 2 columns.
     - 25man -> 5 columns on larger screens, 3 and 2 on smaller screens, 5 individual rows on very narrow screens
     - [x] 40man -> 4 columns on top, 4 columns on bottom, 2 x 4 on smaller screens
-- Build the draggable class/spec list.
-  - Class colored background,
-  - Differentiation between feral(cat) and feral(bear)
+- [x] Build the draggable class/spec list.
+  - [x] Class colored background,
+  - [x] Differentiation between feral(cat) and feral(bear)
 - Add drag-and-drop placement.
   - Dragging an icon from the class/spec container should attach an icon to the mouse, without removing the icon from the original class/spec container.
 - Add slot clearing on left click.
