@@ -11,13 +11,13 @@ import SubNav from "./components/SubNav";
 
 // libs
 import expansionColors from "./lib/expansionColors";
-import { createInitialRaidSlots } from "./lib/grid";
+import { usePersistedRaidSlots } from "./lib/usePersistedRaidSlots";
 
 // data
 import type { Expansion } from "./data/expansionData";
 
 // types
-import type { PlacedSpec, RaidSlots } from "./types/grid";
+import type { PlacedSpec } from "./types/grid";
 
 // dnd-kit
 import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
@@ -25,7 +25,7 @@ import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } f
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
   const theme = expansionColors[selectedExpansion];
-  const [raidSlots, setRaidSlots] = useState<RaidSlots>(() => createInitialRaidSlots());
+  const [raidSlots, setRaidSlots] = usePersistedRaidSlots();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {

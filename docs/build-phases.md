@@ -16,6 +16,8 @@
   - [x] Raid slots
   - [x] Color code slots based on spec-class
   - [x] Click a spec to place in the next free raid slot
+  - [x] Refreshing the page should not empty all of the slots
+  - [ ] The class&specs section should be dynamically centered
   - [ ] An edit button on the right side of each filled raid slot
     - [ ] Clicking the edit button should open an input inside the raid slot to enter a character name up to 12 characters
   - [ ] An icon-only group based important buffs only counter
