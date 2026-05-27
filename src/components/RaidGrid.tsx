@@ -19,9 +19,9 @@ const groups = Array.from({ length: GROUP_COUNT }, (_, groupIndex) => ({
 
 export default function RaidGrid({ raidSlots }: RaidGridProps) {
   return (
-    <section className="mx-auto w-full max-w-5xl">
+    <section className="w-full">
       <div className="rounded-3xl">
-        <div className="grid gap-4 xl:grid-cols-4">
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {groups.map((group) => (
             <article key={group.id} className="rounded-2xl">
               <header className="mb-3 flex items-center justify-between">

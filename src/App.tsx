@@ -77,9 +77,11 @@ export function App() {
           <div className="pt-28">
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
               <div className="lg:col-span-1"></div>
-              <div className="lg:col-span-3">
-                <SpecsPanel selectedExpansion={selectedExpansion} fillNextSlot={nextEmptySlot} />
-                <RaidGrid raidSlots={raidSlots} />
+              <div className="lg:col-span-3 min-w-0">
+                <div className="mx-auto w-full max-w-5xl">
+                  <SpecsPanel selectedExpansion={selectedExpansion} fillNextSlot={nextEmptySlot} />
+                  <RaidGrid raidSlots={raidSlots} />
+                </div>
               </div>
               <div className="lg:col-span-1">
                 <RightSideBar />

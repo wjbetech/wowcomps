@@ -18,12 +18,12 @@
   - [x] Click a spec to place in the next free raid slot
   - [x] Refreshing the page should not empty all of the slots
   - [ ] The class&specs section should be dynamically centered
-    - [ ] Move class/spec panel row logic into a small lib/helper instead of keeping it in the component file
-    - [ ] Render wide-layout row pattern explicitly for Classic/TBC/SoD
-    - [ ] Render medium-layout row explicitly for Classic/TBC/SoD
-    - [ ] Prevent spec icons inside a class box from wrapping
-    - [ ] Add responsive icon sizing
-    - [ ] Add a horizontal overflow wrapper for smaller resolutions
+    - [x] Move class/spec panel row logic into a small lib/helper instead of keeping it in the component file
+    - [x] Render wide-layout row pattern explicitly for Classic/TBC/SoD
+    - [x] Render medium-layout row explicitly for Classic/TBC/SoD
+    - [x] Prevent spec icons inside a class box from wrapping
+    - [x] Add responsive icon sizing
+    - [x] Add a horizontal overflow wrapper for smaller resolutions
     - [ ] Validate the different render groups
     - [ ] Refine card widths, gaps, and icon sizes so that the panel stays centered and easy to use
   - [ ] An edit button on the right side of each filled raid slot
@@ -58,6 +58,7 @@
 - Add inline player name editing.
 - Add expansion-specific theming hooks.
 - Refine layout, spacing, feedback states, and responsiveness.
+  - [ ] The SubNav component should responsively adapt to the browser window width / turn into a drop down at smaller resolutions.
 
 ### Phase 5: Future Enhancements
 
