@@ -78,11 +78,11 @@ export default function SpecsPanel({ selectedExpansion, fillNextSlot }: SpecsPan
 
   return (
     <section className="mx-auto w-full max-w-5xl pb-6">
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-5 justify-center gap-4">
         {classGroups.map((group) => (
           <article
             key={group.classId}
-            className="min-w-45 rounded-xl p-2"
+            className="w-full shrink-0 rounded-xl p-2 sm:basis-[calc((100%-1rem)/2)] md:basis-[calc((100%-2rem)/3)] xl:basis-[calc((100%-4rem)/5)]"
             style={{
               background: `linear-gradient(
                   180deg,

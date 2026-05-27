@@ -18,6 +18,14 @@
   - [x] Click a spec to place in the next free raid slot
   - [x] Refreshing the page should not empty all of the slots
   - [ ] The class&specs section should be dynamically centered
+    - [ ] Move class/spec panel row logic into a small lib/helper instead of keeping it in the component file
+    - [ ] Render wide-layout row pattern explicitly for Classic/TBC/SoD
+    - [ ] Render medium-layout row explicitly for Classic/TBC/SoD
+    - [ ] Prevent spec icons inside a class box from wrapping
+    - [ ] Add responsive icon sizing
+    - [ ] Add a horizontal overflow wrapper for smaller resolutions
+    - [ ] Validate the different render groups
+    - [ ] Refine card widths, gaps, and icon sizes so that the panel stays centered and easy to use
   - [ ] An edit button on the right side of each filled raid slot
     - [ ] Clicking the edit button should open an input inside the raid slot to enter a character name up to 12 characters
   - [ ] An icon-only group based important buffs only counter

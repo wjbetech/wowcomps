@@ -9,18 +9,18 @@ import RightSideBar from "./components/RightSideBar";
 import SpecsPanel from "./components/SpecsPanel";
 import SubNav from "./components/SubNav";
 
+// data
+import type { Expansion } from "./data/expansionData";
+
+// dnd-kit
+import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+
 // libs
 import expansionColors from "./lib/expansionColors";
 import { usePersistedRaidSlots } from "./lib/usePersistedRaidSlots";
 
-// data
-import type { Expansion } from "./data/expansionData";
-
 // types
 import type { PlacedSpec } from "./types/grid";
-
-// dnd-kit
-import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
