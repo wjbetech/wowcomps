@@ -35,7 +35,7 @@ export default function Navbar({ selectedExpansion, onSelectExpansion }: NavbarP
             id="raid-comp-search"
             type="search"
             placeholder="Search raid comps..."
-            className="w-full rounded-full bg-stone-700 px-4 py-1 text-sm font-normal"
+            className="w-full rounded-lg bg-stone-700 px-4 py-1 text-sm font-normal"
           />
         </div>
       </form>

@@ -1,9 +1,17 @@
 import { ChevronDown } from "lucide-react";
+import type { Expansion } from "../data/expansionData";
+import { getClassBreakdown } from "../lib/classBreakdown";
+import type { RaidSlots } from "../types/grid";
 
 type SectionProps = {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
+};
+
+type RightSidebarProps = {
+  raidSlots: RaidSlots;
+  selectedExpansion: Expansion;
 };
 
 function SidebarSection({ title, children, defaultOpen = true }: SectionProps) {
@@ -24,48 +32,20 @@ function SidebarSection({ title, children, defaultOpen = true }: SectionProps) {
   );
 }
 
-export default function RightSidebar() {
+export default function RightSidebar({ raidSlots, selectedExpansion }: RightSidebarProps) {
+  const classBreakdown = getClassBreakdown(raidSlots, selectedExpansion);
+
   return (
     <aside className="lg:sticky lg:top-6 lg:self-start">
       <div className="space-y-4">
         <SidebarSection title="Class Breakdown" defaultOpen>
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <span className="text-[#FF7D0A]">Druid</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#AAD372]">Hunter</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#3FC7EB]">Mage</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#F58CBA]">Paladin</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-white">Priest</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#FFF569]">Rogue</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#0070DE]">Shaman</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#8788EE]">Warlock</span>
-              <span className="text-stone-400">0</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-[#C79C6E]">Warrior</span>
-              <span className="text-stone-400">0</span>
-            </div>
+            {classBreakdown.map((entry) => (
+              <div key={entry.classId} className="flex justify-between">
+                <span style={{ color: entry.color }}>{entry.label}</span>
+                <span className="text-stone-400">{entry.count}</span>
+              </div>
+            ))}
           </div>
         </SidebarSection>
 
