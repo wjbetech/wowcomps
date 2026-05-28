@@ -14,6 +14,4 @@ body {
 
 :root {
   --navbar-height: 4rem;
-  --subnav-height: 3rem;
-  --header-offset: calc(var(--navbar-height) + var(--subnav-height));
 }
