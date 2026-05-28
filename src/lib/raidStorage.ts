@@ -1,5 +1,5 @@
 import { createInitialRaidSlots } from "./grid";
-import type { PlacedSpec, RaidSlots } from "../types/grid";
+import type { PlacedSpec, RaidSlots } from "../types/raidGris";
 
 export type StoredWorkingRaid = {
   storageVersion: 1;

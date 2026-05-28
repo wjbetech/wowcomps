@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
-import type { Expansion } from "../data/expansionData";
-import SubNav from "./SubNav";
+import type { Expansion } from "../types/expansions";
+import ExpansionSelect from "./ExpansionSelect";
 import classicWoWLogo from "../assets/classicWoWIcon.png";
 
 type NavbarProps = {
@@ -20,7 +20,10 @@ export default function Navbar({ selectedExpansion, onSelectExpansion }: NavbarP
           <span className="hidden xl:block">WoWComps</span>
         </a>
 
-        <SubNav selectedExpansion={selectedExpansion} onSelectExpansion={onSelectExpansion} />
+        <ExpansionSelect
+          selectedExpansion={selectedExpansion}
+          onSelectExpansion={onSelectExpansion}
+        />
       </div>
 
       <form

@@ -1,5 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import type { PlacedSpec, RaidSlots } from "../types/grid";
+import type { PlacedSpec, RaidSlots } from "../types/raidGris";
 import classColors from "../data/classColors";
 
 type RaidGridProps = {

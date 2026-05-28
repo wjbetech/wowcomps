@@ -1,4 +1,5 @@
-import { expansionsData, type Expansion } from "../data/expansionData";
+import { expansionsData } from "../data/expansionData";
+import type { Expansion } from "../types/expansions";
 import expansionColors from "../lib/expansionColors";
 
 type SubNavProps = {
@@ -6,7 +7,7 @@ type SubNavProps = {
   onSelectExpansion: (expansion: Expansion) => void;
 };
 
-export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavProps) {
+export default function ExpansionSelect({ selectedExpansion, onSelectExpansion }: SubNavProps) {
   const selectedTheme = expansionColors[selectedExpansion];
 
   return (

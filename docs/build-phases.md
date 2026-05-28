@@ -13,7 +13,7 @@
 ### Phase 1: Architecture Stabilization
 
 - [x] Delete stale code: old expansion glow component, unused expansion map, old SubNav CSS variables, unused expansion hover tokens.
-- [ ] Rename SubNav to ExpansionSelect.
+- [x] Rename SubNav to ExpansionSelect.
 - [ ] Tighten domain types: ClassId, SpecId, RaidSlotId, PlacedSpec.
 - [ ] Type class colors by ClassId instead of string.
 - [ ] Remove derived display data from PlacedSpec where possible.

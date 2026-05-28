@@ -1,4 +1,4 @@
-import type { Expansion } from "../data/expansionData";
+import type { Expansion } from "../types/expansions";
 
 export type SpecsPanelLayoutTier = "wide" | "medium";
 

@@ -8,7 +8,7 @@ import RightSideBar from "./components/RightSideBar";
 import SpecsPanel from "./components/SpecsPanel";
 
 // data
-import type { Expansion } from "./data/expansionData";
+import type { Expansion } from "./types/expansions";
 
 // dnd-kit
 import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
@@ -17,7 +17,7 @@ import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } f
 import { usePersistedRaidSlots } from "./lib/usePersistedRaidSlots";
 
 // types
-import type { PlacedSpec } from "./types/grid";
+import type { PlacedSpec } from "./types/raidGris";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");

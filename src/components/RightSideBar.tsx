@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
-import type { Expansion } from "../data/expansionData";
+import type { Expansion } from "../types/expansions";
 import { getClassBreakdown } from "../lib/classBreakdown";
-import type { RaidSlots } from "../types/grid";
+import type { RaidSlots } from "../types/raidGris";
 
 type SectionProps = {
   title: string;

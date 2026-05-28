@@ -1,7 +1,11 @@
-import { expansionClasses, type ClassId } from "../data/expansionClasses";
+// data
+import { expansionClasses } from "../data/expansionClasses";
 import classColors from "../data/classColors";
-import type { Expansion } from "../data/expansionData";
-import type { RaidSlots } from "../types/grid";
+
+// types
+import { type ClassId } from "../types/classesSpecs";
+import type { Expansion } from "../types/expansions";
+import type { RaidSlots } from "../types/raidGris";
 
 type ClassBreakdownRow = {
   classId: ClassId;

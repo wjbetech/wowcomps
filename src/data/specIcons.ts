@@ -1,4 +1,4 @@
-import type { ClassId, SpecId } from "./expansionClasses";
+import type { ClassId, SpecId } from "../types/classesSpecs";
 
 type SpecIconMap = Partial<Record<ClassId, Partial<Record<SpecId, string>>>>;
 

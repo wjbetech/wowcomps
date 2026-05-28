@@ -1,4 +1,4 @@
-import type { RaidSlots } from "../types/grid";
+import type { RaidSlots } from "../types/raidGris";
 
 export const GROUP_COUNT = 8;
 export const SLOTS_PER_GROUP = 5;

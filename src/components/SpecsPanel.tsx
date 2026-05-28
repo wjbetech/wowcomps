@@ -1,13 +1,13 @@
 // data
 import { expansionClasses } from "../data/expansionClasses";
-import type { Expansion } from "../data/expansionData";
+import type { Expansion } from "../types/expansions";
 import classColors from "../data/classColors";
 
 // libs
 import { getSpecsPanelRows } from "../lib/specsPanelLayout";
 
 // types
-import type { PlacedSpec } from "../types/grid";
+import type { PlacedSpec } from "../types/raidGris";
 
 // dnd-kit
 import { useDraggable } from "@dnd-kit/core";
