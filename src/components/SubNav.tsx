@@ -7,6 +7,8 @@ type SubNavProps = {
 };
 
 export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavProps) {
+  const selectedTheme = expansionColors[selectedExpansion];
+
   return (
     <header className="fixed inset-x-0 top-16 z-40 flex h-12 w-full items-center border-b border-stone-500 bg-stone-850/80 px-4 backdrop-blur">
       <div className="mx-auto hidden w-full max-w-6xl grid-cols-5 items-center gap-2 xl:grid">
@@ -48,9 +50,15 @@ export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavP
         value={selectedExpansion}
         onChange={(event) => onSelectExpansion(event.target.value as Expansion)}
         className={[
-          "mx-auto block w-full max-w-sm rounded-md border border-stone-600 bg-stone-900 px-3 py-1.5 text-sm font-semibold outline-none xl:hidden",
-          expansionColors[selectedExpansion].text,
+          "mx-auto block w-full max-w-sm rounded-md border px-3 py-1.5 text-sm font-extrabold outline-none xl:hidden",
+          "shadow-lg transition",
+          selectedTheme.text,
         ].join(" ")}
+        style={{
+          background: getExpansionSelectBackground(selectedTheme.glow),
+          borderColor: `rgb(${selectedTheme.glow} / 0.55)`,
+          boxShadow: `0 0 18px rgb(${selectedTheme.glow} / 0.18)`,
+        }}
       >
         {expansionsData.map((expansion) => {
           const theme = expansionColors[expansion.id];
@@ -74,4 +82,8 @@ export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavP
       </select>
     </header>
   );
+}
+
+function getExpansionSelectBackground(rgb: string) {
+  return `linear-gradient(135deg, rgb(${rgb} / 0.28), rgb(28 25 23) 58%, rgb(${rgb} / 0.16))`;
 }
