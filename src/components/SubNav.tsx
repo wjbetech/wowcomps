@@ -10,37 +10,7 @@ export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavP
   const selectedTheme = expansionColors[selectedExpansion];
 
   return (
-    <header className="fixed inset-x-0 top-16 z-40 flex h-12 w-full items-center border-b border-stone-500 bg-stone-850/80 px-4 backdrop-blur">
-      <div className="mx-auto hidden w-full max-w-6xl grid-cols-5 items-center gap-2 xl:grid">
-        {expansionsData.map((expansion) => {
-          const currentExp = expansion.id === selectedExpansion;
-          const theme = expansionColors[expansion.id];
-
-          return (
-            <button
-              key={expansion.id}
-              type="button"
-              onClick={() => {
-                if (expansion.enabled) {
-                  onSelectExpansion(expansion.id);
-                }
-              }}
-              disabled={!expansion.enabled}
-              className={[
-                "min-w-0 rounded-md px-2 py-1 text-xs font-extrabold transition 2xl:px-3 2xl:text-sm",
-                "truncate",
-                theme.text,
-                theme.hoverBg,
-                currentExp ? theme.activeBg : "",
-                !expansion.enabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
-              ].join(" ")}
-            >
-              {expansion.label}
-            </button>
-          );
-        })}
-      </div>
-
+    <>
       <label className="sr-only" htmlFor="expansion-select">
         Expansion
       </label>
@@ -50,14 +20,12 @@ export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavP
         value={selectedExpansion}
         onChange={(event) => onSelectExpansion(event.target.value as Expansion)}
         className={[
-          "mx-auto block w-full max-w-sm rounded-md border px-3 py-1.5 text-sm font-extrabold outline-none xl:hidden",
-          "shadow-lg transition",
+          "ml-4 w-56 rounded-md border px-3 py-1.5 text-sm font-extrabold outline-none",
           selectedTheme.text,
         ].join(" ")}
         style={{
           background: getExpansionSelectBackground(selectedTheme.glow),
-          borderColor: `rgb(${selectedTheme.glow} / 0.55)`,
-          boxShadow: `0 0 18px rgb(${selectedTheme.glow} / 0.18)`,
+          borderColor: `rgb(${selectedTheme.glow} / 0.45)`,
         }}
       >
         {expansionsData.map((expansion) => {
@@ -80,10 +48,10 @@ export default function SubNav({ selectedExpansion, onSelectExpansion }: SubNavP
           );
         })}
       </select>
-    </header>
+    </>
   );
 }
 
 function getExpansionSelectBackground(rgb: string) {
-  return `linear-gradient(135deg, rgb(${rgb} / 0.28), rgb(28 25 23) 58%, rgb(${rgb} / 0.16))`;
+  return `linear-gradient(135deg, rgb(${rgb} / 0.2), rgb(28 25 23) 60%, rgb(${rgb} / 0.1))`;
 }

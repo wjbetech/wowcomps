@@ -1,13 +1,11 @@
 // core
 import { useState } from "react";
-import ExpansionGlow from "./styles/expansionGlow";
 
 // components
 import Navbar from "./components/Navbar";
 import RaidGrid from "./components/RaidGrid";
 import RightSideBar from "./components/RightSideBar";
 import SpecsPanel from "./components/SpecsPanel";
-import SubNav from "./components/SubNav";
 
 // data
 import type { Expansion } from "./data/expansionData";
@@ -16,7 +14,6 @@ import type { Expansion } from "./data/expansionData";
 import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 
 // libs
-import expansionColors from "./lib/expansionColors";
 import { usePersistedRaidSlots } from "./lib/usePersistedRaidSlots";
 
 // types
@@ -24,7 +21,6 @@ import type { PlacedSpec } from "./types/grid";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
-  const theme = expansionColors[selectedExpansion];
   const [raidSlots, setRaidSlots] = usePersistedRaidSlots();
 
   const sensors = useSensors(
@@ -67,14 +63,11 @@ export function App() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
-      <ExpansionGlow glow={theme.glow} />
-
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <div className="relative z-10">
-          <Navbar />
-          <SubNav selectedExpansion={selectedExpansion} onSelectExpansion={setSelectedExpansion} />
+          <Navbar selectedExpansion={selectedExpansion} onSelectExpansion={setSelectedExpansion} />
 
-          <div className="pt-28">
+          <div className="pt-16">
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
               <div className="lg:col-span-1"></div>
               <div className="lg:col-span-3 min-w-0">
