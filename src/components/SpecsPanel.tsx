@@ -44,7 +44,6 @@ function DraggableSpecButton({
     data: {
       classId,
       specId,
-      fillNextSlot,
     },
   });
 

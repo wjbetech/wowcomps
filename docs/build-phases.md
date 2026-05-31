@@ -16,8 +16,8 @@
 - [x] Rename SubNav to ExpansionSelect.
 - [x] Tighten domain types: ClassId, SpecId, RaidSlotId, PlacedSpec.
 - [x] Type class colors by ClassId instead of string.
-- [ ] Remove derived display data from PlacedSpec where possible.
-- [ ] Remove callback functions from drag payload data.
+- [x] Remove derived display data from PlacedSpec where possible.
+- [x] Remove callback functions from drag payload data.
 - [ ] Add basic helper tests for class breakdown, specs panel layout, and storage normalization.
 
 ### Phase 2: Domain Data Model
