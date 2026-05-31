@@ -1,20 +1,13 @@
+// core
 import { ChevronDown } from "lucide-react";
-import type { Expansion } from "../types/expansions";
-import { getClassBreakdown } from "../lib/classBreakdown";
-import type { RaidSlots } from "../types/raidGris";
 
-type SectionProps = {
-  title: string;
-  children: React.ReactNode;
-  defaultOpen?: boolean;
-};
+// lib
+import { getClassBreakdown } from "../lib/classesHandler";
 
-type RightSidebarProps = {
-  raidSlots: RaidSlots;
-  selectedExpansion: Expansion;
-};
+// types
+import type { RightSectionProps, RightSidebarProps } from "../types/rightSection";
 
-function SidebarSection({ title, children, defaultOpen = true }: SectionProps) {
+function SidebarSection({ title, children, defaultOpen = true }: RightSectionProps) {
   return (
     <details
       open={defaultOpen}

@@ -7,7 +7,8 @@ import classColors from "../data/classColors";
 import { getSpecsPanelRows } from "../lib/specsPanelLayout";
 
 // types
-import type { PlacedSpec } from "../types/raidGris";
+import type { ClassId, SpecId } from "../types/classesSpecs";
+import type { PlacedSpec } from "../types/raidGrid";
 
 // dnd-kit
 import { useDraggable } from "@dnd-kit/core";
@@ -19,8 +20,8 @@ type SpecsPanelProps = {
 };
 
 type DraggableSpecButtonProps = {
-  classId: string;
-  specId: string;
+  classId: ClassId;
+  specId: SpecId;
   label: string;
   iconLink?: string;
   fillNextSlot: (spec: PlacedSpec) => void;

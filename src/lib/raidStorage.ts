@@ -1,5 +1,5 @@
 import { createInitialRaidSlots } from "./grid";
-import type { PlacedSpec, RaidSlots } from "../types/raidGris";
+import type { PlacedSpec, RaidSlotId, RaidSlots } from "../types/raidGrid";
 
 export type StoredWorkingRaid = {
   storageVersion: 1;
@@ -34,7 +34,7 @@ function normalizeRaidSlots(value: unknown): RaidSlots {
 
   const candidate = value as Record<string, unknown>;
 
-  for (const slotId of Object.keys(emptySlots)) {
+  for (const slotId of Object.keys(emptySlots) as RaidSlotId[]) {
     const storedValue = candidate[slotId];
 
     if (storedValue === null) {

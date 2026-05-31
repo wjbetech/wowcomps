@@ -9,3 +9,8 @@ export type ExpansionConfig = {
   enabled: boolean;
   raidSizes: RaidSize[];
 };
+
+export type ExpansionSelectProps = {
+  selectedExpansion: Expansion;
+  onSelectExpansion: (expansion: Expansion) => void;
+};

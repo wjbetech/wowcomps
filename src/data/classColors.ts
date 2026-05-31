@@ -1,4 +1,6 @@
-const classColors: Record<string, string> = {
+import type { ClassId } from "../types/classesSpecs";
+
+const classColors: Record<ClassId, string> = {
   deathKnight: "#C41F3B",
   druid: "#FF7D0A",
   hunter: "#ABD473",

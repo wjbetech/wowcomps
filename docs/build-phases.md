@@ -14,8 +14,8 @@
 
 - [x] Delete stale code: old expansion glow component, unused expansion map, old SubNav CSS variables, unused expansion hover tokens.
 - [x] Rename SubNav to ExpansionSelect.
-- [ ] Tighten domain types: ClassId, SpecId, RaidSlotId, PlacedSpec.
-- [ ] Type class colors by ClassId instead of string.
+- [x] Tighten domain types: ClassId, SpecId, RaidSlotId, PlacedSpec.
+- [x] Type class colors by ClassId instead of string.
 - [ ] Remove derived display data from PlacedSpec where possible.
 - [ ] Remove callback functions from drag payload data.
 - [ ] Add basic helper tests for class breakdown, specs panel layout, and storage normalization.

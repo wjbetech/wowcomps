@@ -17,7 +17,7 @@ import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } f
 import { usePersistedRaidSlots } from "./lib/usePersistedRaidSlots";
 
 // types
-import type { PlacedSpec } from "./types/raidGris";
+import type { PlacedSpec, RaidSlotId, RaidSlots } from "./types/raidGrid";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
@@ -40,15 +40,21 @@ export function App() {
 
     if (!draggedSpec) return;
 
-    setRaidSlots((prev) => ({
-      ...prev,
-      [String(over.id)]: draggedSpec,
-    }));
+    setRaidSlots((prev: RaidSlots) => {
+      const slotId = String(over.id) as RaidSlotId;
+
+      return {
+        ...prev,
+        [slotId]: draggedSpec,
+      };
+    });
   }
 
   function nextEmptySlot(spec: PlacedSpec) {
-    setRaidSlots((prev) => {
-      const nextEmptySlotId = Object.keys(prev).find((slotId) => prev[slotId] === null);
+    setRaidSlots((prev: RaidSlots) => {
+      const nextEmptySlotId = (Object.keys(prev) as RaidSlotId[]).find(
+        (slotId) => prev[slotId] === null,
+      );
 
       if (!nextEmptySlotId) {
         return prev;

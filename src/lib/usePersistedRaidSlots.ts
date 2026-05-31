@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { RaidSlots } from "../types/raidGris";
+import type { RaidSlots } from "../types/raidGrid";
 import { readWorkingRaidSlots, writeWorkingRaidSlots } from "./raidStorage";
 
 export function usePersistedRaidSlots() {

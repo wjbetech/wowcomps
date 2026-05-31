@@ -5,7 +5,7 @@ import classColors from "../data/classColors";
 // types
 import { type ClassId } from "../types/classesSpecs";
 import type { Expansion } from "../types/expansions";
-import type { RaidSlots } from "../types/raidGris";
+import type { RaidSlots } from "../types/raidGrid";
 
 type ClassBreakdownRow = {
   classId: ClassId;
@@ -25,17 +25,17 @@ export function getClassBreakdown(raidSlots: RaidSlots, expansion: Expansion): C
   for (const placedSpec of Object.values(raidSlots)) {
     if (!placedSpec) continue;
 
-    const classId = placedSpec.classId as ClassId;
+    const classId = placedSpec.classId;
 
     if (!counts.has(classId)) continue;
 
-    counts.set(classId, (counts.get(classId) || 0) + 1);
+    counts.set(classId, (counts.get(classId) ?? 0) + 1);
   }
 
   return classGroups.map((classGroup) => ({
     classId: classGroup.classId,
     label: classGroup.label,
     color: classColors[classGroup.classId],
-    count: counts.get(classGroup.classId) || 0,
+    count: counts.get(classGroup.classId) ?? 0,
   }));
 }

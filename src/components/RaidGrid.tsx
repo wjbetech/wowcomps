@@ -1,5 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import type { PlacedSpec, RaidSlots } from "../types/raidGris";
+import type { RaidSlotId, PlacedSpec, RaidSlots, RaidGroup } from "../types/raidGrid";
 import classColors from "../data/classColors";
 
 type RaidGridProps = {
@@ -9,12 +9,16 @@ type RaidGridProps = {
 const GROUP_COUNT = 8;
 const SLOTS_PER_GROUP = 5;
 
-const groups = Array.from({ length: GROUP_COUNT }, (_, groupIndex) => ({
+const groups: RaidGroup[] = Array.from({ length: GROUP_COUNT }, (_, groupIndex) => ({
   id: groupIndex + 1,
-  slots: Array.from({ length: SLOTS_PER_GROUP }, (_, slotIndex) => ({
-    id: `${groupIndex + 1}-${slotIndex + 1}`,
-    label: `Slot ${slotIndex + 1}`,
-  })),
+  slots: Array.from({ length: SLOTS_PER_GROUP }, (_, slotIndex) => {
+    const slotId = `${groupIndex + 1}-${slotIndex + 1}` as RaidSlotId;
+
+    return {
+      id: slotId,
+      label: `Slot ${slotIndex + 1}`,
+    };
+  }),
 }));
 
 export default function RaidGrid({ raidSlots }: RaidGridProps) {
@@ -43,7 +47,7 @@ export default function RaidGrid({ raidSlots }: RaidGridProps) {
   );
 }
 
-function RaidSlot({ slotId, placedSpec }: { slotId: string; placedSpec: PlacedSpec | null }) {
+function RaidSlot({ slotId, placedSpec }: { slotId: RaidSlotId; placedSpec: PlacedSpec | null }) {
   const { isOver, setNodeRef } = useDroppable({
     id: slotId,
   });
