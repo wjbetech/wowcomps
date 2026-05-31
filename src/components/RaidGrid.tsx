@@ -1,10 +1,13 @@
+// core
 import { useDroppable } from "@dnd-kit/core";
-import type { RaidSlotId, PlacedSpec, RaidSlots, RaidGroup } from "../types/raidGrid";
-import classColors from "../data/classColors";
 
-type RaidGridProps = {
-  raidSlots: RaidSlots;
-};
+// data
+import classColors from "../data/classColors";
+import { getSpecDisplay } from "../data/expansionClasses";
+
+// types
+import type { RaidSlotId, PlacedSpec, RaidGroup } from "../types/raidGrid";
+import type { RaidGridProps } from "../types/raidGrid";
 
 const GROUP_COUNT = 8;
 const SLOTS_PER_GROUP = 5;
@@ -52,6 +55,8 @@ function RaidSlot({ slotId, placedSpec }: { slotId: RaidSlotId; placedSpec: Plac
     id: slotId,
   });
 
+  const specDisplay = placedSpec ? getSpecDisplay(placedSpec.classId, placedSpec.specId) : null;
+
   const slotColor = placedSpec ? classColors[placedSpec.classId] : undefined;
 
   const slotStyle = slotColor
@@ -82,14 +87,14 @@ function RaidSlot({ slotId, placedSpec }: { slotId: RaidSlotId; placedSpec: Plac
     >
       {placedSpec ? (
         <div className="flex w-full items-center gap-2">
-          {placedSpec.iconLink ? (
+          {specDisplay?.iconLink ? (
             <img
-              src={placedSpec.iconLink}
-              alt={placedSpec.label}
+              src={specDisplay.iconLink}
+              alt={specDisplay.label}
               className="h-6 w-6 zoom-110 rounded-sm object-cover"
             />
           ) : null}
-          <span className="text-sm font-extrabold">{placedSpec.label}</span>
+          <span className="text-sm font-extrabold">{specDisplay?.label}</span>
         </div>
       ) : (
         <span className="w-full text-center text-sm text-stone-400/50">-</span>

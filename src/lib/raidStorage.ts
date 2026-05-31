@@ -1,11 +1,9 @@
+// libs
 import { createInitialRaidSlots } from "./grid";
-import type { PlacedSpec, RaidSlotId, RaidSlots } from "../types/raidGrid";
 
-export type StoredWorkingRaid = {
-  storageVersion: 1;
-  raidSlots: RaidSlots;
-  updatedAt: string;
-};
+// types
+import type { PlacedSpec, RaidSlotId, RaidSlots } from "../types/raidGrid";
+import type { StoredWorkingRaid } from "../types/raids";
 
 const WORKING_RAID_STORAGE_KEY = "wowcomps:workingRaid";
 const WORKING_RAID_STORAGE_VERSION = 1 as const;
@@ -17,12 +15,7 @@ function isPlacedSpec(value: unknown): value is PlacedSpec {
 
   const candidate = value as Partial<PlacedSpec>;
 
-  return (
-    typeof candidate.classId === "string" &&
-    typeof candidate.specId === "string" &&
-    typeof candidate.label === "string" &&
-    (candidate.iconLink === undefined || typeof candidate.iconLink === "string")
-  );
+  return typeof candidate.classId === "string" && typeof candidate.specId === "string";
 }
 
 function normalizeRaidSlots(value: unknown): RaidSlots {

@@ -44,8 +44,6 @@ function DraggableSpecButton({
     data: {
       classId,
       specId,
-      label,
-      iconLink,
       fillNextSlot,
     },
   });
@@ -58,8 +56,6 @@ function DraggableSpecButton({
   const placedSpec: PlacedSpec = {
     classId,
     specId,
-    label,
-    iconLink,
   };
 
   return (

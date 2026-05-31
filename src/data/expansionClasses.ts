@@ -1,6 +1,9 @@
-import type { Expansion } from "../types/expansions";
+// data
 import { specIcons } from "./specIcons";
-import type { ClassId, ExpansionClassGroup } from "../types/classesSpecs";
+
+// types
+import type { Expansion } from "../types/expansions";
+import type { ClassId, ExpansionClassGroup, SpecId } from "../types/classesSpecs";
 
 const classCatalog: Record<ClassId, ExpansionClassGroup> = {
   deathKnight: {
@@ -131,3 +134,9 @@ export const expansionClasses: Record<Expansion, ExpansionClassGroup[]> = Object
     classIds.map((classId) => classCatalog[classId]),
   ]),
 ) as Record<Expansion, ExpansionClassGroup[]>;
+
+export function getSpecDisplay(classId: ClassId, specId: SpecId) {
+  const group = classCatalog[classId];
+  const spec = group.specs.find((entry) => entry.specId === specId);
+  return spec ? { label: spec.label, iconLink: spec.iconLink } : null;
+}
