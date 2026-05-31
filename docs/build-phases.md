@@ -18,7 +18,7 @@
 - [x] Type class colors by ClassId instead of string.
 - [x] Remove derived display data from PlacedSpec where possible.
 - [x] Remove callback functions from drag payload data.
-- [ ] Add basic helper tests for class breakdown, specs panel layout, and storage normalization.
+- [x] Add basic helper tests for class breakdown, specs panel layout, and storage normalization.
 
 ### Phase 2: Domain Data Model
 

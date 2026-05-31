@@ -8,7 +8,7 @@
     "build": "tsc && vp build",
     "preview": "vp preview",
     "prepare": "vp config",
-    "test": "vitest"
+    "test": "vp test"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

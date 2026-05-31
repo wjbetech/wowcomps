@@ -9,13 +9,10 @@ catalogs:
     vite-plus:
       specifier: latest
       version: 0.1.23
-    vitest:
-      specifier: npm:@voidzero-dev/vite-plus-test@^0.1.23
-      version: 0.1.23
 
 overrides:
   vite: npm:@voidzero-dev/vite-plus-core@latest
-  vitest: npm:@voidzero-dev/vite-plus-test@latest
+  vitest: npm:@voidzero-dev/vite-plus-test@^0.1.23
 
 importers:
 
@@ -59,7 +56,7 @@ importers:
         specifier: 'catalog:'
         version: 0.1.23(@voidzero-dev/vite-plus-core@0.1.23(jiti@2.7.0)(typescript@6.0.3))(jiti@2.7.0)(typescript@6.0.3)
       vitest:
-        specifier: 'catalog:'
+        specifier: npm:@voidzero-dev/vite-plus-test@^0.1.23
         version: '@voidzero-dev/vite-plus-test@0.1.23(@voidzero-dev/vite-plus-core@0.1.23(jiti@2.7.0)(typescript@6.0.3))(jiti@2.7.0)(typescript@6.0.3)'
 
 packages:

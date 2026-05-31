@@ -18,7 +18,7 @@ function isPlacedSpec(value: unknown): value is PlacedSpec {
   return typeof candidate.classId === "string" && typeof candidate.specId === "string";
 }
 
-function normalizeRaidSlots(value: unknown): RaidSlots {
+export function normalizeRaidSlots(value: unknown): RaidSlots {
   const emptySlots = createInitialRaidSlots();
 
   if (!value || typeof value !== "object") {
@@ -36,7 +36,10 @@ function normalizeRaidSlots(value: unknown): RaidSlots {
     }
 
     if (isPlacedSpec(storedValue)) {
-      emptySlots[slotId] = storedValue;
+      emptySlots[slotId] = {
+        classId: storedValue.classId,
+        specId: storedValue.specId,
+      };
     }
   }
 
