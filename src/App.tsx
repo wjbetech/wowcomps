@@ -11,16 +11,17 @@ import SpecsPanel from "./components/SpecsPanel";
 import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 
 // libs
-import { usePersistedRaidSlots } from "./lib/usePersistedRaidSlots";
-import { fillNextEmptySlot, placeSpec } from "./lib/raidComposition";
+import { useRaidComposition } from "./lib/useRaidComposition";
 
 // types
-import type { Expansion } from "./types/expansions";
+import type { Expansion, RaidSize } from "./types/expansions";
 import type { PlacedSpec, RaidSlotId } from "./types/raidGrid";
+import { getExpansionConfig } from "./data/expansionData";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
-  const [raidSlots, setRaidSlots] = usePersistedRaidSlots();
+  const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(40);
+  const { raidSlots, placeSpec, fillNextEmptySlot } = useRaidComposition();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -29,6 +30,17 @@ export function App() {
       },
     }),
   );
+
+  function handleSelectExpansion(nextExpansion: Expansion) {
+    const config = getExpansionConfig(nextExpansion);
+    if (!config) return;
+
+    setSelectedExpansion(nextExpansion);
+
+    if (!config.raidSizes.includes(selectedRaidSize)) {
+      setSelectedRaidSize(config.raidSizes[config.raidSizes.length - 1]);
+    }
+  }
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -39,14 +51,14 @@ export function App() {
 
     if (!draggedSpec) return;
 
-    setRaidSlots((prev) => placeSpec(prev, over.id as RaidSlotId, draggedSpec));
+    placeSpec(over.id as RaidSlotId, draggedSpec);
   }
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <div className="relative z-10">
-          <Navbar selectedExpansion={selectedExpansion} onSelectExpansion={setSelectedExpansion} />
+          <Navbar selectedExpansion={selectedExpansion} onSelectExpansion={handleSelectExpansion} />
 
           <div className="pt-16">
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
@@ -55,7 +67,7 @@ export function App() {
                 <div className="mx-auto w-full max-w-5xl">
                   <SpecsPanel
                     selectedExpansion={selectedExpansion}
-                    fillNextSlot={(spec) => setRaidSlots((prev) => fillNextEmptySlot(prev, spec))}
+                    fillNextSlot={fillNextEmptySlot}
                   />
                   <RaidGrid raidSlots={raidSlots} />
                 </div>

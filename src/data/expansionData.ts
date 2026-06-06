@@ -1,4 +1,4 @@
-import type { ExpansionConfig } from "../types/expansions";
+import type { Expansion, ExpansionConfig } from "../types/expansions";
 
 export const expansionsData: ExpansionConfig[] = [
   {
@@ -35,4 +35,8 @@ export const expansionsData: ExpansionConfig[] = [
 
 export function getExpansions(): ExpansionConfig[] {
   return expansionsData;
+}
+
+export function getExpansionConfig(expansion: Expansion): ExpansionConfig | null {
+  return expansionsData.find((entry) => entry.id === expansion) ?? null;
 }
