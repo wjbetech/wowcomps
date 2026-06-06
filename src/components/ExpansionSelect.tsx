@@ -1,5 +1,5 @@
 // data
-import { expansionsData } from "../data/expansionData";
+import { getExpansions } from "../data/expansionData";
 
 // libs
 import expansionColors from "../lib/expansionColors";
@@ -7,6 +7,8 @@ import expansionColors from "../lib/expansionColors";
 // types
 import type { Expansion } from "../types/expansions";
 import type { ExpansionSelectProps } from "../types/expansions";
+
+const expansions = getExpansions();
 
 export default function ExpansionSelect({
   selectedExpansion,
@@ -33,7 +35,7 @@ export default function ExpansionSelect({
           borderColor: `rgb(${selectedTheme.glow} / 0.45)`,
         }}
       >
-        {expansionsData.map((expansion) => {
+        {expansions.map((expansion) => {
           const theme = expansionColors[expansion.id];
 
           return (

@@ -42,9 +42,19 @@ export type SpecId =
 export type ExpansionClassGroup = {
   classId: ClassId;
   label: string;
-  specs: {
-    specId: SpecId;
-    label: string;
-    iconLink?: string;
-  }[];
+  color: string;
+  specs: SpecCatalogEntry[];
+};
+
+export type SpecCatalogEntry = {
+  specId: SpecId;
+  label: string;
+  iconLink?: string;
+};
+
+export type ClassCatalogEntry = {
+  classId: ClassId;
+  label: string;
+  color: string;
+  specs: SpecCatalogEntry[];
 };

@@ -2,8 +2,7 @@
 import { useDroppable } from "@dnd-kit/core";
 
 // data
-import classColors from "../data/classColors";
-import { getSpecDisplay } from "../data/expansionClasses";
+import { getClassDisplay, getSpecDisplay } from "../data/expansionClasses";
 
 // types
 import type { RaidSlotId, PlacedSpec, RaidGroup } from "../types/raidGrid";
@@ -57,7 +56,7 @@ function RaidSlot({ slotId, placedSpec }: { slotId: RaidSlotId; placedSpec: Plac
 
   const specDisplay = placedSpec ? getSpecDisplay(placedSpec.classId, placedSpec.specId) : null;
 
-  const slotColor = placedSpec ? classColors[placedSpec.classId] : undefined;
+  const slotColor = placedSpec ? getClassDisplay(placedSpec.classId).color : undefined;
 
   const slotStyle = slotColor
     ? {

@@ -22,12 +22,10 @@
 
 ### Phase 2: Domain Data Model
 
-- [ ] Consolidate class labels, colors, specs, spec labels, and icons into one typed class/spec catalog.
-- [ ] Keep expansion class membership as ordered class ID lists.
-- [ ] Add data access helpers for expansion config, classes, specs, and validation.
-- [ ] Rename expansion color glow token to accentRgb or similar.
-- [ ] Remove or justify expansion themeKey.
-- [ ] Add data-alignment checks if metadata remains split across files.
+- [x] consolidate class labels, class colors, spec labels, and spec icons into one typed class/spec catalog.
+- [x] derive expansion class groups from the catalog throughout the app.
+- [x] Add small, typed helpers for reading class, spec and expansion lists.
+- [x] remove themeKey if it serves no purpose after cleanup.
 
 ### Phase 3: Raid Composition State Layer
 
