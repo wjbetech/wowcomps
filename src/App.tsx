@@ -17,6 +17,7 @@ import { useRaidComposition } from "./lib/useRaidComposition";
 import type { Expansion, RaidSize } from "./types/expansions";
 import type { PlacedSpec, RaidSlotId } from "./types/raidGrid";
 import { getExpansionConfig } from "./data/expansionData";
+import { resolveExpansionChange } from "./lib/raidComposition";
 
 export function App() {
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
@@ -35,11 +36,10 @@ export function App() {
     const config = getExpansionConfig(nextExpansion);
     if (!config) return;
 
-    setSelectedExpansion(nextExpansion);
+    const nextState = resolveExpansionChange(selectedRaidSize, nextExpansion, config);
 
-    if (!config.raidSizes.includes(selectedRaidSize)) {
-      setSelectedRaidSize(config.raidSizes[config.raidSizes.length - 1]);
-    }
+    setSelectedExpansion(nextState.selectedExpansion);
+    setSelectedRaidSize(nextState.selectedRaidSize);
   }
 
   function handleDragEnd(event: DragEndEvent) {
