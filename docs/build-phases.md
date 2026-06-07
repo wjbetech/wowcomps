@@ -22,21 +22,19 @@
 
 ### Phase 2: Domain Data Model
 
-- [ ] Consolidate class labels, colors, specs, spec labels, and icons into one typed class/spec catalog.
-- [ ] Keep expansion class membership as ordered class ID lists.
-- [ ] Add data access helpers for expansion config, classes, specs, and validation.
-- [ ] Rename expansion color glow token to accentRgb or similar.
-- [ ] Remove or justify expansion themeKey.
-- [ ] Add data-alignment checks if metadata remains split across files.
+- [x] consolidate class labels, class colors, spec labels, and spec icons into one typed class/spec catalog.
+- [x] derive expansion class groups from the catalog throughout the app.
+- [x] Add small, typed helpers for reading class, spec and expansion lists.
+- [x] remove themeKey if it serves no purpose after cleanup.
 
 ### Phase 3: Raid Composition State Layer
 
-- [ ] Move raid mutations out of App into useRaidComposition or a reducer.
-- [ ] Add actions: placeSpec, fillNextEmptySlot, clearSlot, clearRaid, renameSlot.
-- [ ] Add expansion-change policy.
-- [ ] Add selectedRaidSize state.
-- [ ] Make raid behavior testable without rendering the app.
-- [ ] Keep App focused on layout and component wiring.
+- [x] Move raid mutations out of App into useRaidComposition or a reducer.
+- [x] Add actions: placeSpec, fillNextEmptySlot, clearSlot, clearRaid, renameSlot.
+- [x] Add expansion-change policy.
+- [x] Add selectedRaidSize state.
+- [x] Make raid behavior testable without rendering the app.
+- [x] Keep App focused on layout and component wiring.
 
 ### Phase 4: Raid Grid Model And Raid Sizes
 

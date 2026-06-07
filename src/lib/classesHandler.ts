@@ -1,9 +1,8 @@
 // data
-import { expansionClasses } from "../data/expansionClasses";
-import classColors from "../data/classColors";
+import { getExpansionClassGroups } from "../data/expansionClasses";
 
 // types
-import { type ClassId } from "../types/classesSpecs";
+import type { ClassId } from "../types/classesSpecs";
 import type { Expansion } from "../types/expansions";
 import type { RaidSlots } from "../types/raidGrid";
 
@@ -15,7 +14,7 @@ type ClassBreakdownRow = {
 };
 
 export function getClassBreakdown(raidSlots: RaidSlots, expansion: Expansion): ClassBreakdownRow[] {
-  const classGroups = expansionClasses[expansion];
+  const classGroups = getExpansionClassGroups(expansion);
   const counts = new Map<ClassId, number>();
 
   for (const classGroup of classGroups) {
@@ -35,7 +34,7 @@ export function getClassBreakdown(raidSlots: RaidSlots, expansion: Expansion): C
   return classGroups.map((classGroup) => ({
     classId: classGroup.classId,
     label: classGroup.label,
-    color: classColors[classGroup.classId],
+    color: classGroup.color,
     count: counts.get(classGroup.classId) ?? 0,
   }));
 }

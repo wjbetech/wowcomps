@@ -1,13 +1,12 @@
 // data
-import { expansionClasses } from "../data/expansionClasses";
+import { getExpansionClassGroups } from "../data/expansionClasses";
 import type { Expansion } from "../types/expansions";
-import classColors from "../data/classColors";
 
 // libs
 import { getSpecsPanelRows } from "../lib/specsPanelLayout";
 
 // types
-import type { ClassId, SpecId } from "../types/classesSpecs";
+import type { ClassId, SpecId, ExpansionClassGroup } from "../types/classesSpecs";
 import type { PlacedSpec } from "../types/raidGrid";
 
 // dnd-kit
@@ -28,7 +27,7 @@ type DraggableSpecButtonProps = {
 };
 
 type ClassSpecCardProps = {
-  group: (typeof expansionClasses)[Expansion][number];
+  group: ExpansionClassGroup;
   fillNextSlot: (spec: PlacedSpec) => void;
 };
 
@@ -44,6 +43,7 @@ function DraggableSpecButton({
     data: {
       classId,
       specId,
+      playerName: "",
     },
   });
 
@@ -55,6 +55,7 @@ function DraggableSpecButton({
   const placedSpec: PlacedSpec = {
     classId,
     specId,
+    playerName: "",
   };
 
   return (
@@ -88,8 +89,8 @@ function ClassSpecCard({ group, fillNextSlot }: ClassSpecCardProps) {
       style={{
         background: `linear-gradient(
           180deg,
-          rgb(from ${classColors[group.classId]} r g b / 0.18),
-          rgb(from ${classColors[group.classId]} r g b / 0.06)
+          rgb(from ${group.color} r g b / 0.18),
+          rgb(from ${group.color} r g b / 0.06)
         )`,
       }}
     >
@@ -114,7 +115,7 @@ function ClassSpecCard({ group, fillNextSlot }: ClassSpecCardProps) {
 }
 
 export default function SpecsPanel({ selectedExpansion, fillNextSlot }: SpecsPanelProps) {
-  const classGroups = expansionClasses[selectedExpansion];
+  const classGroups = getExpansionClassGroups(selectedExpansion);
 
   const wideRows = getSpecsPanelRows(classGroups, selectedExpansion, "wide");
   const mediumRows = getSpecsPanelRows(classGroups, selectedExpansion, "medium");
