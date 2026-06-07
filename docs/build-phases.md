@@ -29,12 +29,12 @@
 
 ### Phase 3: Raid Composition State Layer
 
-- [ ] Move raid mutations out of App into useRaidComposition or a reducer.
-- [ ] Add actions: placeSpec, fillNextEmptySlot, clearSlot, clearRaid, renameSlot.
-- [ ] Add expansion-change policy.
-- [ ] Add selectedRaidSize state.
-- [ ] Make raid behavior testable without rendering the app.
-- [ ] Keep App focused on layout and component wiring.
+- [x] Move raid mutations out of App into useRaidComposition or a reducer.
+- [x] Add actions: placeSpec, fillNextEmptySlot, clearSlot, clearRaid, renameSlot.
+- [x] Add expansion-change policy.
+- [x] Add selectedRaidSize state.
+- [x] Make raid behavior testable without rendering the app.
+- [x] Keep App focused on layout and component wiring.
 
 ### Phase 4: Raid Grid Model And Raid Sizes
 
