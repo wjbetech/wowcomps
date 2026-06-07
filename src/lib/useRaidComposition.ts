@@ -10,6 +10,7 @@ import {
   clearRaid,
   clearSlot,
   fillNextEmptySlot,
+  renameSlot,
   placeSpec,
   resolveExpansionChange,
 } from "./raidComposition";
@@ -25,15 +26,15 @@ export function useRaidComposition() {
 
   return {
     raidSlots,
-    placeSpec: (slotId: RaidSlotId, spec: PlacedSpec) =>
-      setRaidSlots((prev) => placeSpec(prev, slotId, spec)),
+    placeSpec: (slotId: RaidSlotId, spec: PlacedSpec) => {
+      setRaidSlots((prev) => placeSpec(prev, slotId, spec));
+    },
+    renameSlot: (slotId: RaidSlotId, playerName: string) => {
+      setRaidSlots((prev) => renameSlot(prev, slotId, playerName));
+    },
     fillNextEmptySlot: (spec: PlacedSpec) => setRaidSlots((prev) => fillNextEmptySlot(prev, spec)),
     clearSlot: (slotId: RaidSlotId) => setRaidSlots((prev) => clearSlot(prev, slotId)),
     clearRaid: () => setRaidSlots((prev) => clearRaid(prev)),
-    selectedExpansion,
-    setSelectedExpansion: (nextExpansion: Expansion) => setSelectedExpansion(nextExpansion),
-    selectedRaidSize,
-    setSelectedRaidSize: (raidSize: RaidSize) => setSelectedRaidSize(raidSize),
     selectExpansion: (nextExpansion: Expansion) => {
       const config = getExpansionConfig(nextExpansion);
       if (!config) return;
@@ -42,5 +43,7 @@ export function useRaidComposition() {
       setSelectedExpansion(nextExpac.selectedExpansion);
       setSelectedRaidSize(nextExpac.selectedRaidSize);
     },
+    selectedExpansion,
+    selectedRaidSize,
   };
 }

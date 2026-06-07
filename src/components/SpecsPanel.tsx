@@ -43,6 +43,7 @@ function DraggableSpecButton({
     data: {
       classId,
       specId,
+      playerName: "",
     },
   });
 
@@ -54,6 +55,7 @@ function DraggableSpecButton({
   const placedSpec: PlacedSpec = {
     classId,
     specId,
+    playerName: "",
   };
 
   return (

@@ -19,6 +19,7 @@ export type RaidGroup = {
 export type PlacedSpec = {
   classId: ClassId;
   specId: SpecId;
+  playerName?: string;
 };
 
 export type RaidSlots = Record<RaidSlotId, PlacedSpec | null>;

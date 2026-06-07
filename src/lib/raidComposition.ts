@@ -22,6 +22,26 @@ export function clearSlot(raidSlots: RaidSlots, slotId: RaidSlotId): RaidSlots {
   return { ...raidSlots, [slotId]: null };
 }
 
+export function renameSlot(
+  raidSlots: RaidSlots,
+  slotId: RaidSlotId,
+  playerName: string,
+): RaidSlots {
+  const placedSpec = raidSlots[slotId];
+
+  if (!placedSpec) {
+    return raidSlots;
+  }
+
+  return {
+    ...raidSlots,
+    [slotId]: {
+      ...placedSpec,
+      playerName,
+    },
+  };
+}
+
 export function clearRaid(raidSlots: RaidSlots): RaidSlots {
   const clearedSlots = { ...raidSlots };
 
