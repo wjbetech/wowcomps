@@ -1,6 +1,3 @@
-// core
-import { useState } from "react";
-
 // components
 import Navbar from "./components/Navbar";
 import RaidGrid from "./components/RaidGrid";
@@ -14,15 +11,11 @@ import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } f
 import { useRaidComposition } from "./lib/useRaidComposition";
 
 // types
-import type { Expansion, RaidSize } from "./types/expansions";
 import type { PlacedSpec, RaidSlotId } from "./types/raidGrid";
-import { getExpansionConfig } from "./data/expansionData";
-import { resolveExpansionChange } from "./lib/raidComposition";
 
 export function App() {
-  const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
-  const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(40);
-  const { raidSlots, placeSpec, fillNextEmptySlot } = useRaidComposition();
+  const { raidSlots, placeSpec, fillNextEmptySlot, selectedExpansion, selectExpansion } =
+    useRaidComposition();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -31,16 +24,6 @@ export function App() {
       },
     }),
   );
-
-  function handleSelectExpansion(nextExpansion: Expansion) {
-    const config = getExpansionConfig(nextExpansion);
-    if (!config) return;
-
-    const nextState = resolveExpansionChange(selectedRaidSize, nextExpansion, config);
-
-    setSelectedExpansion(nextState.selectedExpansion);
-    setSelectedRaidSize(nextState.selectedRaidSize);
-  }
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -58,7 +41,7 @@ export function App() {
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <div className="relative z-10">
-          <Navbar selectedExpansion={selectedExpansion} onSelectExpansion={handleSelectExpansion} />
+          <Navbar selectedExpansion={selectedExpansion} onSelectExpansion={selectExpansion} />
 
           <div className="pt-16">
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
