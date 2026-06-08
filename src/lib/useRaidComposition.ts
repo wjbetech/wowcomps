@@ -13,16 +13,17 @@ import {
   renameSlot,
   placeSpec,
   resolveExpansionChange,
+  reconcileRaidSlots,
 } from "./raidComposition";
 
 // types
 import type { PlacedSpec, RaidSlotId } from "../types/raidGrid";
 import type { Expansion, RaidSize } from "../types/expansions";
 
-export function useRaidComposition() {
-  const [raidSlots, setRaidSlots] = usePersistedRaidSlots();
+export function useRaidComposition(raidSize: RaidSize) {
+  const [raidSlots, setRaidSlots] = usePersistedRaidSlots(raidSize);
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
-  const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(40);
+  const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(raidSize);
 
   return {
     raidSlots,
@@ -40,8 +41,13 @@ export function useRaidComposition() {
       if (!config) return;
 
       const nextExpac = resolveExpansionChange(selectedRaidSize, nextExpansion, config);
+      setRaidSlots((prev) => reconcileRaidSlots(prev, nextExpac.selectedRaidSize));
       setSelectedExpansion(nextExpac.selectedExpansion);
       setSelectedRaidSize(nextExpac.selectedRaidSize);
+    },
+    selectRaidSize: (nextRaidSize: RaidSize) => {
+      setRaidSlots((prev) => reconcileRaidSlots(prev, nextRaidSize));
+      setSelectedRaidSize(nextRaidSize);
     },
     selectedExpansion,
     selectedRaidSize,

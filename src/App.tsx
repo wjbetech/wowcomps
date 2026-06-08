@@ -14,8 +14,15 @@ import { useRaidComposition } from "./lib/useRaidComposition";
 import type { PlacedSpec, RaidSlotId } from "./types/raidGrid";
 
 export function App() {
-  const { raidSlots, placeSpec, fillNextEmptySlot, selectedExpansion, selectExpansion } =
-    useRaidComposition();
+  const {
+    raidSlots,
+    placeSpec,
+    fillNextEmptySlot,
+    selectedExpansion,
+    selectExpansion,
+    selectedRaidSize,
+    selectRaidSize,
+  } = useRaidComposition(40);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -41,7 +48,12 @@ export function App() {
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <div className="relative z-10">
-          <Navbar selectedExpansion={selectedExpansion} onSelectExpansion={selectExpansion} />
+          <Navbar
+            selectedRaidSize={selectedRaidSize}
+            onSelectRaidSize={selectRaidSize}
+            selectedExpansion={selectedExpansion}
+            onSelectExpansion={selectExpansion}
+          />
 
           <div className="pt-16">
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
@@ -52,7 +64,7 @@ export function App() {
                     selectedExpansion={selectedExpansion}
                     fillNextSlot={fillNextEmptySlot}
                   />
-                  <RaidGrid raidSlots={raidSlots} />
+                  <RaidGrid raidSlots={raidSlots} selectedRaidSize={selectedRaidSize} />
                 </div>
               </div>
               <div className="lg:col-span-1">

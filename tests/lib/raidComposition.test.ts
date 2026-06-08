@@ -10,17 +10,18 @@ import {
   fillNextEmptySlot,
   resolveExpansionChange,
   renameSlot,
+  reconcileRaidSlots,
 } from "../../src/lib/raidComposition";
 
 describe("raidComposition", () => {
   (it("fills the next empty slot", () => {
-    const slots = createInitialRaidSlots();
+    const slots = createInitialRaidSlots(40);
     const result = fillNextEmptySlot(slots, { classId: "mage", specId: "fire", playerName: "" });
 
     expect(result["1-1"]).toEqual({ classId: "mage", specId: "fire", playerName: "" });
   }),
     it("places a spec into a specific slot", () => {
-      const slots = createInitialRaidSlots();
+      const slots = createInitialRaidSlots(40);
       const result = placeSpec(slots, "2-3", {
         classId: "druid",
         specId: "balance",
@@ -31,7 +32,7 @@ describe("raidComposition", () => {
       expect(result["1-1"]).toBeNull();
     }),
     it("fills the first empty slot after an occupied slot", () => {
-      const slots = createInitialRaidSlots();
+      const slots = createInitialRaidSlots(40);
       slots["1-1"] = { classId: "priest", specId: "shadow", playerName: "" };
 
       const result = fillNextEmptySlot(slots, {
@@ -43,7 +44,7 @@ describe("raidComposition", () => {
       expect(result["1-2"]).toEqual({ classId: "warrior", specId: "fury", playerName: "" });
     }),
     it("renames a slot when renameSlot() is called", () => {
-      const slots = createInitialRaidSlots();
+      const slots = createInitialRaidSlots(40);
       slots["1-1"] = { classId: "priest", specId: "shadow", playerName: "" };
 
       const result = renameSlot(slots, "1-1", "Valruna");
@@ -51,7 +52,7 @@ describe("raidComposition", () => {
       expect(result["1-1"]).toEqual({ classId: "priest", specId: "shadow", playerName: "Valruna" });
     }),
     it("does not change any slots when the raid is already full", () => {
-      const slots = createInitialRaidSlots();
+      const slots = createInitialRaidSlots(40);
 
       for (const slotId of Object.keys(slots) as (keyof typeof slots)[]) {
         slots[slotId] = { classId: "mage", specId: "fire", playerName: "" };
@@ -66,7 +67,7 @@ describe("raidComposition", () => {
       expect(result).toEqual(slots);
     }),
     it("clears one slot when clearSlot() is called", () => {
-      const slots = createInitialRaidSlots();
+      const slots = createInitialRaidSlots(40);
       slots["1-1"] = { classId: "mage", specId: "fire", playerName: "" };
       slots["1-2"] = { classId: "priest", specId: "shadow", playerName: "" };
       slots["1-3"] = { classId: "warrior", specId: "fury", playerName: "" };
@@ -80,7 +81,7 @@ describe("raidComposition", () => {
       expect(result["1-4"]).toEqual({ classId: "hunter", specId: "beastMastery", playerName: "" });
     }),
     it("clears the entire raid when clearRaid() is called", () => {
-      const slots = createInitialRaidSlots();
+      const slots = createInitialRaidSlots(40);
 
       for (const slotId of Object.keys(slots) as (keyof typeof slots)[]) {
         slots[slotId] = { classId: "mage", specId: "fire", playerName: "" };
@@ -88,7 +89,7 @@ describe("raidComposition", () => {
 
       const result = clearRaid(slots);
 
-      expect(result).toEqual(createInitialRaidSlots());
+      expect(result).toEqual(createInitialRaidSlots(40));
     }),
     it("keeps the current raid size if next expansion supports it", () => {
       const result = resolveExpansionRaidSize(20, {
@@ -111,4 +112,15 @@ describe("raidComposition", () => {
       expect(result.selectedExpansion).toEqual("wotlk");
       expect(result.selectedRaidSize).toEqual(40);
     }));
+  it("keeps overlapping slots when rendering a smaller raid size", () => {
+    const slots = createInitialRaidSlots(40);
+
+    slots["1-1"] = { classId: "mage", specId: "fire", playerName: "" };
+    slots["6-1"] = { classId: "priest", specId: "shadow", playerName: "" };
+
+    const result = reconcileRaidSlots(slots, 20);
+
+    expect(result["1-1"]).toEqual({ classId: "mage", specId: "fire", playerName: "" });
+    expect("5-1" in result).toBe(false);
+  });
 });

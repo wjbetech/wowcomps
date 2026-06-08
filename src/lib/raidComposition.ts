@@ -1,3 +1,7 @@
+// libs
+import { createInitialRaidSlots } from "./grid";
+
+// types
 import type { Expansion, ExpansionConfig, RaidSize } from "../types/expansions";
 import type { RaidSlotId, RaidSlots } from "../types/raidGrid";
 import type { PlacedSpec } from "../types/raidGrid";
@@ -72,4 +76,14 @@ export function resolveExpansionRaidSize(
   }
 
   return expansionConfig.raidSizes[expansionConfig.raidSizes.length - 1];
+}
+
+export function reconcileRaidSlots(raidSlots: RaidSlots, raidSize: RaidSize): RaidSlots {
+  const nextSlots = createInitialRaidSlots(raidSize);
+
+  for (const slotId of Object.keys(nextSlots) as RaidSlotId[]) {
+    nextSlots[slotId] = raidSlots[slotId] ?? null;
+  }
+
+  return nextSlots;
 }

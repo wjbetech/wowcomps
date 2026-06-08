@@ -1,9 +1,15 @@
+// core
 import { useEffect, useState } from "react";
-import type { RaidSlots } from "../types/raidGrid";
+
+// libs
 import { readWorkingRaidSlots, writeWorkingRaidSlots } from "./raidStorage";
 
-export function usePersistedRaidSlots() {
-  const [raidSlots, setRaidSlots] = useState<RaidSlots>(readWorkingRaidSlots);
+// types
+import type { RaidSlots } from "../types/raidGrid";
+import type { RaidSize } from "../types/expansions";
+
+export function usePersistedRaidSlots(raidSize: RaidSize) {
+  const [raidSlots, setRaidSlots] = useState<RaidSlots>(readWorkingRaidSlots(raidSize));
 
   useEffect(() => {
     writeWorkingRaidSlots(raidSlots);

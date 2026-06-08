@@ -1,14 +1,26 @@
+//core
 import { Search } from "lucide-react";
-import type { Expansion } from "../types/expansions";
-import ExpansionSelect from "./ExpansionSelect";
 import classicWoWLogo from "../assets/classicWoWIcon.png";
 
-type NavbarProps = {
-  selectedExpansion: Expansion;
-  onSelectExpansion: (expansion: Expansion) => void;
-};
+//components
+import ExpansionSelect from "./ExpansionSelect";
 
-export default function Navbar({ selectedExpansion, onSelectExpansion }: NavbarProps) {
+// data
+import { getExpansionConfig } from "../data/expansionData";
+
+//types
+import type { NavbarProps } from "../types/navBar";
+import type { RaidSize } from "../types/expansions";
+
+export default function Navbar({
+  selectedRaidSize,
+  onSelectRaidSize,
+  selectedExpansion,
+  onSelectExpansion,
+}: NavbarProps) {
+  const expansionConfig = getExpansionConfig(selectedExpansion);
+  const raidSizes = expansionConfig?.raidSizes ?? [40];
+
   return (
     <nav className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b border-stone-500 px-4 backdrop-blur lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(14rem,26rem)_minmax(0,1fr)] lg:gap-4 lg:px-6">
       <div className="flex min-w-0 items-center">
@@ -24,6 +36,23 @@ export default function Navbar({ selectedExpansion, onSelectExpansion }: NavbarP
           selectedExpansion={selectedExpansion}
           onSelectExpansion={onSelectExpansion}
         />
+        <div>
+          <label className="sr-only" htmlFor="raid-size-select">
+            Raid Size
+          </label>
+          <select
+            id="raid-size-select"
+            value={selectedRaidSize}
+            onChange={(event) => onSelectRaidSize(Number(event.target.value) as RaidSize)}
+            className="ml-2 w-24 rounded-md border border-stone-600 bg-stone-900 px-3 py-1.5 text-sm font-semibold text-stone-100 outline-none"
+          >
+            {raidSizes.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <form

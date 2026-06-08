@@ -4,26 +4,16 @@ import { useDroppable } from "@dnd-kit/core";
 // data
 import { getClassDisplay, getSpecDisplay } from "../data/expansionClasses";
 
+// libs
+import { getRaidGridModel } from "../lib/grid";
+
 // types
-import type { RaidSlotId, PlacedSpec, RaidGroup } from "../types/raidGrid";
+import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
 import type { RaidGridProps } from "../types/raidGrid";
 
-const GROUP_COUNT = 8;
-const SLOTS_PER_GROUP = 5;
+export default function RaidGrid({ raidSlots, selectedRaidSize }: RaidGridProps) {
+  const groups = getRaidGridModel(selectedRaidSize);
 
-const groups: RaidGroup[] = Array.from({ length: GROUP_COUNT }, (_, groupIndex) => ({
-  id: groupIndex + 1,
-  slots: Array.from({ length: SLOTS_PER_GROUP }, (_, slotIndex) => {
-    const slotId = `${groupIndex + 1}-${slotIndex + 1}` as RaidSlotId;
-
-    return {
-      id: slotId,
-      label: `Slot ${slotIndex + 1}`,
-    };
-  }),
-}));
-
-export default function RaidGrid({ raidSlots }: RaidGridProps) {
   return (
     <section className="w-full">
       <div className="rounded-3xl">
