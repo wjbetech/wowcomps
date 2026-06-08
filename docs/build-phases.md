@@ -38,13 +38,13 @@
 
 ### Phase 4: Raid Grid Model And Raid Sizes
 
-- [ ] Replace duplicated group/slot constants with one raid grid model helper.
-- [ ] Generate render groups and initial slot state from the same model.
-- [ ] Support 40-player layout fully.
-- [ ] Add 25-player layout.
-- [ ] Add 20-player layout.
-- [ ] Add 10-player layout.
-- [ ] Reconcile slots when raid size changes.
+- [x] Replace duplicated group/slot constants with one raid grid model helper.
+- [x] Generate render groups and initial slot state from the same model.
+- [x] Support 40-player layout fully.
+- [x] Add 25-player layout.
+- [x] Add 20-player layout.
+- [x] Add 10-player layout.
+- [x] Reconcile slots when raid size changes.
 - [ ] Ensure sidebar counters respect selected raid size.
 
 ### Phase 5: Slot Interaction

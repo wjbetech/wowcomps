@@ -7,7 +7,7 @@ import { createInitialRaidSlots } from "../../src/lib/grid";
 
 describe("getClassBreakdown", () => {
   it("returns every class in the expansion with zero counts for an empty raid", () => {
-    const raidSlots = createInitialRaidSlots();
+    const raidSlots = createInitialRaidSlots(40);
 
     const result = getClassBreakdown(raidSlots, "classic");
     expect(result.map((entry) => entry.classId)).toEqual([
@@ -24,7 +24,7 @@ describe("getClassBreakdown", () => {
   });
 
   it("counts multiple placed specs by class", () => {
-    const raidSlots = createInitialRaidSlots();
+    const raidSlots = createInitialRaidSlots(40);
 
     raidSlots["1-1"] = { specId: "fire", classId: "mage" };
     raidSlots["1-2"] = { specId: "balance", classId: "druid" };
@@ -38,7 +38,7 @@ describe("getClassBreakdown", () => {
   });
 
   it("ignores classes that are not part of the selected expansion", () => {
-    const raidSlots = createInitialRaidSlots();
+    const raidSlots = createInitialRaidSlots(40);
 
     raidSlots["1-1"] = { specId: "frost", classId: "deathKnight" };
 

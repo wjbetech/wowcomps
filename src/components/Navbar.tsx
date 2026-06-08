@@ -36,23 +36,22 @@ export default function Navbar({
           selectedExpansion={selectedExpansion}
           onSelectExpansion={onSelectExpansion}
         />
-        <div>
-          <label className="sr-only" htmlFor="raid-size-select">
-            Raid Size
-          </label>
-          <select
-            id="raid-size-select"
-            value={selectedRaidSize}
-            onChange={(event) => onSelectRaidSize(Number(event.target.value) as RaidSize)}
-            className="ml-2 w-24 rounded-md border border-stone-600 bg-stone-900 px-3 py-1.5 text-sm font-semibold text-stone-100 outline-none"
-          >
-            {raidSizes.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
+
+        <label className="sr-only" htmlFor="raid-size-select">
+          Raid Size
+        </label>
+        <select
+          id="raid-size-select"
+          value={selectedRaidSize}
+          onChange={(event) => onSelectRaidSize(Number(event.target.value) as RaidSize)}
+          className="ml-2 w-24 rounded-md border border-stone-600 bg-stone-900 px-3 py-1.5 text-sm font-semibold text-stone-100 outline-none"
+        >
+          {raidSizes.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
       </div>
 
       <form
