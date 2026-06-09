@@ -1,4 +1,4 @@
-import type { Expansion } from "./expansions";
+import type { Expansion, RaidSize } from "./expansions";
 import type { RaidSlots } from "./raidGrid";
 
 export type RightSectionProps = {
@@ -10,4 +10,5 @@ export type RightSectionProps = {
 export type RightSidebarProps = {
   raidSlots: RaidSlots;
   selectedExpansion: Expansion;
+  selectedRaidSize: RaidSize;
 };

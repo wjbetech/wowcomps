@@ -68,7 +68,11 @@ export function App() {
                 </div>
               </div>
               <div className="lg:col-span-1">
-                <RightSideBar raidSlots={raidSlots} selectedExpansion={selectedExpansion} />
+                <RightSideBar
+                  raidSlots={raidSlots}
+                  selectedExpansion={selectedExpansion}
+                  selectedRaidSize={selectedRaidSize}
+                />
               </div>
             </div>
           </div>

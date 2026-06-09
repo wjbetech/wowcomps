@@ -25,8 +25,12 @@ function SidebarSection({ title, children, defaultOpen = true }: RightSectionPro
   );
 }
 
-export default function RightSidebar({ raidSlots, selectedExpansion }: RightSidebarProps) {
-  const classBreakdown = getClassBreakdown(raidSlots, selectedExpansion);
+export default function RightSidebar({
+  raidSlots,
+  selectedExpansion,
+  selectedRaidSize,
+}: RightSidebarProps) {
+  const classBreakdown = getClassBreakdown(raidSlots, selectedExpansion, selectedRaidSize);
 
   return (
     <aside className="lg:sticky lg:top-6 lg:self-start">
