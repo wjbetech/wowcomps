@@ -45,7 +45,9 @@
 - [x] Add 20-player layout.
 - [x] Add 10-player layout.
 - [x] Reconcile slots when raid size changes.
-- [ ] Ensure sidebar counters respect selected raid size.
+- [x] Ensure sidebar counters respect selected raid size.
+- [x] Fix the raid grid display to always prefer at least two columns on any given resolution, only single columns per row on mobile
+- [x] Fix assigning a Death Knight to a spot persisting after swapping away from Wrath of the Lich King
 
 ### Phase 5: Slot Interaction
 

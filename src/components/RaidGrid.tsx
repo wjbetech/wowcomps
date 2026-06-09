@@ -17,7 +17,7 @@ export default function RaidGrid({ raidSlots, selectedRaidSize }: RaidGridProps)
   return (
     <section className="w-full">
       <div className="rounded-3xl">
-        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {groups.map((group) => (
             <article key={group.id} className="rounded-2xl">
               <header className="mb-3 flex items-center justify-between">

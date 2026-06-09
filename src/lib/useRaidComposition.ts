@@ -4,6 +4,7 @@ import { usePersistedRaidSlots } from "./usePersistedRaidSlots";
 
 // data
 import { getExpansionConfig } from "../data/expansionData";
+import { getExpansionClassGroups } from "../data/expansionClasses";
 
 // libs
 import {
@@ -14,6 +15,7 @@ import {
   placeSpec,
   resolveExpansionChange,
   reconcileRaidSlots,
+  stripInvalidClassSpecs,
 } from "./raidComposition";
 
 // types
@@ -41,7 +43,14 @@ export function useRaidComposition(raidSize: RaidSize) {
       if (!config) return;
 
       const nextExpac = resolveExpansionChange(selectedRaidSize, nextExpansion, config);
-      setRaidSlots((prev) => reconcileRaidSlots(prev, nextExpac.selectedRaidSize));
+      const validClassIds = new Set(
+        getExpansionClassGroups(nextExpac.selectedExpansion).map((group) => group.classId),
+      );
+
+      setRaidSlots((prev) => {
+        const reconciled = reconcileRaidSlots(prev, nextExpac.selectedRaidSize);
+        return stripInvalidClassSpecs(reconciled, validClassIds);
+      });
       setSelectedExpansion(nextExpac.selectedExpansion);
       setSelectedRaidSize(nextExpac.selectedRaidSize);
     },

@@ -11,6 +11,7 @@ import {
   resolveExpansionChange,
   renameSlot,
   reconcileRaidSlots,
+  stripInvalidClassSpecs,
 } from "../../src/lib/raidComposition";
 
 describe("raidComposition", () => {
@@ -122,5 +123,29 @@ describe("raidComposition", () => {
 
     expect(result["1-1"]).toEqual({ classId: "mage", specId: "fire", playerName: "" });
     expect("6-1" in result).toBe(false);
+  });
+
+  it("clears specs whose class is invalid for the target expansion", () => {
+    const slots = createInitialRaidSlots(25);
+
+    slots["1-1"] = { classId: "deathKnight", specId: "frost", playerName: "" };
+    slots["1-2"] = { classId: "mage", specId: "fire", playerName: "" };
+
+    const classicClassIds = new Set([
+      "druid",
+      "hunter",
+      "mage",
+      "paladin",
+      "priest",
+      "rogue",
+      "shaman",
+      "warlock",
+      "warrior",
+    ] as const);
+
+    const result = stripInvalidClassSpecs(slots, classicClassIds);
+
+    expect(result["1-1"]).toBeNull();
+    expect(result["1-2"]).toEqual({ classId: "mage", specId: "fire", playerName: "" });
   });
 });
