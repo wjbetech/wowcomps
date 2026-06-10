@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vite-plus/test";
 
 import { createInitialRaidSlots } from "../../src/lib/grid";
-import { normalizeRaidSlots } from "../../src/lib/raidStorage";
+import { normalizeRaidSlots, readWorkingRaidSlots } from "../../src/lib/raidStorage";
 
 describe("normalizeRaidSlots, raid storage", () => {
   it("returns a fresh set of empty raid slots for non-object input", () => {
@@ -57,5 +57,62 @@ describe("normalizeRaidSlots, raid storage", () => {
 
     expect(result["1-1"]).toEqual({ classId: "mage", specId: "fire", playerName: "" });
     expect("unknown-slot" in result).toBe(false);
+  });
+
+  it("reads a v2 working raid snapshot with persisted raid size", () => {
+    window.localStorage.setItem(
+      "wowcomps:workingRaid",
+      JSON.stringify({
+        storageVersion: 2,
+        raidSize: 20,
+        raidSlots: {
+          "1-1": { classId: "mage", specId: "fire", playerName: "Valruna" },
+          "2-1": { classId: "rogue", specId: "combat", playerName: "Easton" },
+        },
+        updatedAt: "2026-06-10T00:00:00.000Z",
+      }),
+    );
+
+    const result = readWorkingRaidSlots(40);
+
+    expect(result.raidSize).toBe(20);
+    expect(result.raidSlots["1-1"]).toEqual({
+      classId: "mage",
+      specId: "fire",
+      playerName: "Valruna",
+    });
+    expect(result.raidSlots["2-1"]).toEqual({
+      classId: "rogue",
+      specId: "combat",
+      playerName: "Easton",
+    });
+  });
+
+  it("falls back to the provided raid size when reading a v1 working raid snapshot", () => {
+    window.localStorage.setItem(
+      "wowcomps:workingRaid",
+      JSON.stringify({
+        storageVersion: 1,
+        raidSlots: {
+          "1-1": { classId: "mage", specId: "fire", playerName: "Valruna" },
+          "2-1": { classId: "rogue", specId: "combat", playerName: "Easton" },
+        },
+        updatedAt: "2026-06-10T00:00:00.000Z",
+      }),
+    );
+
+    const result = readWorkingRaidSlots(40);
+
+    expect(result.raidSize).toBe(40);
+    expect(result.raidSlots["1-1"]).toEqual({
+      classId: "mage",
+      specId: "fire",
+      playerName: "Valruna",
+    });
+    expect(result.raidSlots["2-1"]).toEqual({
+      classId: "rogue",
+      specId: "combat",
+      playerName: "Easton",
+    });
   });
 });
