@@ -22,6 +22,7 @@ export function App() {
     selectExpansion,
     selectedRaidSize,
     selectRaidSize,
+    clearSlot,
   } = useRaidComposition(40);
 
   const sensors = useSensors(
@@ -64,7 +65,11 @@ export function App() {
                     selectedExpansion={selectedExpansion}
                     fillNextSlot={fillNextEmptySlot}
                   />
-                  <RaidGrid raidSlots={raidSlots} selectedRaidSize={selectedRaidSize} />
+                  <RaidGrid
+                    raidSlots={raidSlots}
+                    selectedRaidSize={selectedRaidSize}
+                    onClearSlot={clearSlot}
+                  />
                 </div>
               </div>
               <div className="lg:col-span-1">

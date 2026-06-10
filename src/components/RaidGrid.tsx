@@ -11,7 +11,7 @@ import { getRaidGridModel } from "../lib/grid";
 import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
 import type { RaidGridProps } from "../types/raidGrid";
 
-export default function RaidGrid({ raidSlots, selectedRaidSize }: RaidGridProps) {
+export default function RaidGrid({ raidSlots, selectedRaidSize, onClearSlot }: RaidGridProps) {
   const groups = getRaidGridModel(selectedRaidSize);
 
   return (
@@ -28,7 +28,12 @@ export default function RaidGrid({ raidSlots, selectedRaidSize }: RaidGridProps)
 
               <div className="space-y-2">
                 {group.slots.map((slot) => (
-                  <RaidSlot key={slot.id} slotId={slot.id} placedSpec={raidSlots[slot.id]} />
+                  <RaidSlot
+                    key={slot.id}
+                    slotId={slot.id}
+                    placedSpec={raidSlots[slot.id]}
+                    onClearSlot={onClearSlot}
+                  />
                 ))}
               </div>
             </article>
@@ -39,7 +44,15 @@ export default function RaidGrid({ raidSlots, selectedRaidSize }: RaidGridProps)
   );
 }
 
-function RaidSlot({ slotId, placedSpec }: { slotId: RaidSlotId; placedSpec: PlacedSpec | null }) {
+function RaidSlot({
+  slotId,
+  placedSpec,
+  onClearSlot,
+}: {
+  slotId: RaidSlotId;
+  placedSpec: PlacedSpec | null;
+  onClearSlot: (slotId: RaidSlotId) => void;
+}) {
   const { isOver, setNodeRef } = useDroppable({
     id: slotId,
   });
@@ -65,6 +78,10 @@ function RaidSlot({ slotId, placedSpec }: { slotId: RaidSlotId; placedSpec: Plac
       ref={setNodeRef}
       style={slotStyle}
       type="button"
+      onClick={() => {
+        if (!placedSpec) return;
+        onClearSlot(slotId);
+      }}
       className={[
         "flex h-10 w-full items-center justify-between rounded-xl border px-4 text-left transition",
         placedSpec

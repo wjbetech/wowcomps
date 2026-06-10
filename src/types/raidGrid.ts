@@ -7,6 +7,7 @@ export type RaidSlotId = `${number}-${number}`;
 export type RaidGridProps = {
   raidSlots: RaidSlots;
   selectedRaidSize: RaidSize;
+  onClearSlot: (slotId: RaidSlotId) => void;
 };
 
 export type RaidGridSlot = {
