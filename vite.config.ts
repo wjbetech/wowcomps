@@ -13,7 +13,7 @@ export default defineConfig({
     options: { typeAware: true, typeCheck: true },
   },
   test: {
-    environment: "node",
+    environment: "jsdom",
     include: ["tests/**/*.test.ts"],
   },
 });

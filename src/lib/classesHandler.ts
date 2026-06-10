@@ -1,10 +1,13 @@
 // data
 import { getExpansionClassGroups } from "../data/expansionClasses";
 
+// libs
+import { getRaidGridModel } from "../lib/grid";
+
 // types
 import type { ClassId } from "../types/classesSpecs";
-import type { Expansion } from "../types/expansions";
-import type { RaidSlots } from "../types/raidGrid";
+import type { Expansion, RaidSize } from "../types/expansions";
+import type { RaidGroup, RaidSlots } from "../types/raidGrid";
 
 type ClassBreakdownRow = {
   classId: ClassId;
@@ -13,20 +16,24 @@ type ClassBreakdownRow = {
   count: number;
 };
 
-export function getClassBreakdown(raidSlots: RaidSlots, expansion: Expansion): ClassBreakdownRow[] {
+export function getClassBreakdown(
+  raidSlots: RaidSlots,
+  expansion: Expansion,
+  raidSize: RaidSize,
+): ClassBreakdownRow[] {
   const classGroups = getExpansionClassGroups(expansion);
+  const validClassIds = new Set(classGroups.map((group) => group.classId));
   const counts = new Map<ClassId, number>();
+  const activeSlotIds = getRaidGridModel(raidSize).flatMap((group: RaidGroup) =>
+    group.slots.map((slot) => slot.id),
+  );
 
-  for (const classGroup of classGroups) {
-    counts.set(classGroup.classId, 0);
-  }
-
-  for (const placedSpec of Object.values(raidSlots)) {
+  for (const slotId of activeSlotIds) {
+    const placedSpec = raidSlots[slotId];
     if (!placedSpec) continue;
 
     const classId = placedSpec.classId;
-
-    if (!counts.has(classId)) continue;
+    if (!validClassIds.has(classId)) continue;
 
     counts.set(classId, (counts.get(classId) ?? 0) + 1);
   }
