@@ -1,5 +1,5 @@
 import type { RaidSize } from "../types/expansions";
-import type { RaidGroup, RaidSlotId, RaidSlots } from "../types/raidGrid";
+import type { RaidSlotId, RaidSlots } from "../types/raidGrid";
 
 export function createInitialRaidSlots(raidSize: RaidSize): RaidSlots {
   const slots: RaidSlots = {};
@@ -13,7 +13,7 @@ export function createInitialRaidSlots(raidSize: RaidSize): RaidSlots {
   return slots;
 }
 
-export function getRaidGridModel(raidSize: 10 | 20 | 25 | 40): RaidGroup[] {
+export function getRaidGridModel(raidSize: RaidSize) {
   const groupCount = Math.ceil(raidSize / 5);
 
   return Array.from({ length: groupCount }, (_, groupIndex) => ({

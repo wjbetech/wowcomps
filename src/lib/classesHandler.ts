@@ -2,12 +2,12 @@
 import { getExpansionClassGroups } from "../data/expansionClasses";
 
 // libs
-import { createInitialRaidSlots } from "./grid";
+import { getRaidGridModel } from "../lib/grid";
 
 // types
 import type { ClassId } from "../types/classesSpecs";
 import type { Expansion, RaidSize } from "../types/expansions";
-import type { RaidSlots } from "../types/raidGrid";
+import type { RaidGroup, RaidSlots } from "../types/raidGrid";
 
 type ClassBreakdownRow = {
   classId: ClassId;
@@ -24,10 +24,12 @@ export function getClassBreakdown(
   const classGroups = getExpansionClassGroups(expansion);
   const validClassIds = new Set(classGroups.map((group) => group.classId));
   const counts = new Map<ClassId, number>();
-  const activeSlotIds = Object.keys(createInitialRaidSlots(raidSize));
+  const activeSlotIds = getRaidGridModel(raidSize).flatMap((group: RaidGroup) =>
+    group.slots.map((slot) => slot.id),
+  );
 
   for (const slotId of activeSlotIds) {
-    const placedSpec = raidSlots[slotId as keyof RaidSlots];
+    const placedSpec = raidSlots[slotId];
     if (!placedSpec) continue;
 
     const classId = placedSpec.classId;
