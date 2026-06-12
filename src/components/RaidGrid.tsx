@@ -99,7 +99,11 @@ function RaidSlot({
   }, [placedSpec?.playerName, placedSpec?.classId, placedSpec?.specId]);
 
   function commitName() {
-    onRenameSlot(slotId, draftName.trim());
+    const nextName = draftName
+      .replace(/[^a-zA-Z0-9]/g, "")
+      .trim()
+      .slice(0, 12);
+    onRenameSlot(slotId, nextName);
     setIsEditing(false);
   }
 
@@ -135,9 +139,17 @@ function RaidSlot({
               <input
                 ref={inputRef}
                 value={draftName}
+                maxLength={12}
                 onBlur={commitName}
                 onKeyDown={(event) => event.key === "Enter" && commitName()}
-                onChange={(event) => setDraftName(event.target.value)}
+                onChange={(event) =>
+                  setDraftName(
+                    event.target.value
+                      .replace(/[^a-zA-Z0-9]/g, "")
+                      .trim()
+                      .slice(0, 12),
+                  )
+                }
                 onClick={(event) => event.stopPropagation()}
                 className="inline-flex w-3/4 h-6 shrink-0 items-center justify-center rounded-md transition hover:bg-stone-700 focus:outline-none text-sm font-extrabold"
               />
