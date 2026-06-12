@@ -52,8 +52,8 @@
 ### Phase 5: Slot Interaction
 
 - [x] Add slot clearing.
-- [ ] Add inline player name editing.
-- [ ] Limit player names to 12 characters.
+- [x] Add inline player name editing.
+- [x] Limit player names to 12 characters.
 - [ ] Add clear/edit controls without disrupting drag/drop.
 - [ ] Decide whether clicking a filled slot clears, edits, or opens controls.
 - [ ] Add visual states for empty, filled, hovered, editing, and invalid slots.
