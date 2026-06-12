@@ -23,6 +23,7 @@ export function App() {
     selectedRaidSize,
     selectRaidSize,
     clearSlot,
+    renameSlot,
   } = useRaidComposition(40);
 
   const sensors = useSensors(
@@ -69,6 +70,7 @@ export function App() {
                     raidSlots={raidSlots}
                     selectedRaidSize={selectedRaidSize}
                     onClearSlot={clearSlot}
+                    onRenameSlot={renameSlot}
                   />
                 </div>
               </div>

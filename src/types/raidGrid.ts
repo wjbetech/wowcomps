@@ -8,6 +8,7 @@ export type RaidGridProps = {
   raidSlots: RaidSlots;
   selectedRaidSize: RaidSize;
   onClearSlot: (slotId: RaidSlotId) => void;
+  onRenameSlot: (slotId: RaidSlotId, newName: string) => void;
 };
 
 export type RaidGridSlot = {

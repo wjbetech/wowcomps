@@ -1,4 +1,5 @@
 // core
+import { useState, useRef, useEffect } from "react";
 import { useDroppable } from "@dnd-kit/core";
 
 // data
@@ -10,8 +11,14 @@ import { getRaidGridModel } from "../lib/grid";
 // types
 import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
 import type { RaidGridProps } from "../types/raidGrid";
+import { PencilIcon } from "lucide-react";
 
-export default function RaidGrid({ raidSlots, selectedRaidSize, onClearSlot }: RaidGridProps) {
+export default function RaidGrid({
+  raidSlots,
+  selectedRaidSize,
+  onClearSlot,
+  onRenameSlot,
+}: RaidGridProps) {
   const groups = getRaidGridModel(selectedRaidSize);
 
   return (
@@ -33,6 +40,7 @@ export default function RaidGrid({ raidSlots, selectedRaidSize, onClearSlot }: R
                     slotId={slot.id}
                     placedSpec={raidSlots[slot.id]}
                     onClearSlot={onClearSlot}
+                    onRenameSlot={onRenameSlot}
                   />
                 ))}
               </div>
@@ -48,11 +56,16 @@ function RaidSlot({
   slotId,
   placedSpec,
   onClearSlot,
+  onRenameSlot,
 }: {
   slotId: RaidSlotId;
   placedSpec: PlacedSpec | null;
   onClearSlot: (slotId: RaidSlotId) => void;
+  onRenameSlot: (slotId: RaidSlotId, newName: string) => void;
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [draftName, setDraftName] = useState(placedSpec?.playerName || "");
+
   const { isOver, setNodeRef } = useDroppable({
     id: slotId,
   });
@@ -73,6 +86,23 @@ function RaidSlot({
       }
     : undefined;
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (!isEditing) return;
+    inputRef.current?.focus();
+    inputRef.current?.select();
+  }, [isEditing]);
+
+  useEffect(() => {
+    setDraftName(placedSpec?.playerName || "");
+  }, [placedSpec?.playerName, placedSpec?.classId, placedSpec?.specId]);
+
+  function commitName() {
+    onRenameSlot(slotId, draftName.trim());
+    setIsEditing(false);
+  }
+
   return (
     <button
       ref={setNodeRef}
@@ -83,7 +113,7 @@ function RaidSlot({
         onClearSlot(slotId);
       }}
       className={[
-        "flex h-10 w-full items-center justify-between rounded-xl border px-4 text-left transition",
+        "flex h-10 w-full items-center justify-between rounded-xl border pl-3 pr-2 text-left transition",
         placedSpec
           ? "border-black/20"
           : isOver
@@ -93,14 +123,41 @@ function RaidSlot({
     >
       {placedSpec ? (
         <div className="flex w-full items-center gap-2">
-          {specDisplay?.iconLink ? (
-            <img
-              src={specDisplay.iconLink}
-              alt={specDisplay.label}
-              className="h-6 w-6 zoom-110 rounded-sm object-cover"
-            />
-          ) : null}
-          <span className="text-sm font-extrabold">{specDisplay?.label}</span>
+          <div className="flex min-w-0 flex-1 items-center gap-2">
+            {specDisplay?.iconLink ? (
+              <img
+                src={specDisplay.iconLink}
+                alt={specDisplay.label}
+                className="h-6 w-6 zoom-110 rounded-sm object-cover"
+              />
+            ) : null}
+            {isEditing ? (
+              <input
+                ref={inputRef}
+                value={draftName}
+                onBlur={commitName}
+                onKeyDown={(event) => event.key === "Enter" && commitName()}
+                onChange={(event) => setDraftName(event.target.value)}
+                onClick={(event) => event.stopPropagation()}
+                className="inline-flex w-3/4 h-6 shrink-0 items-center justify-center rounded-md transition hover:bg-stone-700 focus:outline-none text-sm font-extrabold"
+              />
+            ) : (
+              <span className="block truncate text-sm font-extrabold">
+                {draftName || specDisplay?.label}
+              </span>
+            )}
+          </div>
+          <button
+            type="button"
+            title="Edit player name"
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsEditing(true);
+            }}
+            className="cursor-pointer inline-flex w-7 h-7 items-center justify-center rounded-md transition hover:bg-stone-700"
+          >
+            <PencilIcon className="h-4 w-4 text-[#18b86d]" />
+          </button>
         </div>
       ) : (
         <span className="w-full text-center text-sm text-stone-400/50">-</span>
