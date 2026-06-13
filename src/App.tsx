@@ -1,11 +1,25 @@
+// core
+import { useState } from "react";
+
 // components
 import Navbar from "./components/Navbar";
 import RaidGrid from "./components/RaidGrid";
 import RightSideBar from "./components/RightSideBar";
 import SpecsPanel from "./components/SpecsPanel";
 
+// data
+import { getClassDisplay, getSpecDisplay } from "./data/expansionClasses";
+
 // dnd-kit
-import { DndContext, type DragEndEvent, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragOverlay,
+  type DragEndEvent,
+  type DragStartEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 
 // libs
 import { useRaidComposition } from "./lib/useRaidComposition";
@@ -26,6 +40,11 @@ export function App() {
     renameSlot,
   } = useRaidComposition(40);
 
+  const [activeRaidSlot, setActiveRaidSlot] = useState<{
+    sourceSlotId: RaidSlotId;
+    placedSpec: PlacedSpec;
+  } | null>(null);
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -34,21 +53,63 @@ export function App() {
     }),
   );
 
+  function handleDragStart(event: DragStartEvent) {
+    const dragData = event.active.data.current;
+
+    if (dragData?.placedSpec && dragData?.sourceSlotId) {
+      setActiveRaidSlot({
+        sourceSlotId: dragData.sourceSlotId,
+        placedSpec: dragData.placedSpec,
+      });
+    }
+  }
+
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
     if (!over) return;
 
-    const draggedSpec = active.data.current as PlacedSpec | undefined;
+    const dragData = active.data.current;
 
-    if (!draggedSpec) return;
+    if (!over) {
+      setActiveRaidSlot(null);
+      return;
+    }
 
-    placeSpec(over.id as RaidSlotId, draggedSpec);
+    if (dragData?.placedSpec && dragData?.sourceSlotId) {
+      const targetSlotId = over.id as RaidSlotId;
+
+      placeSpec(targetSlotId, dragData.placedSpec);
+
+      if (dragData.sourceSlotId !== targetSlotId) {
+        clearSlot(dragData.sourceSlotId);
+      }
+
+      setActiveRaidSlot(null);
+      return;
+    }
+
+    if (dragData?.classId && dragData?.specId) {
+      placeSpec(over.id as RaidSlotId, dragData as PlacedSpec);
+      setActiveRaidSlot(null);
+      return;
+    }
+
+    setActiveRaidSlot(null);
+  }
+
+  function handleDragCancel() {
+    setActiveRaidSlot(null);
   }
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
-      <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+      <DndContext
+        onDragEnd={handleDragEnd}
+        onDragStart={handleDragStart}
+        onDragCancel={handleDragCancel}
+        sensors={sensors}
+      >
         <div className="relative z-10">
           <Navbar
             selectedRaidSize={selectedRaidSize}
@@ -71,6 +132,7 @@ export function App() {
                     selectedRaidSize={selectedRaidSize}
                     onClearSlot={clearSlot}
                     onRenameSlot={renameSlot}
+                    activeDraggedSlotId={activeRaidSlot?.sourceSlotId}
                   />
                 </div>
               </div>
@@ -84,6 +146,35 @@ export function App() {
             </div>
           </div>
         </div>
+        <DragOverlay>
+          {activeRaidSlot ? (
+            <div
+              style={{ borderColor: getClassDisplay(activeRaidSlot.placedSpec.classId).color }}
+              className="flex h-10 items-center gap-2 rounded-xl border bg-stone-900/90 px-3 text-sm font-extrabold shadow-lg"
+            >
+              {getSpecDisplay(activeRaidSlot.placedSpec.classId, activeRaidSlot.placedSpec.specId)
+                ?.iconLink ? (
+                <img
+                  src={
+                    getSpecDisplay(
+                      activeRaidSlot.placedSpec.classId,
+                      activeRaidSlot.placedSpec.specId,
+                    )?.iconLink
+                  }
+                  alt=""
+                  className="h-6 w-6 rounded-sm object-cover"
+                />
+              ) : null}
+              <span>
+                {activeRaidSlot.placedSpec.playerName ||
+                  getSpecDisplay(
+                    activeRaidSlot.placedSpec.classId,
+                    activeRaidSlot.placedSpec.specId,
+                  )?.label}
+              </span>
+            </div>
+          ) : null}
+        </DragOverlay>
       </DndContext>
     </main>
   );

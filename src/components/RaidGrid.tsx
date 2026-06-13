@@ -1,6 +1,6 @@
 // core
 import { useState, useRef, useEffect } from "react";
-import { useDroppable } from "@dnd-kit/core";
+import { useDroppable, useDraggable } from "@dnd-kit/core";
 
 // data
 import { getClassDisplay, getSpecDisplay } from "../data/expansionClasses";
@@ -18,6 +18,7 @@ export default function RaidGrid({
   selectedRaidSize,
   onClearSlot,
   onRenameSlot,
+  activeDraggedSlotId,
 }: RaidGridProps) {
   const groups = getRaidGridModel(selectedRaidSize);
 
@@ -47,15 +48,18 @@ export default function RaidGrid({
                 </header>
 
                 <div className="space-y-2">
-                  {group.slots.map((slot) => (
-                    <RaidSlot
-                      key={slot.id}
-                      slotId={slot.id}
-                      placedSpec={raidSlots[slot.id]}
-                      onClearSlot={onClearSlot}
-                      onRenameSlot={onRenameSlot}
-                    />
-                  ))}
+                  {group.slots.map((slot) => {
+                    const isDraggedSource = activeDraggedSlotId === slot.id;
+                    return (
+                      <RaidSlot
+                        key={slot.id}
+                        slotId={slot.id}
+                        onClearSlot={onClearSlot}
+                        onRenameSlot={onRenameSlot}
+                        placedSpec={isDraggedSource ? null : raidSlots[slot.id]}
+                      />
+                    );
+                  })}
                 </div>
               </article>
             );
@@ -79,9 +83,23 @@ function RaidSlot({
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [draftName, setDraftName] = useState(placedSpec?.playerName || "");
+  const [isComposing, setIsComposing] = useState(false);
 
   const { isOver, setNodeRef } = useDroppable({
     id: slotId,
+  });
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef: setDraggableNodeRef,
+  } = useDraggable({
+    id: `raid-slot-${slotId}`,
+    data: {
+      sourceSlotId: slotId,
+      placedSpec,
+    },
+    disabled: !placedSpec || isEditing,
   });
 
   const specDisplay = placedSpec ? getSpecDisplay(placedSpec.classId, placedSpec.specId) : null;
@@ -114,7 +132,7 @@ function RaidSlot({
 
   function commitName() {
     const nextName = draftName
-      .replace(/[^a-zA-Z0-9]/g, "")
+      .replace(/[^\p{L}\p{N} ]+/gu, "")
       .trim()
       .slice(0, 12);
     onRenameSlot(slotId, nextName);
@@ -122,10 +140,9 @@ function RaidSlot({
   }
 
   return (
-    <button
+    <div
       ref={setNodeRef}
       style={slotStyle}
-      type="button"
       onClick={() => {
         if (!placedSpec) return;
         onClearSlot(slotId);
@@ -140,7 +157,12 @@ function RaidSlot({
       ].join(" ")}
     >
       {placedSpec ? (
-        <div className="flex w-full items-center gap-2">
+        <div
+          ref={setDraggableNodeRef}
+          {...attributes}
+          {...listeners}
+          className="flex w-full items-center gap-2"
+        >
           <div className="flex min-w-0 flex-1 items-center gap-2">
             {specDisplay?.iconLink ? (
               <img
@@ -155,15 +177,17 @@ function RaidSlot({
                 value={draftName}
                 maxLength={12}
                 onBlur={commitName}
+                onCompositionStart={() => setIsComposing(true)}
+                onCompositionEnd={() => setIsComposing(false)}
                 onKeyDown={(event) => event.key === "Enter" && commitName()}
-                onChange={(event) =>
-                  setDraftName(
-                    event.target.value
-                      .replace(/[^a-zA-Z0-9]/g, "")
-                      .trim()
-                      .slice(0, 12),
-                  )
-                }
+                onChange={(event) => {
+                  const value = event.target.value;
+                  if (isComposing) {
+                    setDraftName(value);
+                    return;
+                  }
+                  setDraftName(value.replace(/[^\p{L}\p{N} ]+/gu, "").slice(0, 12));
+                }}
                 onClick={(event) => event.stopPropagation()}
                 className="inline-flex w-3/4 h-6 shrink-0 items-center justify-center rounded-md transition hover:bg-stone-700 focus:outline-none text-sm font-extrabold"
               />
@@ -188,6 +212,6 @@ function RaidSlot({
       ) : (
         <span className="w-full text-center text-sm text-stone-400/50">-</span>
       )}
-    </button>
+    </div>
   );
 }
