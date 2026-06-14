@@ -57,12 +57,15 @@
 - [x] Add clear/edit controls without disrupting drag/drop.
 - [x] Decide whether clicking a filled slot clears, edits, or opens controls.
 - [x] Add visual states for empty, filled, hovered, editing, and invalid slots.
-- [ ] User can drag a spec from one slot in to another slot.
-- [ ] When a spec is dropped outside of the raid grid component, it should clear the source.
-- [ ] Add clear group behavior for the group on clicking a group X.
-- [ ] Add tests for slot-to-slot movement
-- [ ] Ensure that rename persists after move.
-- [ ] Add ability to press Escape button to cancel inline editing without saving.
+- [x] User can drag a spec from one slot in to another slot.
+- [x] When a spec is dropped outside of the raid grid component, it should clear the source.
+- [x] Add clear group behavior for the group on clicking a group X.
+- [ ] Refactor the RaidGrid.tsx component to break out RaidSlot.
+- [ ] Refactor hooks out of RaidGrid and RaidSlot components.
+- [ ] Refactor callbacks in RaidGrid and RaidSlot components in to `/utils/...`.
+- [ ] Add tests for slot-to-slot movement.
+- [x] Ensure that rename persists after move.
+- [x] Add ability to press Escape button to cancel inline editing without saving.
 
 ### Phase 6: Right Sidebar Features
 

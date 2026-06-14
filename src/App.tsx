@@ -95,6 +95,12 @@ export function App() {
     setActiveRaidSlot(null);
   }
 
+  function handleClearGroup(slotIds: RaidSlotId[]) {
+    slotIds.forEach((slotId) => {
+      clearSlot(slotId);
+    });
+  }
+
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-stone-800 text-stone-100">
       <DndContext
@@ -126,6 +132,7 @@ export function App() {
                     onClearSlot={clearSlot}
                     onRenameSlot={renameSlot}
                     activeDraggedSlotId={activeRaidSlot?.sourceSlotId}
+                    onClearGroup={handleClearGroup}
                   />
                 </div>
               </div>

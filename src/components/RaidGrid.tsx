@@ -19,6 +19,7 @@ export default function RaidGrid({
   onClearSlot,
   onRenameSlot,
   activeDraggedSlotId,
+  onClearGroup,
 }: RaidGridProps) {
   const groups = getRaidGridModel(selectedRaidSize);
 
@@ -27,7 +28,7 @@ export default function RaidGrid({
       <div className="rounded-3xl">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {groups.map((group) => {
-            const filledGroupSlots = group.slots.filter((slot) => raidSlots[slot.id]);
+            const filledGroupSlots = group.slots.filter((slot) => raidSlots[slot.id] !== null);
             return (
               <article key={group.id} className="rounded-2xl">
                 <header className="mb-3 grid grid-cols-[1.5rem_1fr_1.5rem] items-center">
@@ -38,6 +39,7 @@ export default function RaidGrid({
                   {filledGroupSlots.length > 0 ? (
                     <button
                       type="button"
+                      onClick={() => onClearGroup(group.slots.map((slot) => slot.id))}
                       className="inline-flex h-6 w-6 items-center justify-center justify-self-end text-red-700"
                     >
                       <XIcon />
@@ -128,6 +130,7 @@ function RaidSlot({
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const suppressClickRef = useRef(false);
+  const cancelEditRef = useRef(false);
 
   useEffect(() => {
     if (!isEditing) return;
@@ -146,6 +149,11 @@ function RaidSlot({
   }, [isDragging]);
 
   function commitName() {
+    if (cancelEditRef.current) {
+      cancelEditRef.current = false;
+      return;
+    }
+
     const nextName = draftName
       .replace(/[^\p{L}\p{N} ]+/gu, "")
       .trim()
@@ -176,7 +184,7 @@ function RaidSlot({
       className={[
         "flex h-10 w-full items-center justify-between rounded-xl border pl-3 pr-2 text-left transition",
         displayedSpec
-          ? "border-black/20"
+          ? "border-black/20 cursor-grab"
           : isDraggedSource
             ? "border-dashed border-stone-500/60 bg-stone-900/40 opacity-60"
             : isOver
@@ -207,7 +215,19 @@ function RaidSlot({
                 onBlur={commitName}
                 onCompositionStart={() => setIsComposing(true)}
                 onCompositionEnd={() => setIsComposing(false)}
-                onKeyDown={(event) => event.key === "Enter" && commitName()}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    commitName();
+                    return;
+                  } else if (event.key === "Escape") {
+                    event.preventDefault();
+                    cancelEditRef.current = true;
+                    setIsEditing(false);
+                    setDraftName(placedSpec?.playerName || "");
+                    return;
+                  }
+                }}
                 onChange={(event) => {
                   const value = event.target.value;
                   if (isComposing) {
