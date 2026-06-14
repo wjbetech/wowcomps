@@ -1,8 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
-import { useDraggable, useDroppable } from "@dnd-kit/core";
-import { getClassDisplay, getSpecDisplay } from "../data/expansionClasses";
+// core
 import { PencilIcon } from "lucide-react";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
+
+// data
+import { getClassDisplay, getSpecDisplay } from "../data/expansionClasses";
+
+// hooks
+import useRaidSlotEdit from "../hooks/useRaidSlotEdit";
+import { useRaidSlotDrag } from "../hooks/useRaidSlotDrag";
+
+// types
+import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
 
 export default function RaidSlot({
   slotId,
@@ -17,13 +25,21 @@ export default function RaidSlot({
   onRenameSlot: (slotId: RaidSlotId, newName: string) => void;
   isDraggedSource: boolean;
 }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [draftName, setDraftName] = useState(placedSpec?.playerName || "");
-  const [isComposing, setIsComposing] = useState(false);
-
   const { isOver, setNodeRef } = useDroppable({
     id: slotId,
   });
+
+  const {
+    isEditing,
+    setIsEditing,
+    draftName,
+    setDraftName,
+    isComposing,
+    setIsComposing,
+    inputRef,
+    cancelEditRef,
+    commitName,
+  } = useRaidSlotEdit(placedSpec, slotId, onRenameSlot);
 
   const {
     attributes,
@@ -38,6 +54,8 @@ export default function RaidSlot({
     },
     disabled: !placedSpec || isEditing,
   });
+
+  const { suppressClickRef } = useRaidSlotDrag(isDragging);
 
   const displayedSpec = isDraggedSource ? null : placedSpec;
 
@@ -58,40 +76,6 @@ export default function RaidSlot({
         color: slotColor,
       }
     : undefined;
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const suppressClickRef = useRef(false);
-  const cancelEditRef = useRef(false);
-
-  useEffect(() => {
-    if (!isEditing) return;
-    inputRef.current?.focus();
-    inputRef.current?.select();
-  }, [isEditing]);
-
-  useEffect(() => {
-    setDraftName(placedSpec?.playerName || "");
-  }, [placedSpec?.playerName, placedSpec?.classId, placedSpec?.specId]);
-
-  useEffect(() => {
-    if (isDragging) {
-      suppressClickRef.current = true;
-    }
-  }, [isDragging]);
-
-  function commitName() {
-    if (cancelEditRef.current) {
-      cancelEditRef.current = false;
-      return;
-    }
-
-    const nextName = draftName
-      .replace(/[^\p{L}\p{N} ]+/gu, "")
-      .trim()
-      .slice(0, 12);
-    onRenameSlot(slotId, nextName);
-    setIsEditing(false);
-  }
 
   return (
     <div
