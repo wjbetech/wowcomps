@@ -66,35 +66,28 @@ export function App() {
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
-
-    if (!over) return;
-
     const dragData = active.data.current;
-
     if (!over) {
+      if (dragData?.placedSpec && dragData?.sourceSlotId) {
+        clearSlot(dragData.sourceSlotId);
+      }
       setActiveRaidSlot(null);
       return;
     }
-
     if (dragData?.placedSpec && dragData?.sourceSlotId) {
       const targetSlotId = over.id as RaidSlotId;
-
       placeSpec(targetSlotId, dragData.placedSpec);
-
       if (dragData.sourceSlotId !== targetSlotId) {
         clearSlot(dragData.sourceSlotId);
       }
-
       setActiveRaidSlot(null);
       return;
     }
-
     if (dragData?.classId && dragData?.specId) {
       placeSpec(over.id as RaidSlotId, dragData as PlacedSpec);
       setActiveRaidSlot(null);
       return;
     }
-
     setActiveRaidSlot(null);
   }
 

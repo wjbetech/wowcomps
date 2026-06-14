@@ -56,7 +56,7 @@ export default function RaidGrid({
                         slotId={slot.id}
                         onClearSlot={onClearSlot}
                         onRenameSlot={onRenameSlot}
-                        placedSpec={isDraggedSource ? null : raidSlots[slot.id]}
+                        placedSpec={raidSlots[slot.id]}
                         isDraggedSource={isDraggedSource}
                       />
                     );
@@ -106,9 +106,13 @@ function RaidSlot({
     disabled: !placedSpec || isEditing,
   });
 
-  const specDisplay = placedSpec ? getSpecDisplay(placedSpec.classId, placedSpec.specId) : null;
+  const displayedSpec = isDraggedSource ? null : placedSpec;
 
-  const slotColor = placedSpec ? getClassDisplay(placedSpec.classId).color : undefined;
+  const specDisplay = displayedSpec
+    ? getSpecDisplay(displayedSpec.classId, displayedSpec.specId)
+    : null;
+
+  const slotColor = displayedSpec ? getClassDisplay(displayedSpec.classId).color : undefined;
 
   const slotStyle = slotColor
     ? {
@@ -155,7 +159,7 @@ function RaidSlot({
       ref={setNodeRef}
       style={slotStyle}
       onClick={() => {
-        if (!placedSpec) return;
+        if (!displayedSpec) return;
 
         if (isEditing) {
           inputRef.current?.focus();
@@ -171,7 +175,7 @@ function RaidSlot({
       }}
       className={[
         "flex h-10 w-full items-center justify-between rounded-xl border pl-3 pr-2 text-left transition",
-        placedSpec
+        displayedSpec
           ? "border-black/20"
           : isDraggedSource
             ? "border-dashed border-stone-500/60 bg-stone-900/40 opacity-60"
