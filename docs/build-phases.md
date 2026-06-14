@@ -58,8 +58,11 @@
 - [x] Decide whether clicking a filled slot clears, edits, or opens controls.
 - [x] Add visual states for empty, filled, hovered, editing, and invalid slots.
 - [ ] User can drag a spec from one slot in to another slot.
-- [ ] When a spec is dropped outside of the raid grid component, it should empty the slot it came from.
-- [ ] The X icon in each Group should clear that group of specs when clicked.
+- [ ] When a spec is dropped outside of the raid grid component, it should clear the source.
+- [ ] Add clear group behavior for the group on clicking a group X.
+- [ ] Add tests for slot-to-slot movement
+- [ ] Ensure that rename persists after move.
+- [ ] Add ability to press Escape button to cancel inline editing without saving.
 
 ### Phase 6: Right Sidebar Features
 
