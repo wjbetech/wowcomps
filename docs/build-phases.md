@@ -55,8 +55,11 @@
 - [x] Add inline player name editing.
 - [x] Limit player names to 12 characters.
 - [x] Add clear/edit controls without disrupting drag/drop.
-- [ ] Decide whether clicking a filled slot clears, edits, or opens controls.
-- [ ] Add visual states for empty, filled, hovered, editing, and invalid slots.
+- [x] Decide whether clicking a filled slot clears, edits, or opens controls.
+- [x] Add visual states for empty, filled, hovered, editing, and invalid slots.
+- [ ] User can drag a spec from one slot in to another slot.
+- [ ] When a spec is dropped outside of the raid grid component, it should empty the slot it came from.
+- [ ] The X icon in each Group should clear that group of specs when clicked.
 
 ### Phase 6: Right Sidebar Features
 

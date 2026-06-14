@@ -57,6 +57,7 @@ export default function RaidGrid({
                         onClearSlot={onClearSlot}
                         onRenameSlot={onRenameSlot}
                         placedSpec={isDraggedSource ? null : raidSlots[slot.id]}
+                        isDraggedSource={isDraggedSource}
                       />
                     );
                   })}
@@ -75,11 +76,13 @@ function RaidSlot({
   placedSpec,
   onClearSlot,
   onRenameSlot,
+  isDraggedSource,
 }: {
   slotId: RaidSlotId;
   placedSpec: PlacedSpec | null;
   onClearSlot: (slotId: RaidSlotId) => void;
   onRenameSlot: (slotId: RaidSlotId, newName: string) => void;
+  isDraggedSource: boolean;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [draftName, setDraftName] = useState(placedSpec?.playerName || "");
@@ -93,6 +96,7 @@ function RaidSlot({
     attributes,
     listeners,
     setNodeRef: setDraggableNodeRef,
+    isDragging,
   } = useDraggable({
     id: `raid-slot-${slotId}`,
     data: {
@@ -119,6 +123,7 @@ function RaidSlot({
     : undefined;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const suppressClickRef = useRef(false);
 
   useEffect(() => {
     if (!isEditing) return;
@@ -129,6 +134,12 @@ function RaidSlot({
   useEffect(() => {
     setDraftName(placedSpec?.playerName || "");
   }, [placedSpec?.playerName, placedSpec?.classId, placedSpec?.specId]);
+
+  useEffect(() => {
+    if (isDragging) {
+      suppressClickRef.current = true;
+    }
+  }, [isDragging]);
 
   function commitName() {
     const nextName = draftName
@@ -145,15 +156,28 @@ function RaidSlot({
       style={slotStyle}
       onClick={() => {
         if (!placedSpec) return;
+
+        if (isEditing) {
+          inputRef.current?.focus();
+          return;
+        }
+
+        if (suppressClickRef.current) {
+          suppressClickRef.current = false;
+          return;
+        }
+
         onClearSlot(slotId);
       }}
       className={[
         "flex h-10 w-full items-center justify-between rounded-xl border pl-3 pr-2 text-left transition",
         placedSpec
           ? "border-black/20"
-          : isOver
-            ? "border-stone-400 bg-stone-800/90"
-            : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone hover:bg-stone-800/80",
+          : isDraggedSource
+            ? "border-dashed border-stone-500/60 bg-stone-900/40 opacity-60"
+            : isOver
+              ? "border-stone-400 bg-stone-800/90"
+              : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone hover:bg-stone-800/80",
       ].join(" ")}
     >
       {placedSpec ? (
