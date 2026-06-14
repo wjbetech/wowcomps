@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 // types
 import type { PlacedSpec, RaidSlotId } from "../types/raidGrid";
+import { sanitizeRaidSlotName } from "../utils/raidSlotName";
 
 export default function useRaidSlotEdit(
   placedSpec: PlacedSpec | null,
@@ -31,10 +32,12 @@ export default function useRaidSlotEdit(
       return;
     }
 
-    const nextName = draftName
-      .replace(/[^\p{L}\p{N} ]+/gu, "")
-      .trim()
-      .slice(0, 12);
+    const nextName = sanitizeRaidSlotName(draftName);
+
+    if (nextName !== draftName) {
+      setDraftName(nextName);
+    }
+
     onRenameSlot(slotId, nextName);
     setIsEditing(false);
   }

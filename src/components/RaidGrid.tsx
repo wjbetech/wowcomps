@@ -1,10 +1,17 @@
+// core
+import { XIcon } from "lucide-react";
+
+// components
+import RaidSlot from "./RaidSlot";
+
 // libs
 import { getRaidGridModel } from "../lib/grid";
 
 // types
 import type { RaidGridProps } from "../types/raidGrid";
-import { XIcon } from "lucide-react";
-import RaidSlot from "./RaidSlot";
+
+// utils
+import { getGroupSlotIds } from "../utils/raidGridGroups";
 
 export default function RaidGrid({
   raidSlots,
@@ -32,8 +39,8 @@ export default function RaidGrid({
                   {filledGroupSlots.length > 0 ? (
                     <button
                       type="button"
-                      onClick={() => onClearGroup(group.slots.map((slot) => slot.id))}
-                      className="inline-flex h-6 w-6 items-center justify-center justify-self-end text-red-700"
+                      onClick={() => onClearGroup(getGroupSlotIds(group))}
+                      className="inline-flex h-6 w-6 items-center justify-center justify-self-end text-red-700 cursor-pointer"
                     >
                       <XIcon />
                     </button>

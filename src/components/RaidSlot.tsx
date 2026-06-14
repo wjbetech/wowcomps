@@ -11,6 +11,7 @@ import { useRaidSlotDrag } from "../hooks/useRaidSlotDrag";
 
 // types
 import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
+import { sanitizeRaidSlotName } from "../utils/raidSlotName";
 
 export default function RaidSlot({
   slotId,
@@ -107,7 +108,7 @@ export default function RaidSlot({
               : "border-dashed border-stone-700 bg-stone-900/70 hover:border-stone hover:bg-stone-800/80",
       ].join(" ")}
     >
-      {placedSpec ? (
+      {displayedSpec ? (
         <div
           ref={setDraggableNodeRef}
           {...attributes}
@@ -149,7 +150,7 @@ export default function RaidSlot({
                     setDraftName(value);
                     return;
                   }
-                  setDraftName(value.replace(/[^\p{L}\p{N} ]+/gu, "").slice(0, 12));
+                  setDraftName(sanitizeRaidSlotName(value));
                 }}
                 onClick={(event) => event.stopPropagation()}
                 className="inline-flex w-3/4 h-6 shrink-0 items-center justify-center rounded-md transition hover:bg-stone-700 focus:outline-none text-sm font-extrabold"
