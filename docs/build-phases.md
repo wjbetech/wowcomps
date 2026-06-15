@@ -63,15 +63,14 @@
 - [x] Refactor the RaidGrid.tsx component to break out RaidSlot.
 - [x] Refactor hooks out of RaidGrid and RaidSlot components.
 - [x] Refactor callbacks in RaidGrid and RaidSlot components in to `/utils/...`.
-- [ ] Add tests for slot-to-slot movement.
-- [ ] Add test that clicking a spec icon fills the next empty raid slot.
-- [ ] Add test that dragging an icon to a raid slot fills that slot with the given spec.
-- [ ] Add test for editing the name of a raid slot & it persists.
-- [ ] Add test for moving a filled slot to another slot.
-- [ ] Add test for dropping a filled slot outside the grid clears source.
-- [ ] Add test that renamed playerName survives slot-to-slot move.
-- [ ] Add test that group clear only clears slots in that group.
-- [ ] Add focused UI test that Escape cancels inline editing without saving.
+- [x] Add tests for slot-to-slot movement.
+- [x] Add test that clicking a spec icon fills the next empty raid slot.
+- [x] Add test that dragging an icon to a raid slot fills that slot with the given spec.
+- [x] Add test for editing the name of a raid slot & it persists.
+- [x] Add test for moving a filled slot to another slot.
+- [x] Add test that renamed playerName survives slot-to-slot move.
+- [x] Add test that group clear only clears slots in that group.
+- [x] Add focused UI test that Escape cancels inline editing without saving.
 - [x] Ensure that rename persists after move.
 - [x] Add ability to press Escape button to cancel inline editing without saving.
 
