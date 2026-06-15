@@ -61,8 +61,8 @@
 - [x] When a spec is dropped outside of the raid grid component, it should clear the source.
 - [x] Add clear group behavior for the group on clicking a group X.
 - [x] Refactor the RaidGrid.tsx component to break out RaidSlot.
-- [ ] Refactor hooks out of RaidGrid and RaidSlot components.
-- [ ] Refactor callbacks in RaidGrid and RaidSlot components in to `/utils/...`.
+- [x] Refactor hooks out of RaidGrid and RaidSlot components.
+- [x] Refactor callbacks in RaidGrid and RaidSlot components in to `/utils/...`.
 - [ ] Add tests for slot-to-slot movement.
 - [x] Ensure that rename persists after move.
 - [x] Add ability to press Escape button to cancel inline editing without saving.
