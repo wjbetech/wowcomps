@@ -2,16 +2,17 @@
 import { PencilIcon } from "lucide-react";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 
-// data
-import { getClassDisplay, getSpecDisplay } from "../data/expansionClasses";
-
 // hooks
 import useRaidSlotEdit from "../hooks/useRaidSlotEdit";
 import { useRaidSlotDrag } from "../hooks/useRaidSlotDrag";
 
 // types
 import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
+
+// utils
 import { sanitizeRaidSlotName } from "../utils/raidSlotName";
+import { handleRaidSlotKeyDown } from "../utils/raidSlotKeydown";
+import { getRaidSlotDisplay } from "../utils/raidSlotDisplay";
 
 export default function RaidSlot({
   slotId,
@@ -58,25 +59,10 @@ export default function RaidSlot({
 
   const { suppressClickRef } = useRaidSlotDrag(isDragging);
 
-  const displayedSpec = isDraggedSource ? null : placedSpec;
-
-  const specDisplay = displayedSpec
-    ? getSpecDisplay(displayedSpec.classId, displayedSpec.specId)
-    : null;
-
-  const slotColor = displayedSpec ? getClassDisplay(displayedSpec.classId).color : undefined;
-
-  const slotStyle = slotColor
-    ? {
-        background: `linear-gradient(
-          180deg,
-          rgb(23 20 23  / 1),
-          rgb(50 50 50 / 0.75)
-        )`,
-        borderColor: slotColor,
-        color: slotColor,
-      }
-    : undefined;
+  const { displayedSpec, specDisplay, slotStyle } = getRaidSlotDisplay({
+    placedSpec,
+    isDraggedSource,
+  });
 
   return (
     <div
@@ -131,19 +117,16 @@ export default function RaidSlot({
                 onBlur={commitName}
                 onCompositionStart={() => setIsComposing(true)}
                 onCompositionEnd={() => setIsComposing(false)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    event.preventDefault();
-                    commitName();
-                    return;
-                  } else if (event.key === "Escape") {
-                    event.preventDefault();
-                    cancelEditRef.current = true;
-                    setIsEditing(false);
-                    setDraftName(placedSpec?.playerName || "");
-                    return;
-                  }
-                }}
+                onKeyDown={(event) =>
+                  handleRaidSlotKeyDown({
+                    event,
+                    commitName,
+                    cancelEditRef,
+                    setIsEditing,
+                    setDraftName,
+                    savedPlayerName: placedSpec?.playerName || "",
+                  })
+                }
                 onChange={(event) => {
                   const value = event.target.value;
                   if (isComposing) {

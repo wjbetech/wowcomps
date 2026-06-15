@@ -60,7 +60,7 @@
 - [x] User can drag a spec from one slot in to another slot.
 - [x] When a spec is dropped outside of the raid grid component, it should clear the source.
 - [x] Add clear group behavior for the group on clicking a group X.
-- [ ] Refactor the RaidGrid.tsx component to break out RaidSlot.
+- [x] Refactor the RaidGrid.tsx component to break out RaidSlot.
 - [ ] Refactor hooks out of RaidGrid and RaidSlot components.
 - [ ] Refactor callbacks in RaidGrid and RaidSlot components in to `/utils/...`.
 - [ ] Add tests for slot-to-slot movement.
