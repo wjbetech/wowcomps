@@ -12,7 +12,10 @@ import {
   renameSlot,
   reconcileRaidSlots,
   stripInvalidClassSpecs,
+  moveRaidSlot,
 } from "../../src/lib/raidComposition";
+
+import { writeWorkingRaidSlots, readWorkingRaidSlots } from "../../src/lib/raidStorage";
 
 describe("raidComposition", () => {
   it("fills the next empty slot", () => {
@@ -147,5 +150,28 @@ describe("raidComposition", () => {
 
     expect(result["1-1"]).toBeNull();
     expect(result["1-2"]).toEqual({ classId: "mage", specId: "fire", playerName: "" });
+  });
+  it("moves a filled slot to another slot when dragged", () => {
+    const slots = createInitialRaidSlots(40);
+    slots["1-1"] = { classId: "mage", specId: "fire", playerName: "Valruna" };
+
+    const result = moveRaidSlot(slots, "1-1", "1-2");
+
+    expect(result["1-1"]).toBeNull();
+    expect(result["1-2"]).toEqual({ classId: "mage", specId: "fire", playerName: "Valruna" });
+  });
+  it("persists renamed playerName after write and commit of new name", () => {
+    const slots = createInitialRaidSlots(40);
+    slots["1-1"] = { classId: "mage", specId: "fire", playerName: "Valruna" };
+    const renamed = renameSlot(slots, "1-1", "Valruna2");
+
+    writeWorkingRaidSlots(40, renamed);
+    const result = readWorkingRaidSlots(40);
+
+    expect(result.raidSlots["1-1"]).toEqual({
+      classId: "mage",
+      specId: "fire",
+      playerName: "Valruna2",
+    });
   });
 });
