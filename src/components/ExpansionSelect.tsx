@@ -6,14 +6,11 @@ import expansionColors from "../lib/expansionColors";
 
 // types
 import type { Expansion } from "../types/expansions";
-import type { ExpansionSelectProps } from "../types/expansions";
+import type { ExpansionSelect } from "../types/expansions";
 
 const expansions = getExpansions();
 
-export default function ExpansionSelect({
-  selectedExpansion,
-  onSelectExpansion,
-}: ExpansionSelectProps) {
+export default function ExpansionSelect({ selectedExpansion, onSelectExpansion }: ExpansionSelect) {
   const selectedTheme = expansionColors[selectedExpansion];
 
   return (

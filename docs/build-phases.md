@@ -51,12 +51,28 @@
 
 ### Phase 5: Slot Interaction
 
-- [ ] Add slot clearing.
-- [ ] Add inline player name editing.
-- [ ] Limit player names to 12 characters.
-- [ ] Add clear/edit controls without disrupting drag/drop.
-- [ ] Decide whether clicking a filled slot clears, edits, or opens controls.
-- [ ] Add visual states for empty, filled, hovered, editing, and invalid slots.
+- [x] Add slot clearing.
+- [x] Add inline player name editing.
+- [x] Limit player names to 12 characters.
+- [x] Add clear/edit controls without disrupting drag/drop.
+- [x] Decide whether clicking a filled slot clears, edits, or opens controls.
+- [x] Add visual states for empty, filled, hovered, editing, and invalid slots.
+- [x] User can drag a spec from one slot in to another slot.
+- [x] When a spec is dropped outside of the raid grid component, it should clear the source.
+- [x] Add clear group behavior for the group on clicking a group X.
+- [x] Refactor the RaidGrid.tsx component to break out RaidSlot.
+- [x] Refactor hooks out of RaidGrid and RaidSlot components.
+- [x] Refactor callbacks in RaidGrid and RaidSlot components in to `/utils/...`.
+- [x] Add tests for slot-to-slot movement.
+- [x] Add test that clicking a spec icon fills the next empty raid slot.
+- [x] Add test that dragging an icon to a raid slot fills that slot with the given spec.
+- [x] Add test for editing the name of a raid slot & it persists.
+- [x] Add test for moving a filled slot to another slot.
+- [x] Add test that renamed playerName survives slot-to-slot move.
+- [x] Add test that group clear only clears slots in that group.
+- [x] Add focused UI test that Escape cancels inline editing without saving.
+- [x] Ensure that rename persists after move.
+- [x] Add ability to press Escape button to cancel inline editing without saving.
 
 ### Phase 6: Right Sidebar Features
 

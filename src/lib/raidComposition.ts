@@ -104,3 +104,19 @@ export function stripInvalidClassSpecs(
 
   return nextSlots;
 }
+
+export function moveRaidSlot(
+  raidSlots: RaidSlots,
+  sourceSlotId: RaidSlotId,
+  targetSlotId: RaidSlotId,
+): RaidSlots {
+  const placedSpec = raidSlots[sourceSlotId];
+  if (!placedSpec) return raidSlots;
+
+  const next = placeSpec(raidSlots, targetSlotId, placedSpec);
+  return sourceSlotId === targetSlotId ? next : clearSlot(next, sourceSlotId);
+}
+
+export function clearGroupSlots(raidSlots: RaidSlots, slotIds: RaidSlotId[]): RaidSlots {
+  return slotIds.reduce((next, slotId) => clearSlot(next, slotId), raidSlots);
+}
