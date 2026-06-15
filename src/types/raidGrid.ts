@@ -29,4 +29,24 @@ export type PlacedSpec = {
   playerName?: string;
 };
 
+export type RaidSlotDisplay = {
+  placedSpec: PlacedSpec | null;
+  isDraggedSource: boolean;
+};
+
+export type SlotClassNames = {
+  displayedSpec: PlacedSpec | null;
+  isDraggedSource: boolean;
+  isOver: boolean;
+};
+
+export type RaidSlotClick = {
+  displayedSpec: PlacedSpec | null;
+  isEditing: boolean;
+  inputRef: { current: HTMLInputElement | null };
+  suppressClickRef: { current: boolean };
+  onClearSlot: (slotId: RaidSlotId) => void;
+  slotId: RaidSlotId;
+};
+
 export type RaidSlots = Record<RaidSlotId, PlacedSpec | null>;
