@@ -18,7 +18,13 @@ export type PartyBuffId =
   | "manaSpringtotem"
   | "windfuryTotem"
   | "manaTideTotem"
-  | "bloodPact";
+  | "bloodPact"
+  | "commandingShout"
+  | "treeOfLife"
+  | "vampiricEmbrace"
+  | "vampiricTouch"
+  | "totemOfWrath"
+  | "wrathOfAirTotem";
 
 export type PartyBuffDefinition = {
   id: PartyBuffId;

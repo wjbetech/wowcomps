@@ -78,8 +78,8 @@
 
 - [x] Class breakdown counter works from raid slots.
 - [x] Extract SidebarSection.
-- [ ] Extract ClassBreakdownPanel.
-- [ ] Add party-specific buff tracking.
+- [x] Extract ClassBreakdownPanel.
+- [x] Add party-specific buff tracking.
 - [ ] Add raid-wide buff tracking.
 - [ ] Add raid-wide debuff tracking.
 - [ ] Keep all sidebar calculations in pure helpers.
