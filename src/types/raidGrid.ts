@@ -1,6 +1,6 @@
 // types
 import type { ClassId, SpecId } from "./classesSpecs";
-import type { RaidSize } from "./expansions";
+import type { Expansion, RaidSize } from "./expansions";
 
 export type RaidSlotId = `${number}-${number}`;
 
@@ -11,6 +11,7 @@ export type RaidGridProps = {
   onRenameSlot: (slotId: RaidSlotId, newName: string) => void;
   activeDraggedSlotId?: RaidSlotId | null;
   onClearGroup: (slotIds: RaidSlotId[]) => void;
+  selectedExpansion: Expansion;
 };
 
 export type RaidGridSlot = {

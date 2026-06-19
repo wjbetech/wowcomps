@@ -77,7 +77,7 @@
 ### Phase 6: Right Sidebar Features
 
 - [x] Class breakdown counter works from raid slots.
-- [ ] Extract SidebarSection.
+- [x] Extract SidebarSection.
 - [ ] Extract ClassBreakdownPanel.
 - [ ] Add party-specific buff tracking.
 - [ ] Add raid-wide buff tracking.

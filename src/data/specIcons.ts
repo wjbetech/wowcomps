@@ -10,9 +10,10 @@ export const specIcons: SpecIconMap = {
   },
   druid: {
     balance: "https://wow.zamimg.com/images/wow/icons/medium/spell_nature_starfall.jpg",
-    "feral-dps": "https://wow.zamimg.com/images/wow/icons/large/ability_druid_catform.jpg",
-    "feral-tank": "https://wow.zamimg.com/images/wow/icons/medium/ability_racial_bearform.jpg",
-    restoration: "https://wow.zamimg.com/images/wow/icons/medium/spell_nature_healingtouch.jpg",
+    feralDps: "https://wow.zamimg.com/images/wow/icons/large/ability_druid_catform.jpg",
+    feralTank: "https://wow.zamimg.com/images/wow/icons/medium/ability_racial_bearform.jpg",
+    restorationDruid:
+      "https://wow.zamimg.com/images/wow/icons/medium/spell_nature_healingtouch.jpg",
   },
   hunter: {
     beastMastery: "https://wow.zamimg.com/images/wow/icons/medium/ability_hunter_beasttaming.jpg",
@@ -25,13 +26,13 @@ export const specIcons: SpecIconMap = {
     frost: "https://wow.zamimg.com/images/wow/icons/medium/spell_frost_frostbolt02.jpg",
   },
   paladin: {
-    holy: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_holybolt.jpg",
-    protection: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_devotionaura.jpg",
+    holyPaladin: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_holybolt.jpg",
+    protectionPaladin: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_devotionaura.jpg",
     retribution: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_auraoflight.jpg",
   },
   priest: {
     discipline: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_powerwordshield.jpg",
-    holy: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_guardianspirit.jpg",
+    holyPriest: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_guardianspirit.jpg",
     shadow: "https://wow.zamimg.com/images/wow/icons/medium/spell_shadow_shadowwordpain.jpg",
   },
   rogue: {
@@ -43,7 +44,8 @@ export const specIcons: SpecIconMap = {
     elemental: "https://wow.zamimg.com/images/wow/icons/medium/spell_nature_lightning.jpg",
     enhancement:
       "https://wow.zamimg.com/images/wow/icons/medium/spell_shaman_improvedstormstrike.jpg",
-    restoration: "https://wow.zamimg.com/images/wow/icons/medium/spell_nature_magicimmunity.jpg",
+    restorationShaman:
+      "https://wow.zamimg.com/images/wow/icons/medium/spell_nature_magicimmunity.jpg",
   },
   warlock: {
     affliction: "https://wow.zamimg.com/images/wow/icons/medium/spell_shadow_deathcoil.jpg",
@@ -53,7 +55,7 @@ export const specIcons: SpecIconMap = {
   warrior: {
     arms: "https://wow.zamimg.com/images/wow/icons/medium/ability_warrior_savageblow.jpg",
     fury: "https://wow.zamimg.com/images/wow/icons/medium/ability_warrior_innerrage.jpg",
-    protection:
+    protectionWarrior:
       "https://wow.zamimg.com/images/wow/icons/medium/ability_warrior_defensivestance.jpg",
   },
 };

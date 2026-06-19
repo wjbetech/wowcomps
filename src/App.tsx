@@ -4,7 +4,7 @@ import { useState } from "react";
 // components
 import Navbar from "./components/Navbar";
 import RaidGrid from "./components/RaidGrid";
-import RightSideBar from "./components/RightSideBar";
+import RightSideBar from "./components/RightSidebarSections";
 import SpecsPanel from "./components/SpecsPanel";
 
 // data
@@ -128,6 +128,7 @@ export function App() {
                   />
                   <RaidGrid
                     raidSlots={raidSlots}
+                    selectedExpansion={selectedExpansion}
                     selectedRaidSize={selectedRaidSize}
                     onClearSlot={clearSlot}
                     onRenameSlot={renameSlot}

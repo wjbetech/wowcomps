@@ -9,11 +9,15 @@ import type { ClassId } from "../types/classesSpecs";
 import type { Expansion, RaidSize } from "../types/expansions";
 import type { RaidGroup, RaidSlots } from "../types/raidGrid";
 
-type ClassBreakdownRow = {
+export type ClassBreakdownRow = {
   classId: ClassId;
   label: string;
   color: string;
   count: number;
+};
+
+export type ClassBreakdownPanel = {
+  breakdown: ClassBreakdownRow[];
 };
 
 export function getClassBreakdown(

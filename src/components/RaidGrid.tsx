@@ -1,11 +1,13 @@
 // core
 import { XIcon } from "lucide-react";
+import GroupPartyBuffIcons from "./GroupPartyBuffIcons";
 
 // components
 import RaidSlot from "./RaidSlot";
 
 // libs
 import { getRaidGridModel } from "../lib/grid";
+import { getPartyBuffCoverage } from "../lib/partyBuffHandler";
 
 // types
 import type { RaidGridProps } from "../types/raidGrid";
@@ -20,8 +22,10 @@ export default function RaidGrid({
   onRenameSlot,
   activeDraggedSlotId,
   onClearGroup,
+  selectedExpansion,
 }: RaidGridProps) {
   const groups = getRaidGridModel(selectedRaidSize);
+  const partyBuffCoverage = getPartyBuffCoverage(raidSlots, selectedExpansion, selectedRaidSize);
 
   return (
     <section className="w-full">
@@ -29,9 +33,11 @@ export default function RaidGrid({
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {groups.map((group) => {
             const filledGroupSlots = group.slots.filter((slot) => raidSlots[slot.id] !== null);
+            const groupCoverage = partyBuffCoverage.find((entry) => entry.groupId === group.id);
+            const coveredBuffs = groupCoverage?.buffs.filter((buff) => buff.covered) ?? [];
             return (
               <article key={group.id} className="rounded-2xl">
-                <header className="mb-3 grid grid-cols-[1.5rem_1fr_1.5rem] items-center">
+                <header className="mb-2 grid grid-cols-[1.5rem_1fr_1.5rem] items-center">
                   <span />
                   <h3 className="text-center text-sm font-semibold uppercase tracking-[0.12em] text-stone-300/50">
                     Group {group.id}
@@ -49,7 +55,7 @@ export default function RaidGrid({
                   )}
                 </header>
 
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {group.slots.map((slot) => {
                     const isDraggedSource = activeDraggedSlotId === slot.id;
                     return (
@@ -64,6 +70,7 @@ export default function RaidGrid({
                     );
                   })}
                 </div>
+                <GroupPartyBuffIcons buffs={coveredBuffs} expansion={selectedExpansion} />
               </article>
             );
           })}

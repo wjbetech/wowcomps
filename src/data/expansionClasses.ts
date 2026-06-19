@@ -28,9 +28,13 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     color: classColors.druid,
     specs: [
       { specId: "balance", label: "Balance", iconLink: specIcons.druid?.balance },
-      { specId: "feral-dps", label: "Feral (DPS)", iconLink: specIcons.druid?.["feral-dps"] },
-      { specId: "feral-tank", label: "Feral (Tank)", iconLink: specIcons.druid?.["feral-tank"] },
-      { specId: "restoration", label: "Restoration", iconLink: specIcons.druid?.restoration },
+      { specId: "feralDps", label: "Feral (DPS)", iconLink: specIcons.druid?.["feralDps"] },
+      { specId: "feralTank", label: "Feral (Tank)", iconLink: specIcons.druid?.["feralTank"] },
+      {
+        specId: "restorationDruid",
+        label: "Restoration",
+        iconLink: specIcons.druid?.restorationDruid,
+      },
     ],
   },
   hunter: {
@@ -58,8 +62,12 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     label: "Paladin",
     color: classColors.paladin,
     specs: [
-      { specId: "holy", label: "Holy", iconLink: specIcons.paladin?.holy },
-      { specId: "protection", label: "Protection", iconLink: specIcons.paladin?.protection },
+      { specId: "holyPaladin", label: "Holy", iconLink: specIcons.paladin?.holyPaladin },
+      {
+        specId: "protectionPaladin",
+        label: "Protection",
+        iconLink: specIcons.paladin?.protectionPaladin,
+      },
       { specId: "retribution", label: "Retribution", iconLink: specIcons.paladin?.retribution },
     ],
   },
@@ -69,7 +77,7 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     color: classColors.priest,
     specs: [
       { specId: "discipline", label: "Discipline", iconLink: specIcons.priest?.discipline },
-      { specId: "holy", label: "Holy", iconLink: specIcons.priest?.holy },
+      { specId: "holyPriest", label: "Holy", iconLink: specIcons.priest?.holyPriest },
       { specId: "shadow", label: "Shadow", iconLink: specIcons.priest?.shadow },
     ],
   },
@@ -90,7 +98,11 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     specs: [
       { specId: "elemental", label: "Elemental", iconLink: specIcons.shaman?.elemental },
       { specId: "enhancement", label: "Enhancement", iconLink: specIcons.shaman?.enhancement },
-      { specId: "restoration", label: "Restoration", iconLink: specIcons.shaman?.restoration },
+      {
+        specId: "restorationShaman",
+        label: "Restoration",
+        iconLink: specIcons.shaman?.restorationShaman,
+      },
     ],
   },
   warlock: {
@@ -110,7 +122,11 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     specs: [
       { specId: "arms", label: "Arms", iconLink: specIcons.warrior?.arms },
       { specId: "fury", label: "Fury", iconLink: specIcons.warrior?.fury },
-      { specId: "protection", label: "Protection", iconLink: specIcons.warrior?.protection },
+      {
+        specId: "protectionWarrior",
+        label: "Protection",
+        iconLink: specIcons.warrior?.protectionWarrior,
+      },
     ],
   },
 };
