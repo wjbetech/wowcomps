@@ -12,7 +12,7 @@ export type ClassId =
 
 export type SpecId =
   | "blood"
-  | "frost"
+  | "frostDeathknight"
   | "unholy"
   | "balance"
   | "feralDps"
@@ -23,6 +23,7 @@ export type SpecId =
   | "survival"
   | "arcane"
   | "fire"
+  | "frostMage"
   | "holyPaladin"
   | "protectionPaladin"
   | "retribution"
