@@ -9,6 +9,7 @@ export type PartyBuffId =
   | "ferociousInspiration"
   | "furiousHowl"
   | "battleShout"
+  | "improvedBattleShout"
   | "devotionAura"
   | "sanctityAura"
   | "resistanceAuras"

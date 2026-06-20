@@ -232,6 +232,12 @@ const tbcPartyBuffs: PartyBuffDefinition[] = [
     sourceSpecIds: ["arms", "fury"],
   },
   {
+    id: "improvedBattleShout",
+    label: "Improved Battle Shout",
+    iconPath: "https://wow.zamimg.com/images/wow/icons/small/ability_warrior_battleshout.jpg",
+    sourceSpecIds: ["arms", "fury"],
+  },
+  {
     id: "commandingShout",
     label: "Commanding Shout",
     iconPath: "https://wow.zamimg.com/images/wow/icons/small/ability_warrior_rallyingcry.jpg",

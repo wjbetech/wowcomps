@@ -11,7 +11,8 @@ export type ClassicRaidDebuffId =
   | "curseOfRecklessness"
   | "curseOfShadow"
   | "huntersMark"
-  | "sunderArmor";
+  | "sunderArmor"
+  | "demoralizingShout";
 
 export type TbcRaidDebuffId =
   | "demoralizingRoar"
@@ -21,6 +22,7 @@ export type TbcRaidDebuffId =
   | "mangle(Bear)"
   | "mangle(Cat)"
   | "exposeWeakness"
+  | "exposeArmor"
   | "improvedScorch"
   | "wintersChill"
   | "improvedSealOfTheCrusader"
@@ -45,7 +47,6 @@ export type WotlkRaidDebuffId =
   | "earthAndMoon"
   | "faerieFire"
   | "improvedFaerieFire"
-  | "infectedWounds"
   | "insectSwarm"
   | "mangle"
   | "improvedScorch"

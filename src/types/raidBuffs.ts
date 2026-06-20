@@ -82,3 +82,7 @@ export type RaidBuffDefinition = {
 };
 
 export type RaidBuffCoverageRow = RaidBuffDefinition & { covered: boolean };
+
+export type RaidBuffPanel = {
+  buffs: RaidBuffCoverageRow[];
+};

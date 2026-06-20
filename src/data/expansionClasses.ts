@@ -18,7 +18,11 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     color: classColors.deathKnight,
     specs: [
       { specId: "blood", label: "Blood", iconLink: specIcons.deathKnight?.blood },
-      { specId: "frost", label: "Frost", iconLink: specIcons.deathKnight?.frost },
+      {
+        specId: "frostDeathknight",
+        label: "Frost",
+        iconLink: specIcons.deathKnight?.frostDeathknight,
+      },
       { specId: "unholy", label: "Unholy", iconLink: specIcons.deathKnight?.unholy },
     ],
   },
@@ -54,7 +58,7 @@ export const classCatalog: Record<ClassId, ClassCatalogEntry> = {
     specs: [
       { specId: "arcane", label: "Arcane", iconLink: specIcons.mage?.arcane },
       { specId: "fire", label: "Fire", iconLink: specIcons.mage?.fire },
-      { specId: "frost", label: "Frost", iconLink: specIcons.mage?.frost },
+      { specId: "frostMage", label: "Frost", iconLink: specIcons.mage?.frostMage },
     ],
   },
   paladin: {

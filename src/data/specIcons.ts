@@ -5,7 +5,8 @@ type SpecIconMap = Partial<Record<ClassId, Partial<Record<SpecId, string>>>>;
 export const specIcons: SpecIconMap = {
   deathKnight: {
     blood: "https://wow.zamimg.com/images/wow/icons/medium/spell_deathknight_bloodpresence.jpg",
-    frost: "https://wow.zamimg.com/images/wow/icons/medium/spell_deathknight_frostpresence.jpg",
+    frostDeathknight:
+      "https://wow.zamimg.com/images/wow/icons/medium/spell_deathknight_frostpresence.jpg",
     unholy: "https://wow.zamimg.com/images/wow/icons/medium/spell_deathknight_unholypresence.jpg",
   },
   druid: {
@@ -23,7 +24,7 @@ export const specIcons: SpecIconMap = {
   mage: {
     arcane: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_magicalsentry.jpg",
     fire: "https://wow.zamimg.com/images/wow/icons/medium/spell_fire_firebolt02.jpg",
-    frost: "https://wow.zamimg.com/images/wow/icons/medium/spell_frost_frostbolt02.jpg",
+    frostMage: "https://wow.zamimg.com/images/wow/icons/medium/spell_frost_frostbolt02.jpg",
   },
   paladin: {
     holyPaladin: "https://wow.zamimg.com/images/wow/icons/medium/spell_holy_holybolt.jpg",
