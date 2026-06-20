@@ -1,7 +1,7 @@
 import type { Expansion } from "../types/expansions";
 import type { RaidBuffDefinition } from "../types/raidBuffs";
 
-const ZAMIMG_ICON = (icon: string) => `https://wow.zamimg.com/images/wow/icons/small/${icon}.jpg`;
+const ZAMIMG_ICON = (icon: string) => `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`;
 
 export const classicRaidBuffs: RaidBuffDefinition[] = [
   {
@@ -269,10 +269,28 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
     sourceSpecIds: ["holyPaladin", "protectionPaladin", "retribution"],
   },
   {
+    id: "improvedBlessingOfMight",
+    label: "Improved Blessing of Might",
+    iconPath: ZAMIMG_ICON("spell_holy_fistofjustice"),
+    sourceSpecIds: ["holyPaladin"],
+  },
+  {
     id: "greaterBlessingOfSanctuary",
     label: "Greater Blessing of Sanctuary",
     iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofsanctuary"),
     sourceSpecIds: ["protectionPaladin"],
+  },
+  {
+    id: "greaterBlessingOfWisdom",
+    label: "Greater Blessing of Wisdom",
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofwisdom"),
+    sourceSpecIds: ["holyPaladin", "protectionPaladin", "retribution"],
+  },
+  {
+    id: "improvedBlessingOfWisdom",
+    label: "Improved Blessing of Wisdom",
+    iconPath: ZAMIMG_ICON("spell_holy_mindsooth"),
+    sourceSpecIds: ["holyPaladin"],
   },
   {
     id: "judgementsOfTheWise",
@@ -405,6 +423,12 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
     label: "Revitalize",
     iconPath: ZAMIMG_ICON("ability_druid_replenish"),
     sourceSpecIds: ["restorationDruid"],
+  },
+  {
+    id: "replenishment",
+    label: "Replenishment",
+    iconPath: ZAMIMG_ICON("spell_magic_managain"),
+    sourceSpecIds: [],
   },
   {
     id: "enduringWinter",

@@ -21,6 +21,7 @@ export type TbcRaidDebuffId =
   | "insectSwarm"
   | "mangle(Bear)"
   | "mangle(Cat)"
+  | "improvedDemoralizingRoar"
   | "exposeWeakness"
   | "exposeArmor"
   | "improvedScorch"
@@ -74,7 +75,12 @@ export type RaidDebuffDefinition = {
   sourceSpecIds: SpecId[];
 };
 
-export type RaidDebuffCoverageRow = RaidDebuffDefinition & { covered: boolean };
+export type RaidDebuffCoverageTier = "none" | "base" | "improved";
+
+export type RaidDebuffCoverageRow = RaidDebuffDefinition & {
+  covered: boolean;
+  tier: RaidDebuffCoverageTier;
+};
 
 export type RaidDebuffPanel = {
   raidDebuffs: RaidDebuffCoverageRow[];

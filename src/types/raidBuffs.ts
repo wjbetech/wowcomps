@@ -39,6 +39,7 @@ export type WotlkRaidBuffId =
   | "hornOfWinter"
   | "improvedIcyTalons"
   | "giftOfTheWild"
+  | "moonkinForm"
   | "improvedMoonkinForm"
   | "leaderOfThePack"
   | "treeOfLife"
@@ -48,6 +49,9 @@ export type WotlkRaidBuffId =
   | "arcaneEmpowerment"
   | "greaterBlessingOfKings"
   | "greaterBlessingOfMight"
+  | "improvedBlessingOfMight"
+  | "greaterBlessingOfWisdom"
+  | "improvedBlessingOfWisdom"
   | "improvedDevotionAura"
   | "sanctifiedRetribution"
   | "swiftRetribution"
@@ -72,7 +76,10 @@ export type WotlkRaidBuffId =
   | "enduringWinter"
   | "improvedSoulLeech"
   | "greaterBlessingOfSanctuary"
-  | "judgementsOfTheWise";
+  | "judgementsOfTheWise"
+  | "heroism"
+  | "replenishment"
+  | "commandingPresence";
 
 export type RaidBuffDefinition = {
   id: ClassicRaidBuffId | TbcRaidBuffId | WotlkRaidBuffId;
@@ -81,7 +88,12 @@ export type RaidBuffDefinition = {
   sourceSpecIds: SpecId[];
 };
 
-export type RaidBuffCoverageRow = RaidBuffDefinition & { covered: boolean };
+export type RaidBuffCoverageTier = "none" | "base" | "improved";
+
+export type RaidBuffCoverageRow = RaidBuffDefinition & {
+  covered: boolean;
+  tier: RaidBuffCoverageTier;
+};
 
 export type RaidBuffPanel = {
   buffs: RaidBuffCoverageRow[];

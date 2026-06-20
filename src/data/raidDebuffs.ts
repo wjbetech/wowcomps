@@ -1,7 +1,7 @@
 import type { Expansion } from "../types/expansions";
 import type { RaidDebuffDefinition } from "../types/raidDebuffs";
 
-const ZAMIMG_ICON = (icon: string) => `https://wow.zamimg.com/images/wow/icons/small/${icon}.jpg`;
+const ZAMIMG_ICON = (icon: string) => `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`;
 
 const classicRaidDebuffs: RaidDebuffDefinition[] = [
   {
@@ -114,6 +114,12 @@ const tbcRaidDebuffs: RaidDebuffDefinition[] = [
     label: "Mangle (Cat)",
     iconPath: ZAMIMG_ICON("ability_druid_mangle2"),
     sourceSpecIds: ["feralDps"],
+  },
+  {
+    id: "improvedDemoralizingRoar",
+    label: "Improved Demoralizing Roar",
+    iconPath: ZAMIMG_ICON("classic_ability_druid_demoralizingroar"),
+    sourceSpecIds: ["feralTank"],
   },
   {
     id: "exposeWeakness",

@@ -10,7 +10,7 @@ import { getRaidDebuffCoverage } from "../lib/raidDebuffHandler";
 // types
 import type { RightSidebarProps } from "../types/rightSection";
 import RaidBuffPanel from "./RaidBuffPanel";
-import RaidDebuffPanel from "./raidDebuffPanel";
+import RaidDebuffPanel from "./RaidDebuffPanel";
 
 export default function RightSidebar({
   raidSlots,
@@ -31,18 +31,14 @@ export default function RightSidebar({
           <div className="space-y-2">
             <div className="flex justify-between">
               <span>Raid Buffs</span>
-              <span className="text-stone-400">
-                {raidBuffCoverage.filter((buff) => buff.covered).length}
-              </span>
+              <span className="text-stone-400">{raidBuffCoverage.length}</span>
             </div>
-            <RaidBuffPanel buffs={raidBuffCoverage.filter((buff) => buff.covered)} />
+            <RaidBuffPanel buffs={raidBuffCoverage} />
             <div className="flex justify-between">
               <span>Raid Debuffs</span>
-              <span className="text-stone-400">
-                {raidDebuffCoverage.filter((debuff) => debuff.covered).length}
-              </span>
+              <span className="text-stone-400">{raidDebuffCoverage.length}</span>
             </div>
-            <RaidDebuffPanel raidDebuffs={raidDebuffCoverage.filter((debuff) => debuff.covered)} />
+            <RaidDebuffPanel raidDebuffs={raidDebuffCoverage} />
           </div>
         </SidebarSection>
       </div>

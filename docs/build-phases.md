@@ -82,12 +82,14 @@
 - [x] Add party-specific buff tracking.
 - [x] Add raid-wide buff tracking.
 - [x] Add raid-wide debuff tracking.
-- [ ] Add helper func to consolidate wotlk buffs/debuffs.
+- [x] Add helper func to consolidate wotlk buffs/debuffs.
 - [ ] Add helper func to filter so that improved versions of buffs/debuffs take precedence.
-- [ ] Think about adding a visual 'missing buffs' and 'missing debuffs' section.
+- [x] Think about adding a visual 'missing buffs' and 'missing debuffs' section.
+- [ ] Add tooltip rendering for all buff/debuff icons.
 - [ ] Keep all sidebar calculations in pure helpers.
 - [ ] Add tests for buff/debuff coverage helpers.
 - [ ] Add empty, partial, complete, and over-cap visual states.
+- [ ] Make the arrows signifying an improved version stand out more.
 - [ ] Final manual pass of all icons.
 
 ### Phase 7: Persistence And Saved Comps
