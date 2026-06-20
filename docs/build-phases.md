@@ -80,11 +80,15 @@
 - [x] Extract SidebarSection.
 - [x] Extract ClassBreakdownPanel.
 - [x] Add party-specific buff tracking.
-- [ ] Add raid-wide buff tracking.
-- [ ] Add raid-wide debuff tracking.
+- [x] Add raid-wide buff tracking.
+- [x] Add raid-wide debuff tracking.
+- [ ] Add helper func to consolidate wotlk buffs/debuffs.
+- [ ] Add helper func to filter so that improved versions of buffs/debuffs take precedence.
+- [ ] Think about adding a visual 'missing buffs' and 'missing debuffs' section.
 - [ ] Keep all sidebar calculations in pure helpers.
 - [ ] Add tests for buff/debuff coverage helpers.
 - [ ] Add empty, partial, complete, and over-cap visual states.
+- [ ] Final manual pass of all icons.
 
 ### Phase 7: Persistence And Saved Comps
 

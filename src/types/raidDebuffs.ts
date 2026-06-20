@@ -75,3 +75,7 @@ export type RaidDebuffDefinition = {
 };
 
 export type RaidDebuffCoverageRow = RaidDebuffDefinition & { covered: boolean };
+
+export type RaidDebuffPanel = {
+  raidDebuffs: RaidDebuffCoverageRow[];
+};
