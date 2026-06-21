@@ -15,13 +15,32 @@ describe("classicTbcDebuffConsolidator", () => {
   it("should consolidate AP reduction", () => {
     const result = consolidateClassicTbcDebuffs([
       row("demoralizingShout", true),
-      row("demoralizingroar", false),
+      row("demoralizingRoar", false),
       row("improvedDemoralizingShout", false),
       row("improvedDemoralizingRoar", false),
     ]);
 
-    const apReductionDebuff = result.find((d) => d.id === "demoralizingShout");
-    expect(apReductionDebuff?.tier).toBe("base");
-    expect(apReductionDebuff?.covered).toBe(true);
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe("demoralizingShout");
+    expect(result[0].tier).toBe("base");
+    expect(result[0].covered).toBe(true);
+  });
+
+  it("should consolidate imp demo over regular demo", () => {
+    const result = consolidateClassicTbcDebuffs([
+      row("improvedDemoralizingShout", true),
+      row("demoralizingShout", false),
+    ]);
+
+    expect(result[0]?.tier).toBe("improved");
+  });
+
+  it("should consolidate imp faerie fire over regular faerie fire", () => {
+    const result = consolidateClassicTbcDebuffs([
+      row("improvedFaerieFire", true),
+      row("faerieFire", false),
+    ]);
+
+    expect(result[0]?.tier).toBe("improved");
   });
 });
