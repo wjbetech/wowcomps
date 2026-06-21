@@ -7,6 +7,13 @@ import { getRaidGridModel } from "./grid";
 import { consolidateWotlkBuffs } from "./wotlkBuffConsolidator";
 import { consolidateClassicTbcBuffs } from "./classicTbcBuffConsolidator";
 
+function normalizeBuffTier(rows: RaidBuffCoverageRow[]): RaidBuffCoverageRow[] {
+  return rows.map((row) => ({
+    ...row,
+    tier: row.tier === "none" && row.covered ? "improved" : row.tier,
+  }));
+}
+
 export function getRaidBuffCoverage(
   raidSlots: RaidSlots,
   expansion: Expansion,
@@ -31,5 +38,6 @@ export function getRaidBuffCoverage(
     expansion === "classicPlus";
   if (expansion === "wotlk") return consolidateWotlkBuffs(rows);
   if (isClassicTbc) return consolidateClassicTbcBuffs(rows);
-  return rows;
+
+  return normalizeBuffTier(rows);
 }

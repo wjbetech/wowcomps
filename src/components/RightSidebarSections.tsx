@@ -36,7 +36,9 @@ export default function RightSidebar({
             <RaidBuffPanel buffs={raidBuffCoverage} />
             <div className="flex justify-between">
               <span>Raid Debuffs</span>
-              <span className="text-stone-400">{raidDebuffCoverage.length}</span>
+              <span className="text-stone-400">
+                {raidDebuffCoverage.filter((d) => d.covered).length} / {raidDebuffCoverage.length}
+              </span>
             </div>
             <RaidDebuffPanel raidDebuffs={raidDebuffCoverage} />
           </div>

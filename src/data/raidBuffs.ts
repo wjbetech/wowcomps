@@ -187,6 +187,12 @@ export const tbcRaidBuffs: RaidBuffDefinition[] = [
     iconPath: ZAMIMG_ICON("spell_holy_prayerofshadowprotection"),
     sourceSpecIds: ["discipline", "holyPriest", "shadow"],
   },
+  {
+    id: "bloodlust",
+    label: "Bloodlust",
+    iconPath: ZAMIMG_ICON("spell_nature_bloodlust"),
+    sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
+  },
 ];
 
 const wotlkRaidBuffs: RaidBuffDefinition[] = [
@@ -441,6 +447,12 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
     label: "Improved Soul Leech",
     iconPath: ZAMIMG_ICON("spell_shadow_soulleech_3"),
     sourceSpecIds: ["destruction"],
+  },
+  {
+    id: "bloodlust",
+    label: "Bloodlust",
+    iconPath: ZAMIMG_ICON("spell_nature_bloodlust"),
+    sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
   },
 ];
 

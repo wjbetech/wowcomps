@@ -211,18 +211,6 @@ const tbcRaidDebuffs: RaidDebuffDefinition[] = [
     iconPath: ZAMIMG_ICON("ability_warrior_warcry"),
     sourceSpecIds: ["arms", "fury", "protectionWarrior"],
   },
-  {
-    id: "bloodlust",
-    label: "Bloodlust",
-    iconPath: ZAMIMG_ICON("spell_nature_bloodlust"),
-    sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
-  },
-  {
-    id: "heroism",
-    label: "Heroism",
-    iconPath: ZAMIMG_ICON("ability_shaman_heroism"),
-    sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
-  },
 ];
 
 const wotlkRaidDebuffs: RaidDebuffDefinition[] = [
