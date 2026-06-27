@@ -1,10 +1,11 @@
 import type { RaidBuffPanel } from "../types/raidBuffs";
+import UpgradeAvailableBadge from "./upgradeAvailableBadge.";
 
 export default function RaidBuffPanel({ buffs }: RaidBuffPanel) {
   return (
     <div className="flex flex-wrap gap-0.5">
       {buffs.map((buff) => (
-        <div key={buff.id} className="relative h-8 w-8">
+        <div className="relative h-8 w-8">
           <img
             src={buff.iconPath}
             alt={buff.label}
@@ -13,14 +14,7 @@ export default function RaidBuffPanel({ buffs }: RaidBuffPanel) {
               buff.covered ? "opacity-100" : "opacity-50 grayscale"
             }`}
           />
-          {buff.tier === "base" && (
-            <span
-              className="absolute -right-0.5 -top-0.5 text-xl font-extrabold leading-none text-green-600"
-              aria-label="Improved version available"
-            >
-              ↑
-            </span>
-          )}
+          {buff.tier === "base" && <UpgradeAvailableBadge />}
         </div>
       ))}
     </div>
