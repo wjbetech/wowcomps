@@ -46,7 +46,7 @@ describe("getClassBreakdown", () => {
   it("ignores classes that are not part of the selected expansion", () => {
     const raidSlots = createInitialRaidSlots(40);
 
-    raidSlots["1-1"] = { specId: "frost", classId: "deathKnight" };
+    raidSlots["1-1"] = { specId: "frostDeathknight", classId: "deathKnight" };
 
     const classicResult = getClassBreakdown(raidSlots, "classic", 40);
     const wotlkResult = getClassBreakdown(raidSlots, "wotlk", 25);

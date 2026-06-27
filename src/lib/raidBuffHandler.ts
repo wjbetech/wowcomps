@@ -3,9 +3,9 @@ import { getRaidBuffDefinitions } from "../data/raidBuffs";
 import type { Expansion, RaidSize } from "../types/expansions";
 import type { RaidBuffCoverageRow } from "../types/raidBuffs";
 import type { RaidSlots } from "../types/raidGrid";
-import { getRaidGridModel } from "./grid";
 import { consolidateWotlkBuffs } from "./wotlkBuffConsolidator";
 import { consolidateClassicTbcBuffs } from "./classicTbcBuffConsolidator";
+import { getRaidSpecIds } from "../utils/getRaidSpecIds";
 
 function normalizeBuffTier(rows: RaidBuffCoverageRow[]): RaidBuffCoverageRow[] {
   return rows.map((row) => ({
@@ -20,11 +20,7 @@ export function getRaidBuffCoverage(
   raidSize: RaidSize,
 ): RaidBuffCoverageRow[] {
   const buffDefs = getRaidBuffDefinitions(expansion);
-  const raidSpecIds = new Set(
-    getRaidGridModel(raidSize)
-      .flatMap((group) => group.slots.map((slot) => raidSlots[slot.id]?.specId))
-      .filter((specId): specId is NonNullable<typeof specId> => specId != null),
-  );
+  const raidSpecIds = getRaidSpecIds(raidSlots, raidSize);
 
   const rows: RaidBuffCoverageRow[] = buffDefs.map((buff) => ({
     ...buff,
