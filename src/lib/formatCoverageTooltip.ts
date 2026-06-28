@@ -11,26 +11,27 @@ export function formatRaidCoverageTooltip(row: CoverageTooltip): WoWTooltipConte
       : "Covered";
   const providers = getSpecLabels(row.sourceSpecIds);
   return {
-    title: row.label,
-    lines: providers.length
-      ? [
-          { text: status, tone: "white" },
-          { text: `Provided by: ${providers.join(", ")}`, tone: "green" },
-        ]
-      : [{ text: status, tone: "green" }],
     iconPath: row.iconPath,
+    title: row.label,
+    meta: row.meta,
+    description: row.description,
+    footerLines: [
+      status,
+      ...(providers.length > 0 ? [`Provided by: ${providers.join(", ")}`] : []),
+    ],
   };
 }
+
 // Party buffs — no tier, always covered when shown
 export function formatPartyBuffTooltip(
-  row: Pick<CoverageTooltip, "label" | "sourceSpecIds" | "iconPath">,
+  row: Pick<CoverageTooltip, "label" | "sourceSpecIds" | "iconPath" | "meta" | "description">,
 ): WoWTooltipContent {
   const providers = getSpecLabels(row.sourceSpecIds);
   return {
-    title: row.label,
-    lines: providers.length
-      ? [{ text: `Provided by: ${providers.join(", ")}`, tone: "white" }]
-      : [{ text: "Active in party", tone: "green" }],
     iconPath: row.iconPath,
+    title: row.label,
+    meta: row.meta,
+    description: row.description,
+    footerLines: providers.length ? [`Provided by: ${providers.join(", ")}`] : ["Active in party"],
   };
 }

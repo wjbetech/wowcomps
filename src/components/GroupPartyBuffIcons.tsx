@@ -18,9 +18,11 @@ export default function GroupPartyBuffIcons({ buffs, expansion }: DiagonalBuffVa
         <CoverageIconTooltip
           content={{
             title: "Paladin Auras",
-            lines: [
-              ...(devotion?.covered ? formatPartyBuffTooltip(devotion).lines : []),
-              ...(resistance?.covered ? formatPartyBuffTooltip(resistance).lines : []),
+            footerLines: [
+              ...(devotion?.covered ? (formatPartyBuffTooltip(devotion).footerLines ?? []) : []),
+              ...(resistance?.covered
+                ? (formatPartyBuffTooltip(resistance).footerLines ?? [])
+                : []),
             ],
           }}
         >

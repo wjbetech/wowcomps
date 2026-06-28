@@ -6,6 +6,8 @@ export type CoverageTooltip = {
   covered: boolean;
   tier: "none" | "base" | "improved";
   sourceSpecIds: SpecId[];
+  description?: string;
+  meta?: string[];
 };
 
 export type CoverageRow = {
@@ -16,15 +18,12 @@ export type CoverageRow = {
 
 export type CoverageSummaryState = "empty" | "partial" | "complete";
 
-export type WoWTooltipLine = {
-  text: string;
-  tone: "gold" | "green" | "white" | "gray";
-};
-
 export type WoWTooltipContent = {
   iconPath?: string;
   title: string;
-  lines: WoWTooltipLine[];
+  meta?: string[];
+  description?: string;
+  footerLines?: string[];
 };
 
 export type WoWTooltip = {

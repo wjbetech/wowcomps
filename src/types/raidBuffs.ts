@@ -14,7 +14,7 @@ export type ClassicRaidBuffId =
   | "greaterBlessingOfSanctuary"
   | "prayerOfSpirit"
   | "prayerOfFortitude"
-  | "improvedPrayerOfFortitude"
+  | "improvedPowerWordFortitude"
   | "prayerOfShadowProtection";
 
 export type TbcRaidBuffId =
@@ -85,6 +85,11 @@ export type RaidBuffDefinition = {
   id: ClassicRaidBuffId | TbcRaidBuffId | WotlkRaidBuffId;
   label: string;
   iconPath: string;
+  talent?: boolean;
+  meta?: string[];
+  range?: string;
+  reagent?: string;
+  description?: string;
   sourceSpecIds: SpecId[];
 };
 

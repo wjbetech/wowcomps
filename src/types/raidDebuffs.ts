@@ -72,6 +72,8 @@ export type RaidDebuffDefinition = {
   id: ClassicRaidDebuffId | TbcRaidDebuffId | WotlkRaidDebuffId;
   label: string;
   iconPath: string;
+  meta?: string[];
+  description?: string;
   sourceSpecIds: SpecId[];
 };
 
