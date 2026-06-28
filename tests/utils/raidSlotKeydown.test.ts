@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vite-plus/test";
-import { handleRaidSlotKeyDown } from "../../src/utils/raidSlotKeydown";
+import { handleRaidSlotKeyDown } from "../../src/utils/handleRaidSlotKeydown";
 
 describe("raidSlotKeydown", () => {
   it("cancels editing without committing on Escape key", () => {

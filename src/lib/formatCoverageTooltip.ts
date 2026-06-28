@@ -1,27 +1,36 @@
-import { getClassCatalog } from "../data/expansionClasses";
-import type { SpecId } from "../types/classesSpecs";
-import type { CoverageTooltip } from "../types/tooltips";
+import type { CoverageTooltip, WoWTooltipContent } from "../types/tooltips";
 
-function specLabels(specIds: SpecId[]): string[] {
-  const catalog = getClassCatalog();
-  return specIds.flatMap((specId) => {
-    for (const cls of catalog) {
-      const spec = cls.specs.find((s) => s.specId === specId);
-      if (spec) return [spec.label];
-    }
-    return [];
-  });
-}
+import getSpecLabels from "../utils/getSpecLabels";
 
-export function formatCoverageTooltip(row: CoverageTooltip): string {
+// Raid buff/debuff — already has tier
+export function formatRaidCoverageTooltip(row: CoverageTooltip): WoWTooltipContent {
   const status = !row.covered
     ? "Missing"
     : row.tier === "base"
-      ? "Covered (base) - improved version available!"
+      ? "Covered (base) — improved available"
       : "Covered";
-
-  const buffProviders = specLabels(row.sourceSpecIds).join(", ");
-  const buffProviderLine = buffProviders.length > 0 ? `\nProvided by: ${buffProviders}` : "";
-
-  return `${row.label}\n${status}${buffProviderLine}`;
+  const providers = getSpecLabels(row.sourceSpecIds);
+  return {
+    title: row.label,
+    lines: providers.length
+      ? [
+          { text: status, tone: "white" },
+          { text: `Provided by: ${providers.join(", ")}`, tone: "green" },
+        ]
+      : [{ text: status, tone: "green" }],
+    iconPath: row.iconPath,
+  };
+}
+// Party buffs — no tier, always covered when shown
+export function formatPartyBuffTooltip(
+  row: Pick<CoverageTooltip, "label" | "sourceSpecIds" | "iconPath">,
+): WoWTooltipContent {
+  const providers = getSpecLabels(row.sourceSpecIds);
+  return {
+    title: row.label,
+    lines: providers.length
+      ? [{ text: `Provided by: ${providers.join(", ")}`, tone: "white" }]
+      : [{ text: "Active in party", tone: "green" }],
+    iconPath: row.iconPath,
+  };
 }

@@ -6,7 +6,7 @@ import { useDraggable } from "@dnd-kit/core";
 import type { DraggableSpecButtonProps } from "../types/specsPanel";
 
 // utils
-import { createPlacedSpec } from "../utils/placedSpec";
+import { createPlacedSpec } from "../utils/createPlacedSpec";
 
 export function DraggableSpecButton({
   classId,

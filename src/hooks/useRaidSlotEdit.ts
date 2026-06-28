@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 // types
 import type { PlacedSpec, RaidSlotId } from "../types/raidGrid";
-import { sanitizeRaidSlotName } from "../utils/raidSlotName";
+import { sanitizeRaidSlotName } from "../utils/sanitizeRaidSlotName";
 
 export default function useRaidSlotEdit(
   placedSpec: PlacedSpec | null,

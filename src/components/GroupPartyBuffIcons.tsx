@@ -1,5 +1,7 @@
 import { getPaladinAuraFamily } from "../data/partyBuffs";
+import { formatPartyBuffTooltip } from "../lib/formatCoverageTooltip";
 import type { DiagonalBuffVariant } from "../types/buffs";
+import CoverageIconTooltip from "./CoverageIconTooltip";
 import SplitDiagonalBuffIcon from "./SplitDiagonalBuffIcon";
 
 export default function GroupPartyBuffIcons({ buffs, expansion }: DiagonalBuffVariant) {
@@ -13,27 +15,37 @@ export default function GroupPartyBuffIcons({ buffs, expansion }: DiagonalBuffVa
   return (
     <div className="mt-2 flex flex-wrap gap-1">
       {showPaladinSplit && family && (
-        <SplitDiagonalBuffIcon
-          bottomLeft={{
-            iconPath: family.devotionAura.iconPath,
-            label: family.devotionAura.label,
-            active: devotion?.covered,
+        <CoverageIconTooltip
+          content={{
+            title: "Paladin Auras",
+            lines: [
+              ...(devotion?.covered ? formatPartyBuffTooltip(devotion).lines : []),
+              ...(resistance?.covered ? formatPartyBuffTooltip(resistance).lines : []),
+            ],
           }}
-          topRight={{
-            iconPath: family.resistanceAuras.iconPath,
-            label: family.resistanceAuras.label,
-            active: resistance?.covered,
-          }}
-        />
+        >
+          <SplitDiagonalBuffIcon
+            bottomLeft={{
+              iconPath: family.devotionAura.iconPath,
+              label: family.devotionAura.label,
+              active: devotion?.covered,
+            }}
+            topRight={{
+              iconPath: family.resistanceAuras.iconPath,
+              label: family.resistanceAuras.label,
+              active: resistance?.covered,
+            }}
+          />
+        </CoverageIconTooltip>
       )}
       {singleBuffs.map((buff) => (
-        <img
-          key={buff.buffId}
-          src={buff.iconPath}
-          alt={buff.label}
-          title={buff.label}
-          className="h-6 w-6 rounded-sm object-cover border-2 border-green-600 "
-        />
+        <CoverageIconTooltip key={buff.buffId} content={formatPartyBuffTooltip(buff)}>
+          <img
+            src={buff.iconPath}
+            alt={buff.label}
+            className="h-6 w-6 rounded-sm object-cover border-2 border-green-600"
+          />
+        </CoverageIconTooltip>
       ))}
     </div>
   );

@@ -10,10 +10,11 @@ import { useRaidSlotDrag } from "../hooks/useRaidSlotDrag";
 import type { RaidSlotId, PlacedSpec } from "../types/raidGrid";
 
 // utils
-import { sanitizeRaidSlotName } from "../utils/raidSlotName";
-import { handleRaidSlotKeyDown } from "../utils/raidSlotKeydown";
-import { getRaidSlotClassNames, getRaidSlotDisplay } from "../utils/raidSlotDisplay";
-import { handleRaidSlotClick } from "../utils/raidSlotClick";
+import { sanitizeRaidSlotName } from "../utils/sanitizeRaidSlotName";
+import { handleRaidSlotKeyDown } from "../utils/handleRaidSlotKeydown";
+import { getRaidSlotDisplay } from "../utils/getRaidSlotDisplay";
+import { getRaidSlotClassNames } from "../utils/getRaidSlotClassNames";
+import { handleRaidSlotClick } from "../utils/handleRaidSlotClick";
 
 export default function RaidSlot({
   slotId,

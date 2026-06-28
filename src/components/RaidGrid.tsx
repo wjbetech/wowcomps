@@ -13,7 +13,7 @@ import { getPartyBuffCoverage } from "../lib/partyBuffHandler";
 import type { RaidGridProps } from "../types/raidGrid";
 
 // utils
-import { getGroupSlotIds } from "../utils/raidGridGroups";
+import { getGroupSlotIds } from "../utils/getGroupSlotIds";
 
 export default function RaidGrid({
   raidSlots,
