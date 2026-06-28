@@ -11,3 +11,11 @@ export type CoverageTooltipIcon = {
   tooltip: string;
   children: React.ReactNode;
 };
+
+export type CoverageRow = {
+  covered: boolean;
+  tier: "none" | "base" | "improved";
+  sourceSpecIds: SpecId[];
+};
+
+export type CoverageSummaryState = "empty" | "partial" | "complete";

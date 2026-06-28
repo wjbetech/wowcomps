@@ -83,12 +83,12 @@
 - [x] Add raid-wide buff tracking.
 - [x] Add raid-wide debuff tracking.
 - [x] Add helper func to consolidate wotlk buffs/debuffs.
-- [ ] Add helper func to filter so that improved versions of buffs/debuffs take precedence.
+- [x] Add helper func to filter so that improved versions of buffs/debuffs take precedence.
 - [x] Think about adding a visual 'missing buffs' and 'missing debuffs' section.
 - [ ] Add tooltip rendering for all buff/debuff icons.
 - [ ] Keep all sidebar calculations in pure helpers.
 - [ ] Add tests for buff/debuff coverage helpers.
-- [ ] Add empty, partial, complete, and over-cap visual states.
+- [ ] Add empty, partial, and complete visual states.
 - [ ] Make the arrows signifying an improved version stand out more.
 - [ ] Final manual pass of all icons.
 

@@ -131,7 +131,7 @@ describe("raidComposition", () => {
   it("clears specs whose class is invalid for the target expansion", () => {
     const slots = createInitialRaidSlots(25);
 
-    slots["1-1"] = { classId: "deathKnight", specId: "frost", playerName: "" };
+    slots["1-1"] = { classId: "deathKnight", specId: "frostDeathknight", playerName: "" };
     slots["1-2"] = { classId: "mage", specId: "fire", playerName: "" };
 
     const classicClassIds = new Set([
