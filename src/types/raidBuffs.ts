@@ -60,8 +60,10 @@ export type WotlkRaidBuffId =
   | "bloodlust"
   | "elementalOath"
   | "flametongueTotem"
+  | "windfuryTotem"
   | "improvedWindfuryTotem"
   | "strengthOfEarthTotem"
+  | "enhancingTotems"
   | "totemOfWrath"
   | "unleashedRage"
   | "wrathOfAirTotem"
@@ -88,9 +90,12 @@ export type RaidBuffDefinition = {
   talent?: boolean;
   meta?: string[];
   range?: string;
+  cooldown?: string;
+  tools?: string;
   reagent?: string;
   description?: string;
   sourceSpecIds: SpecId[];
+  extra?: string;
 };
 
 export type RaidBuffCoverageTier = "none" | "base" | "improved";

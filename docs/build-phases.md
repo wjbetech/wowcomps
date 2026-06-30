@@ -89,6 +89,10 @@
 - [ ] Keep all sidebar calculations in pure helpers.
 - [ ] Add tests for buff/debuff coverage helpers.
 - [ ] Add empty, partial, and complete visual states.
+- [ ] Fix Battle/Commanding Shout improved versions.
+- [ ] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
+- [ ] Fix tooltips to render both the base and improved versions when both provided.
+- [ ] Fix the diagonal icon tooltips to render both referenced buffs.
 - [ ] Make the arrows signifying an improved version stand out more.
 - [ ] Final manual pass of all icons.
 

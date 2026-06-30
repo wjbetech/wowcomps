@@ -75,6 +75,7 @@ export type RaidDebuffDefinition = {
   meta?: string[];
   description?: string;
   sourceSpecIds: SpecId[];
+  extra?: string;
 };
 
 export type RaidDebuffCoverageTier = "none" | "base" | "improved";
