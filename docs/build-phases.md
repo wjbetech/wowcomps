@@ -86,8 +86,8 @@
 - [x] Add helper func to filter so that improved versions of buffs/debuffs take precedence.
 - [x] Think about adding a visual 'missing buffs' and 'missing debuffs' section.
 - [x] Add tooltip rendering for all buff/debuff icons.
-- [ ] Keep all sidebar calculations in pure helpers.
-- [ ] Add tests for buff/debuff coverage helpers.
+- [x] Keep all sidebar calculations in pure helpers.
+- [x] Add tests for buff/debuff coverage helpers.
 - [ ] Add empty, partial, and complete visual states.
 - [ ] Fix Battle/Commanding Shout improved versions.
 - [x] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
