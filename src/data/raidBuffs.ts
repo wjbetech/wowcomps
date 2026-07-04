@@ -319,6 +319,16 @@ export const tbcRaidBuffs: RaidBuffDefinition[] = [
       "Increases melee, ranged, and spell casting speed by 30% for all party members.  Lasts 40 sec.",
     sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
   },
+  {
+    id: "heroism",
+    label: "Heroism",
+    iconPath: ZAMIMG_ICON("ability_shaman_heroism"),
+    meta: ["750 Mana", "Instant", "Requires Shaman", "Requires level 70"],
+    cooldown: "10 min cooldown",
+    description:
+      "Increases melee, ranged, and spell haste by 30% for all party and raid members. Lasts 40 sec. \nAllies receiving this effect will become Exhausted and be unable to benefit from Heroism again for 10 min.",
+    sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
+  },
 ];
 
 const wotlkRaidBuffs: RaidBuffDefinition[] = [
@@ -568,6 +578,21 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
     label: "Bloodlust",
     iconPath: ZAMIMG_ICON("spell_nature_bloodlust"),
     meta: ["26% of base mana", "Instant", "Requires Shaman", "Requires level 70", "Faction: Horde"],
+    cooldown: "5 min cooldown",
+    description: `Increases melee, ranged, and spell casting speed by 30% for all party and raid members.  Lasts 40 sec. \nAfter the completion of this effect, those affected will become Sated and unable to benefit from Bloodlust again for 10 min.`,
+    sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],
+  },
+  {
+    id: "heroism",
+    label: "Heroism",
+    iconPath: ZAMIMG_ICON("ability_shaman_heroism"),
+    meta: [
+      "26% of base mana",
+      "Instant",
+      "Requires Shaman",
+      "Requires level 70",
+      "Faction: Alliance",
+    ],
     cooldown: "5 min cooldown",
     description: `Increases melee, ranged, and spell casting speed by 30% for all party and raid members.  Lasts 40 sec. \nAfter the completion of this effect, those affected will become Sated and unable to benefit from Bloodlust again for 10 min.`,
     sourceSpecIds: ["elemental", "enhancement", "restorationShaman"],

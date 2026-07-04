@@ -14,19 +14,23 @@ function normalizeBuffTier(rows: RaidBuffCoverageRow[]): RaidBuffCoverageRow[] {
   }));
 }
 
-export function getRaidBuffCoverage(
+function buildRaidBuffRows(
   raidSlots: RaidSlots,
   expansion: Expansion,
   raidSize: RaidSize,
 ): RaidBuffCoverageRow[] {
   const buffDefs = getRaidBuffDefinitions(expansion);
   const raidSpecIds = getRaidSpecIds(raidSlots, raidSize);
-
-  const rows: RaidBuffCoverageRow[] = buffDefs.map((buff) => ({
+  return buffDefs.map((buff) => ({
     ...buff,
     covered: buff.sourceSpecIds.some((specId) => raidSpecIds.has(specId)),
     tier: "none",
   }));
+}
+function consolidateForExpansion(
+  rows: RaidBuffCoverageRow[],
+  expansion: Expansion,
+): RaidBuffCoverageRow[] {
   const isClassicTbc =
     expansion === "classic" ||
     expansion === "tbc" ||
@@ -34,6 +38,29 @@ export function getRaidBuffCoverage(
     expansion === "classicPlus";
   if (expansion === "wotlk") return consolidateWotlkBuffs(rows);
   if (isClassicTbc) return consolidateClassicTbcBuffs(rows);
-
   return normalizeBuffTier(rows);
+}
+
+export function getRaidBuffMemberRows(
+  raidSlots: RaidSlots,
+  expansion: Expansion,
+  raidSize: RaidSize,
+): RaidBuffCoverageRow[] {
+  return buildRaidBuffRows(raidSlots, expansion, raidSize);
+}
+
+export function getRaidBuffCoverage(
+  raidSlots: RaidSlots,
+  expansion: Expansion,
+  raidSize: RaidSize,
+): RaidBuffCoverageRow[] {
+  const rows = buildRaidBuffRows(raidSlots, expansion, raidSize);
+  return consolidateForExpansion(rows, expansion);
+}
+
+export function getRaidBuffCoverageFromRows(
+  rows: RaidBuffCoverageRow[],
+  expansion: Expansion,
+): RaidBuffCoverageRow[] {
+  return consolidateForExpansion(rows, expansion);
 }

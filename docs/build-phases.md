@@ -85,12 +85,12 @@
 - [x] Add helper func to consolidate wotlk buffs/debuffs.
 - [x] Add helper func to filter so that improved versions of buffs/debuffs take precedence.
 - [x] Think about adding a visual 'missing buffs' and 'missing debuffs' section.
-- [ ] Add tooltip rendering for all buff/debuff icons.
+- [x] Add tooltip rendering for all buff/debuff icons.
 - [ ] Keep all sidebar calculations in pure helpers.
 - [ ] Add tests for buff/debuff coverage helpers.
 - [ ] Add empty, partial, and complete visual states.
 - [ ] Fix Battle/Commanding Shout improved versions.
-- [ ] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
+- [x] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
 - [ ] Fix tooltips to render both the base and improved versions when both provided.
 - [ ] Fix the diagonal icon tooltips to render both referenced buffs.
 - [ ] Make the arrows signifying an improved version stand out more.

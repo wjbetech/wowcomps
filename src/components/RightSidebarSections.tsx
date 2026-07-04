@@ -5,11 +5,8 @@ import RaidBuffPanel from "./RaidBuffPanel";
 import RaidDebuffPanel from "./RaidDebuffPanel";
 
 // lib
-import { getClassBreakdown } from "../lib/classesHandler";
-import { getRaidBuffCoverage } from "../lib/raidBuffHandler";
-import { getRaidDebuffCoverage } from "../lib/raidDebuffHandler";
-import { getCoverageSummary } from "../lib/getCoverageSummary";
-import { getCoverageProgressColor } from "../lib/getCoverageProgressColor";
+import { getCoverageCounter } from "../lib/getCoverageCounter";
+import { getRightSidebarData } from "../lib/getRightSidebarData";
 
 // types
 import type { RightSidebarProps } from "../types/rightSection";
@@ -19,11 +16,13 @@ export default function RightSidebar({
   selectedExpansion,
   selectedRaidSize,
 }: RightSidebarProps) {
-  const classBreakdown = getClassBreakdown(raidSlots, selectedExpansion, selectedRaidSize);
-  const raidBuffCoverage = getRaidBuffCoverage(raidSlots, selectedExpansion, selectedRaidSize);
-  const raidDebuffCoverage = getRaidDebuffCoverage(raidSlots, selectedExpansion, selectedRaidSize);
-  const buffSummary = getCoverageSummary(raidBuffCoverage);
-  const debuffSummary = getCoverageSummary(raidDebuffCoverage);
+  const { classBreakdown, raidBuffs, raidDebuffs } = getRightSidebarData(
+    raidSlots,
+    selectedExpansion,
+    selectedRaidSize,
+  );
+  const buffCounter = getCoverageCounter(raidBuffs.summary.covered, raidBuffs.summary.total);
+  const debuffCounter = getCoverageCounter(raidDebuffs.summary.covered, raidDebuffs.summary.total);
 
   return (
     <aside className="lg:sticky lg:top-6 lg:self-start">
@@ -35,23 +34,25 @@ export default function RightSidebar({
         <SidebarSection title="Raid Buffs / Debuffs">
           <div className="space-y-2">
             <div className="flex justify-between">
-              <span
-                style={{ color: getCoverageProgressColor(buffSummary.covered, buffSummary.total) }}
-              >
-                {buffSummary.covered} / {buffSummary.total}
-              </span>
+              <span>Buffs</span>
+              <span style={{ color: buffCounter.color }}>{buffCounter.label}</span>
             </div>
-            <RaidBuffPanel buffs={raidBuffCoverage} />
+            <RaidBuffPanel
+              buffs={raidBuffs.coverage}
+              selectedExpansion={selectedExpansion}
+              memberRows={raidBuffs.memberRows}
+            />
             <div className="flex justify-between">
+              <span>Debuffs</span>
               <span
                 style={{
-                  color: getCoverageProgressColor(debuffSummary.covered, debuffSummary.total),
+                  color: debuffCounter.color,
                 }}
               >
-                {debuffSummary.covered} / {debuffSummary.total}
+                {debuffCounter.label}
               </span>
             </div>
-            <RaidDebuffPanel raidDebuffs={raidDebuffCoverage} />
+            <RaidDebuffPanel raidDebuffs={raidDebuffs.coverage} />
           </div>
         </SidebarSection>
       </div>

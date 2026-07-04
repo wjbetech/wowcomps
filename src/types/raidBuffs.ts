@@ -1,4 +1,6 @@
 import type { SpecId } from "./classesSpecs";
+import type { Expansion } from "./expansions";
+import type { WoWTooltipContent } from "./tooltips";
 
 export type ClassicRaidBuffId =
   | "giftOfTheWild"
@@ -32,7 +34,9 @@ export type TbcRaidBuffId =
   | "divineSpirit"
   | "prayerOfFortitude"
   | "improvedPrayerOfFortitude"
-  | "prayerOfShadowProtection";
+  | "prayerOfShadowProtection"
+  | "heroism"
+  | "bloodlust";
 
 export type WotlkRaidBuffId =
   | "abominationsMight"
@@ -58,6 +62,7 @@ export type WotlkRaidBuffId =
   | "prayerOfFortitude"
   | "prayerOfSpirit"
   | "bloodlust"
+  | "heroism"
   | "elementalOath"
   | "flametongueTotem"
   | "windfuryTotem"
@@ -79,7 +84,6 @@ export type WotlkRaidBuffId =
   | "improvedSoulLeech"
   | "greaterBlessingOfSanctuary"
   | "judgementsOfTheWise"
-  | "heroism"
   | "replenishment"
   | "commandingPresence";
 
@@ -107,4 +111,23 @@ export type RaidBuffCoverageRow = RaidBuffDefinition & {
 
 export type RaidBuffPanel = {
   buffs: RaidBuffCoverageRow[];
+  memberRows: RaidBuffCoverageRow[];
+  selectedExpansion: Expansion;
 };
+
+export type RaidBuffDisplayItem =
+  | {
+      kind: "single";
+      key: string;
+      row: RaidBuffCoverageRow;
+      tooltip: WoWTooltipContent;
+      showUpgradeBadge: boolean;
+    }
+  | {
+      kind: "bloodlustHeroism";
+      key: "bloodlust-heroism";
+      row: RaidBuffCoverageRow;
+      tooltip: WoWTooltipContent;
+      bottomLeft: { iconPath: string; label: string };
+      topRight: { iconPath: string; label: string };
+    };

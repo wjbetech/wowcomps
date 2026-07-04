@@ -16,6 +16,7 @@ export default function GroupPartyBuffIcons({ buffs, expansion }: DiagonalBuffVa
     <div className="mt-2 flex flex-wrap gap-1">
       {showPaladinSplit && family && (
         <CoverageIconTooltip
+          key="paladin-auras"
           content={{
             title: "Paladin Auras",
             footerLines: [
@@ -27,6 +28,7 @@ export default function GroupPartyBuffIcons({ buffs, expansion }: DiagonalBuffVa
           }}
         >
           <SplitDiagonalBuffIcon
+            triangleClassName="border-2 border-green-600"
             bottomLeft={{
               iconPath: family.devotionAura.iconPath,
               label: family.devotionAura.label,

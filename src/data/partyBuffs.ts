@@ -1,5 +1,6 @@
 import type { Expansion } from "../types/expansions";
 import type { PartyBuffDefinition, PartyBuffId } from "../types/buffs";
+import { getRaidBuffDefinitions } from "./raidBuffs";
 
 const classicPartyBuffs: PartyBuffDefinition[] = [
   {
@@ -278,4 +279,13 @@ export function getPaladinAuraFamily(expansion: Expansion) {
     devotionAura,
     resistanceAuras,
   };
+}
+
+export function getShamanBloodlustFamily(expansion: Expansion) {
+  if (expansion === "classic" || expansion === "sod") return null;
+  const defs = getRaidBuffDefinitions(expansion);
+  const bloodlust = defs.find((buff) => buff.id === "bloodlust");
+  const heroism = defs.find((buff) => buff.id === "heroism");
+
+  return bloodlust && heroism ? { bloodlust, heroism } : null;
 }

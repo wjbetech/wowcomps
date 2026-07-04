@@ -35,3 +35,17 @@ export function formatPartyBuffTooltip(
     footerLines: providers.length ? [`Provided by: ${providers.join(", ")}`] : ["Active in party"],
   };
 }
+
+export function formatBloodlustHeroismTooltip(
+  consolidated: CoverageTooltip,
+  bloodlust?: Pick<CoverageTooltip, "iconPath" | "meta" | "description">,
+  heroism?: Pick<CoverageTooltip, "meta" | "description">,
+): WoWTooltipContent {
+  return {
+    iconPath: bloodlust?.iconPath,
+    title: "Bloodlust / Heroism",
+    meta: [...new Set([...(bloodlust?.meta ?? []), ...(heroism?.meta ?? [])])],
+    description: bloodlust?.description ?? heroism?.description,
+    footerLines: formatRaidCoverageTooltip(consolidated).footerLines,
+  };
+}

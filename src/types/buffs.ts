@@ -77,6 +77,7 @@ export type PartyBuffsPanelProps = {
 export type SplitDiagonalBuffIconProps = {
   bottomLeft: { iconPath: string; label: string; active?: boolean };
   topRight: { iconPath: string; label: string; active?: boolean };
+  triangleClassName?: string;
 };
 
 export type DiagonalBuffVariant = {
