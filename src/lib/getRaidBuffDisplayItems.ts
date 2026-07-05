@@ -14,6 +14,8 @@ export function getRaidBuffDisplayItems(
 
   return buffs.flatMap((buff): RaidBuffDisplayItem[] => {
     if (buff.id === "heroism" && family) return [];
+    if (buff.id === "commandingPresence") return [];
+    if (buff.id === "improvedPowerWordFortitude" && expansion === "wotlk") return [];
 
     if (buff.id === "bloodlust" && family) {
       return [

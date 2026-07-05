@@ -723,6 +723,16 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
     sourceSpecIds: ["arms", "fury", "protectionWarrior"],
   },
   {
+    id: "commandingPresence",
+    label: "Commanding Presence",
+    iconPath: ZAMIMG_ICON("spell_nature_focusedmind"),
+    talent: true,
+    meta: ["Requires Warrior"],
+    description:
+      "Increases the melee attack power bonus of your Battle Shout and the health bonus of your Commanding Shout by 25%.",
+    sourceSpecIds: ["fury"],
+  },
+  {
     id: "commandingShout",
     label: "Commanding Shout",
     iconPath: ZAMIMG_ICON("ability_warrior_rallyingcry"),

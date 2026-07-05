@@ -88,8 +88,7 @@
 - [x] Add tooltip rendering for all buff/debuff icons.
 - [x] Keep all sidebar calculations in pure helpers.
 - [x] Add tests for buff/debuff coverage helpers.
-- [ ] Add empty, partial, and complete visual states.
-- [ ] Fix Battle/Commanding Shout improved versions.
+- [ ] Fix Battle/Commanding Shout improved versions via the Commanding Presence talent for Wrath of the Lich King.
 - [x] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
 - [ ] Fix tooltips to render both the base and improved versions when both provided.
 - [ ] Fix the diagonal icon tooltips to render both referenced buffs.

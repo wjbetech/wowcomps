@@ -50,12 +50,7 @@ const WOTLK_BUFF_GROUPS: {
   },
   {
     groupId: "attackPower",
-    memberIds: [
-      "greaterBlessingOfMight",
-      "improvedBlessingOfMight",
-      "battleShout",
-      "commandingPresence",
-    ],
+    memberIds: ["greaterBlessingOfMight", "improvedBlessingOfMight", "battleShout"],
     displayId: "greaterBlessingOfMight",
   },
   {

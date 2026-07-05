@@ -1,10 +1,17 @@
-// types
+// core
+import { consolidateWotlkBuffs } from "./wotlkBuffConsolidator";
+import { consolidateClassicTbcBuffs } from "./classicTbcBuffConsolidator";
+import { applyTalentUpgrades } from "./applyTalentUpgrades";
+
+// data
 import { getRaidBuffDefinitions } from "../data/raidBuffs";
+
+// types
 import type { Expansion, RaidSize } from "../types/expansions";
 import type { RaidBuffCoverageRow } from "../types/raidBuffs";
 import type { RaidSlots } from "../types/raidGrid";
-import { consolidateWotlkBuffs } from "./wotlkBuffConsolidator";
-import { consolidateClassicTbcBuffs } from "./classicTbcBuffConsolidator";
+
+// utils
 import { getRaidSpecIds } from "../utils/getRaidSpecIds";
 
 function normalizeBuffTier(rows: RaidBuffCoverageRow[]): RaidBuffCoverageRow[] {
@@ -21,12 +28,15 @@ function buildRaidBuffRows(
 ): RaidBuffCoverageRow[] {
   const buffDefs = getRaidBuffDefinitions(expansion);
   const raidSpecIds = getRaidSpecIds(raidSlots, raidSize);
-  return buffDefs.map((buff) => ({
-    ...buff,
-    covered: buff.sourceSpecIds.some((specId) => raidSpecIds.has(specId)),
-    tier: "none",
-  }));
+  return applyTalentUpgrades(
+    buffDefs.map((buff) => ({
+      ...buff,
+      covered: buff.sourceSpecIds.some((specId) => raidSpecIds.has(specId)),
+      tier: "none",
+    })),
+  );
 }
+
 function consolidateForExpansion(
   rows: RaidBuffCoverageRow[],
   expansion: Expansion,
@@ -36,7 +46,8 @@ function consolidateForExpansion(
     expansion === "tbc" ||
     expansion === "sod" ||
     expansion === "classicPlus";
-  if (expansion === "wotlk") return consolidateWotlkBuffs(rows);
+  if (expansion === "wotlk")
+    return consolidateWotlkBuffs(rows.filter((row) => row.id !== "commandingPresence"));
   if (isClassicTbc) return consolidateClassicTbcBuffs(rows);
   return normalizeBuffTier(rows);
 }
