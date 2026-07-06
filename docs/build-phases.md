@@ -89,6 +89,7 @@
 - [x] Keep all sidebar calculations in pure helpers.
 - [x] Add tests for buff/debuff coverage helpers.
 - [ ] Fix Battle/Commanding Shout improved versions via the Commanding Presence talent for Wrath of the Lich King.
+- [ ] Fix the standard/improved demoralizing shout/demoralizing roar in Classic version so that protection warrior and feral (tank) provide the improved versions.
 - [x] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
 - [ ] Fix tooltips to render both the base and improved versions when both provided.
 - [ ] Fix the diagonal icon tooltips to render both referenced buffs.
