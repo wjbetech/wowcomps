@@ -49,3 +49,17 @@ export function formatBloodlustHeroismTooltip(
     footerLines: formatRaidCoverageTooltip(consolidated).footerLines,
   };
 }
+
+export function formatBaseAndTalentTooltip(
+  consolidated: CoverageTooltip,
+  base: Pick<CoverageTooltip, "label" | "iconPath" | "meta" | "description">,
+  talent?: Pick<CoverageTooltip, "label" | "meta" | "description">,
+): WoWTooltipContent {
+  return {
+    iconPath: base.iconPath,
+    title: talent ? `${base.label} / ${talent.label}` : base.label,
+    meta: [...new Set([...(base.meta ?? []), ...(talent?.meta ?? [])])],
+    description: [base.description, talent?.description].filter(Boolean).join("\n\n"),
+    footerLines: formatRaidCoverageTooltip(consolidated).footerLines,
+  };
+}
