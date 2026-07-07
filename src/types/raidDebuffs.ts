@@ -12,7 +12,9 @@ export type ClassicRaidDebuffId =
   | "curseOfShadow"
   | "huntersMark"
   | "sunderArmor"
-  | "demoralizingShout";
+  | "demoralizingShout"
+  | "improvedDemoralizingRoar"
+  | "improvedDemoralizingShout";
 
 export type TbcRaidDebuffId =
   | "demoralizingRoar"

@@ -14,6 +14,17 @@ describe("getRaidDebuffCoverage", () => {
     expect(faerieFire?.tier).toBe("improved");
   });
 
+  it("reports improved AP reduction when a prot warrior is in the raid", () => {
+    const protSlots = createInitialRaidSlots(40);
+    protSlots["1-1"] = { specId: "protectionWarrior", classId: "warrior" };
+
+    expect(
+      getRaidDebuffCoverage(protSlots, "classic", 40).find(
+        (row) => row.id === "improvedDemoralizingShout",
+      )?.tier,
+    ).toBe("improved");
+  });
+
   it("consolidates tbc faerie fire variants", () => {
     const raidSlots = createInitialRaidSlots(25);
     raidSlots["1-1"] = { specId: "balance", classId: "druid" };

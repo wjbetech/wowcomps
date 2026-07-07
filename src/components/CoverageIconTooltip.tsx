@@ -17,7 +17,7 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
           <img
             src={content.iconPath}
             alt={content.title}
-            className=" h-9 w-9 shrink-0 rounded-sm border border-gray-600"
+            className="h-9 w-9 shrink-0 rounded-sm border border-gray-600"
           />
         )}
         <div className="min-w-0 bg-gray-950 border border-gray-600 rounded-sm py-1 px-2 w-48">
@@ -30,7 +30,9 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
           ))}
 
           {content.description && (
-            <p className={`text-xs leading-snug text-[#ffd100] ${hasMeta ? "mt-1" : ""}`}>
+            <p
+              className={`whitespace-pre-line text-xs leading-snug text-[#ffd100] ${hasMeta ? "mt-1" : ""}`}
+            >
               {content.description}
             </p>
           )}

@@ -76,6 +76,12 @@ const classicRaidDebuffs: RaidDebuffDefinition[] = [
     iconPath: ZAMIMG_ICON("ability_warrior_warcry"),
     sourceSpecIds: ["arms", "fury", "protectionWarrior"],
   },
+  {
+    id: "improvedDemoralizingShout",
+    label: "Improved Demoralizing Shout",
+    iconPath: ZAMIMG_ICON("ability_warrior_warcry"),
+    sourceSpecIds: ["protectionWarrior"],
+  },
 ];
 
 const tbcRaidDebuffs: RaidDebuffDefinition[] = [
@@ -114,12 +120,6 @@ const tbcRaidDebuffs: RaidDebuffDefinition[] = [
     label: "Mangle (Cat)",
     iconPath: ZAMIMG_ICON("ability_druid_mangle2"),
     sourceSpecIds: ["feralDps"],
-  },
-  {
-    id: "improvedDemoralizingRoar",
-    label: "Improved Demoralizing Roar",
-    iconPath: ZAMIMG_ICON("classic_ability_druid_demoralizingroar"),
-    sourceSpecIds: ["feralTank"],
   },
   {
     id: "exposeWeakness",
@@ -204,12 +204,6 @@ const tbcRaidDebuffs: RaidDebuffDefinition[] = [
     label: "Blood Frenzy",
     iconPath: ZAMIMG_ICON("ability_warrior_bloodfrenzy"),
     sourceSpecIds: ["arms"],
-  },
-  {
-    id: "improvedDemoralizingShout",
-    label: "Improved Demoralizing Shout",
-    iconPath: ZAMIMG_ICON("ability_warrior_warcry"),
-    sourceSpecIds: ["arms", "fury", "protectionWarrior"],
   },
 ];
 
