@@ -13,7 +13,6 @@ export type ClassicRaidDebuffId =
   | "huntersMark"
   | "sunderArmor"
   | "demoralizingShout"
-  | "improvedDemoralizingRoar"
   | "improvedDemoralizingShout";
 
 export type TbcRaidDebuffId =
@@ -75,7 +74,10 @@ export type RaidDebuffDefinition = {
   label: string;
   iconPath: string;
   meta?: string[];
+  talent?: boolean;
+  range?: string;
   description?: string;
+  offsetDescription?: string;
   sourceSpecIds: SpecId[];
   extra?: string;
 };

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vite-plus/test";
 import { createInitialRaidSlots } from "../../src/lib/grid";
 import { getRaidDebuffCoverage } from "../../src/lib/raidDebuffHandler";
+import { getClassicApReduction } from "../utils/apReductions";
 
 describe("getRaidDebuffCoverage", () => {
   it("marks debuffs covered when a matching spec is in the raid", () => {
@@ -43,5 +44,13 @@ describe("getRaidDebuffCoverage", () => {
     const faerieFire = coverage.find((row) => row.id === "faerieFire");
 
     expect(faerieFire?.covered).toBe(false);
+  });
+
+  it("reports improved AP reduction when a prot warrior is in the raid in Classic WoW", () => {
+    expect(getClassicApReduction("protectionWarrior", "warrior")).toBe("improved");
+  });
+
+  it("report base AP reduction for feral tank in Classic WoW", () => {
+    expect(getClassicApReduction("feralTank", "druid")).toBe("base");
   });
 });
