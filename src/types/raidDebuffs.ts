@@ -26,7 +26,6 @@ export type TbcRaidDebuffId =
   | "exposeWeakness"
   | "exposeArmor"
   | "improvedScorch"
-  | "wintersChill"
   | "improvedSealOfTheCrusader"
   | "improvedHuntersMark"
   | "misery"
@@ -50,9 +49,9 @@ export type WotlkRaidDebuffId =
   | "faerieFire"
   | "improvedFaerieFire"
   | "insectSwarm"
-  | "mangle"
+  | "mangleBear"
+  | "mangleCat"
   | "improvedScorch"
-  | "wintersChill"
   | "heartOfTheCrusader"
   | "judgementsOfTheJust"
   | "vindication"
@@ -76,6 +75,7 @@ export type RaidDebuffDefinition = {
   meta?: string[];
   talent?: boolean;
   range?: string;
+  rightCooldown?: string;
   description?: string;
   offsetDescription?: string;
   sourceSpecIds: SpecId[];
