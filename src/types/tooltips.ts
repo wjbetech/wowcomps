@@ -8,6 +8,10 @@ export type CoverageTooltip = {
   sourceSpecIds: SpecId[];
   description?: string;
   meta?: string[];
+  talent?: boolean;
+  range?: string;
+  rightCooldown?: string;
+  offsetDescription?: string;
 };
 
 export type CoverageRow = {
@@ -21,6 +25,13 @@ export type CoverageSummaryState = "empty" | "partial" | "complete";
 export type WoWTooltipContent = {
   iconPath?: string;
   title: string;
+  talent?: boolean;
+  cost?: string;
+  cast?: string;
+  range?: string;
+  rightCooldown?: string;
+  offsetDescription?: string;
+  requires?: string[];
   meta?: string[];
   description?: string;
   footerLines?: string[];
