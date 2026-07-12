@@ -16,8 +16,8 @@ export const classicRaidBuffs: RaidBuffDefinition[] = [
   },
   {
     id: "improvedMarkOfTheWild",
-    label: "Improved Gift of the Wild",
-    iconPath: ZAMIMG_ICON("spell_nature_regeneration"),
+    label: "Improved Mark of the Wild",
+    iconPath: ZAMIMG_ICON("spell_nature_giftofthewild"),
     talent: true,
     meta: ["Requires Druid"],
     description:
@@ -60,7 +60,7 @@ export const classicRaidBuffs: RaidBuffDefinition[] = [
   {
     id: "greaterBlessingOfMight",
     label: "Greater Blessing of Might",
-    iconPath: ZAMIMG_ICON("spell_holy_fistofjustice"),
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofkings"),
     meta: ["260 Mana", "Instant", "Requires Paladin", "Requires level 60"],
     range: "40 yd range",
     reagent: "Symbol of Kings",
@@ -69,9 +69,9 @@ export const classicRaidBuffs: RaidBuffDefinition[] = [
     sourceSpecIds: ["holyPaladin", "protectionPaladin", "retribution"],
   },
   {
-    id: "improvedGreaterBlessingOfMight",
+    id: "improvedBlessingOfMight",
     label: "Improved Blessing of Might",
-    iconPath: ZAMIMG_ICON("spell_holy_fistofjustice"),
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofkings"),
     talent: true,
     meta: ["Requires Paladin"],
     description: "Increases the melee attack power bonus of your Blessing of Might by 20%",
@@ -89,9 +89,9 @@ export const classicRaidBuffs: RaidBuffDefinition[] = [
     sourceSpecIds: ["holyPaladin", "protectionPaladin", "retribution"],
   },
   {
-    id: "improvedGreaterBlessingOfWisdom",
+    id: "improvedBlessingOfWisdom",
     label: "Improved Blessing of Wisdom",
-    iconPath: ZAMIMG_ICON("spell_holy_mindsooth"),
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofwisdom"),
     talent: true,
     meta: ["Requires Paladin"],
     description: "Increases the effect of your Blessing of Wisdom spell by 20%.",

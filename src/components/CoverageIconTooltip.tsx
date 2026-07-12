@@ -21,6 +21,9 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
           style={{ fontFamily: "var(--font-wow-tooltip)" }}
         >
           <p className="text-[13px] text-white">{content.title}</p>
+          {content.talentLabel && (
+            <p className="text-xs leading-snug text-[#1eff00]">{content.talentLabel}</p>
+          )}
           {content.talent && <p className="text-xs text-[#9d9d9d]">Talent</p>}
           {(content.cost || content.range) && (
             <div className="flex justify-between gap-2 text-xs text-white">
@@ -42,6 +45,11 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
           {content.description && (
             <p className="mt-1 whitespace-pre-line text-xs leading-snug text-[#ffd100]">
               {content.description}
+            </p>
+          )}
+          {content.talentDescription && (
+            <p className="mt-1 whitespace-pre-line text-xs leading-snug text-[#1eff00]">
+              {content.talentDescription}
             </p>
           )}
           {content.offsetDescription && (

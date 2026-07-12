@@ -26,24 +26,24 @@ describe("classicTbcBuffConsolidator", () => {
 
   it("should consolidate imp. might over regular might", () => {
     const result = consolidateClassicTbcBuffs([
-      row("improvedGreaterBlessingOfMight", true),
+      row("improvedBlessingOfMight", true),
       row("greaterBlessingOfMight", false),
     ]);
 
     expect(result).toHaveLength(1);
-    expect(result[0].id).toBe("improvedGreaterBlessingOfMight");
+    expect(result[0].id).toBe("improvedBlessingOfMight");
     expect(result[0]?.tier).toBe("improved");
     expect(result[0]?.covered).toBe(true);
   });
 
   it("should consolidate imp. fortitude over regular fortitude", () => {
     const result = consolidateClassicTbcBuffs([
-      row("improvedPrayerOfFortitude", true),
+      row("improvedPowerWordFortitude", true),
       row("prayerOfFortitude", false),
     ]);
 
     expect(result).toHaveLength(1);
-    expect(result[0].id).toBe("improvedPrayerOfFortitude");
+    expect(result[0].id).toBe("improvedPowerWordFortitude");
     expect(result[0]?.tier).toBe("improved");
     expect(result[0]?.covered).toBe(true);
   });

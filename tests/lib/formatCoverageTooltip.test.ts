@@ -41,7 +41,7 @@ describe("formatRaidCoverageTooltip", () => {
       baseRow({ sourceSpecIds: ["fire"], meta: ["Instant"], description: "Brilliance." }),
     );
 
-    expect(result.meta).toEqual(["Instant"]);
+    expect(result.cast).toBe("Instant");
     expect(result.description).toBe("Brilliance.");
     expect(result.footerLines?.[1]).toBe("Provided by: Fire");
   });
@@ -93,7 +93,7 @@ describe("formatBloodlustHeroismTooltip", () => {
 
     expect(result.title).toBe("Bloodlust / Heroism");
     expect(result.iconPath).toBe("/icons/bloodlust.jpg");
-    expect(result.meta).toEqual(["Horde", "Alliance"]);
+    expect(result.requires).toEqual(["Horde", "Alliance"]);
     expect(result.description).toBe("Bloodlust desc");
     expect(result.footerLines?.[0]).toBe("Covered");
     expect(result.footerLines?.[1]).toBe("Provided by: Elemental");

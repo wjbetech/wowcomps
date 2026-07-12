@@ -37,14 +37,6 @@ describe("getRaidBuffDisplayItems", () => {
     });
   });
 
-  it("does not merge bloodlust and heroism in classic", () => {
-    const buffs = [row("arcaneBrilliance", { covered: true, tier: "improved" })];
-
-    const items = getRaidBuffDisplayItems(buffs, [], "classic");
-
-    expect(items.every((item) => item.kind === "single")).toBe(true);
-  });
-
   it("flags base-tier singles for the upgrade badge", () => {
     const buffs = [row("giftOfTheWild", { covered: true, tier: "base" })];
 
@@ -54,5 +46,72 @@ describe("getRaidBuffDisplayItems", () => {
       kind: "single",
       showUpgradeBadge: true,
     });
+  });
+
+  it("shows base title until commanding presence is covered in WotLK", () => {
+    const buffs = [
+      row("commandingShout", { covered: true, tier: "base", label: "Commanding Presence" }),
+    ];
+    const memberBuffs = [
+      row("commandingShout", { covered: true, label: "Commanding Shout", description: "base" }),
+      row("commandingPresence", {
+        covered: false,
+        label: "Commanding Presence",
+        description: "talent",
+      }),
+    ];
+
+    expect(getRaidBuffDisplayItems(buffs, memberBuffs, "wotlk")[0]?.tooltip.title).toBe(
+      "Commanding Shout",
+    );
+    expect(getRaidBuffDisplayItems(buffs, memberBuffs, "wotlk")[0]?.tooltip.talentLabel).toBe(
+      undefined,
+    );
+
+    memberBuffs[1] = { ...memberBuffs[1], covered: true };
+
+    const withTalent = getRaidBuffDisplayItems(buffs, memberBuffs, "wotlk")[0]?.tooltip;
+    expect(withTalent?.title).toBe("Commanding Shout");
+    expect(withTalent?.talentLabel).toBe("Commanding Presence");
+  });
+
+  it("does not merge bloodlust and heroism in classic", () => {
+    const buffs = [row("arcaneBrilliance", { covered: true, tier: "improved" })];
+
+    const items = getRaidBuffDisplayItems(buffs, [], "classic");
+
+    expect(items.every((item) => item.kind === "single")).toBe(true);
+  });
+
+  it("keeps classic might icon when consolidator displays the improved row", () => {
+    const buffs = [
+      row("improvedBlessingOfMight", {
+        covered: true,
+        tier: "improved",
+        label: "Improved Blessing of Might",
+      }),
+    ];
+    const memberRows = [
+      row("greaterBlessingOfMight", {
+        covered: true,
+        label: "Greater Blessing of Might",
+        description: "Base.",
+      }),
+      row("improvedBlessingOfMight", {
+        covered: true,
+        label: "Improved Blessing of Might",
+        description: "Talent.",
+      }),
+    ];
+
+    const items = getRaidBuffDisplayItems(buffs, memberRows, "classic");
+
+    expect(items).toHaveLength(1);
+    expect(items[0]).toMatchObject({
+      kind: "single",
+      key: "greaterBlessingOfMight",
+    });
+    expect(items[0]?.tooltip.title).toBe("Greater Blessing of Might");
+    expect(items[0]?.tooltip.talentLabel).toBe("Improved Blessing of Might");
   });
 });

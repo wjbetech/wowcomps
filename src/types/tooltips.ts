@@ -2,6 +2,7 @@ import type { SpecId } from "./classesSpecs";
 
 export type CoverageTooltip = {
   label: string;
+  talentLabel?: string;
   iconPath: string;
   covered: boolean;
   tier: "none" | "base" | "improved";
@@ -26,6 +27,7 @@ export type WoWTooltipContent = {
   iconPath?: string;
   title: string;
   talent?: boolean;
+  talentLabel?: string;
   cost?: string;
   cast?: string;
   range?: string;
@@ -34,6 +36,7 @@ export type WoWTooltipContent = {
   requires?: string[];
   meta?: string[];
   description?: string;
+  talentDescription?: string;
   footerLines?: string[];
 };
 

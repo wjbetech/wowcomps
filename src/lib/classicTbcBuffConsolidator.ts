@@ -17,20 +17,20 @@ const CLASSIC_TBC_BUFF_GROUPS: TieredBuffGroup[] = [
   {
     groupId: "greaterBlessingOfMight",
     baseId: "greaterBlessingOfMight",
-    improvedId: "improvedGreaterBlessingOfMight",
-    memberIds: ["greaterBlessingOfMight", "improvedGreaterBlessingOfMight"],
+    improvedId: "improvedBlessingOfMight",
+    memberIds: ["greaterBlessingOfMight", "improvedBlessingOfMight"],
   },
   {
     groupId: "greaterBlessingOfWisdom",
     baseId: "greaterBlessingOfWisdom",
-    improvedId: "improvedGreaterBlessingOfWisdom",
-    memberIds: ["greaterBlessingOfWisdom", "improvedGreaterBlessingOfWisdom"],
+    improvedId: "improvedBlessingOfWisdom",
+    memberIds: ["greaterBlessingOfWisdom", "improvedBlessingOfWisdom"],
   },
   {
     groupId: "prayerOfFortitude",
     baseId: "prayerOfFortitude",
-    improvedId: "improvedPrayerOfFortitude",
-    memberIds: ["prayerOfFortitude", "improvedPrayerOfFortitude"],
+    improvedId: "improvedPowerWordFortitude",
+    memberIds: ["prayerOfFortitude", "improvedPowerWordFortitude"],
   },
 ];
 

@@ -34,6 +34,7 @@ export function formatRaidCoverageTooltip(row: CoverageTooltip): WoWTooltipConte
   return {
     iconPath: row.iconPath,
     title: row.label,
+    talentLabel: row.talentLabel,
     talent: row.talent,
     cost,
     cast,
@@ -99,13 +100,15 @@ export function formatBaseAndTalentTooltip(
 
   return {
     iconPath: base.iconPath,
-    title: talent ? `${base.label} / ${talent.label}` : base.label,
+    title: base.label,
+    talentLabel: talent?.label,
     cost,
     cast,
-    requires: [...new Set(requires)],
+    requires,
     range: base.range,
     rightCooldown: base.rightCooldown,
-    description: [base.description, talent?.description].filter(Boolean).join("\n\n"),
+    description: base.description,
+    talentDescription: talent?.description,
     footerLines: formatRaidCoverageTooltip(consolidated).footerLines,
   };
 }
