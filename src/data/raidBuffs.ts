@@ -611,7 +611,7 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
   {
     id: "flametongueTotem",
     label: "Flametongue Totem",
-    iconPath: ZAMIMG_ICON("spell_fire_searingtotem"),
+    iconPath: ZAMIMG_ICON("spell_nature_guardianward"),
     meta: ["11% of base mana", "Instant", "Requires Shaman", "Requires level 80"],
     tools: "Fire Totem",
     description:

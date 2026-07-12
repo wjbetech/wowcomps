@@ -16,8 +16,11 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
             className="h-9 w-9 shrink-0 rounded-sm border border-gray-600"
           />
         )}
-        <div className="min-w-0 bg-gray-950 border border-gray-600 rounded-sm py-1 px-2 w-64">
-          <p className="text-[13px] font-bold text-white">{content.title}</p>
+        <div
+          className="min-w-0 bg-gray-950 border border-gray-600 rounded-sm py-1 px-2 w-64"
+          style={{ fontFamily: "var(--font-wow-tooltip)" }}
+        >
+          <p className="text-[13px] text-white">{content.title}</p>
           {content.talent && <p className="text-xs text-[#9d9d9d]">Talent</p>}
           {(content.cost || content.range) && (
             <div className="flex justify-between gap-2 text-xs text-white">
@@ -42,7 +45,10 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
             </p>
           )}
           {content.offsetDescription && (
-            <div className="mt-0.5 pl-2 grid grid-cols-[1.5ch_max-content_max-content_1fr] text-xs leading-snug text-[#ffd100]">
+            <div
+              className="mt-0.5 pl-2 grid grid-cols-[1.5ch_max-content_max-content_1fr] text-xs leading-snug text-[#ffd100]"
+              style={{ fontFamily: "var(--font-wow-tooltip)" }}
+            >
               {parseOffsetLines(content.offsetDescription).map(({ count, unit, value }) => (
                 <div key={`${count}-${unit}`} className="contents">
                   <span className="text-right tabular-nums mr-1">{count}</span>
