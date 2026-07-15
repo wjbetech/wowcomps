@@ -153,6 +153,33 @@ const tbcRaidDebuffs: RaidDebuffDefinition[] = [
     sourceSpecIds: ["feralTank"],
   },
   {
+    id: "feralAggression",
+    label: "Feral Aggression",
+    iconPath: ZAMIMG_ICON("ability_druid_demoralizingroar"),
+    talent: true,
+    meta: ["Requires Druid"],
+    description:
+      "Increases the attack power reduction of your Demoralizing Roar by 40% and the damage caused by your Ferocious Bite by 15%.",
+    sourceSpecIds: ["feralTank"],
+  },
+  {
+    id: "demoralizingShout",
+    label: "Demoralizing Shout",
+    iconPath: ZAMIMG_ICON("ability_warrior_warcry"),
+    meta: ["10 Rage", "Instant cast", "Requires Warrior", "Requires level 70"],
+    description: "Reduces the melee attack power of all enemies within 10 yards by 300 for 30 sec.",
+    sourceSpecIds: ["arms", "fury", "protectionWarrior"],
+  },
+  {
+    id: "improvedDemoralizingShout",
+    label: "Improved Demoralizing Shout",
+    iconPath: ZAMIMG_ICON("ability_warrior_warcry"),
+    talent: true,
+    meta: ["Requires Warrior"],
+    description: "Increases the attack power reduction of your Demoralizing Shout by 40%.",
+    sourceSpecIds: ["arms", "protectionWarrior"],
+  },
+  {
     id: "faerieFire",
     label: "Faerie Fire",
     iconPath: ZAMIMG_ICON("spell_nature_faeriefire"),

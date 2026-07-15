@@ -52,7 +52,11 @@ export default function RightSidebar({
                 {debuffCounter.label}
               </span>
             </div>
-            <RaidDebuffPanel raidDebuffs={raidDebuffs.coverage} />
+            <RaidDebuffPanel
+              raidDebuffs={raidDebuffs.coverage}
+              memberRows={raidDebuffs.memberRows}
+              selectedExpansion={selectedExpansion}
+            />
           </div>
         </SidebarSection>
       </div>

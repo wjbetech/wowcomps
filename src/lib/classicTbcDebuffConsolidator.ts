@@ -41,14 +41,14 @@ const CLASSIC_TBC_DEBUFF_GROUPS: ClassicTbcDebuffGroup[] = [
     groupId: "apReduction",
     memberIds: [
       "demoralizingRoar",
-      "improvedDemoralizingRoar",
+      "feralAggression",
       "demoralizingShout",
       "improvedDemoralizingShout",
     ],
     displayId: "demoralizingShout",
     precedenceOrder: [
       "improvedDemoralizingShout",
-      "improvedDemoralizingRoar",
+      "feralAggression",
       "demoralizingRoar",
       "demoralizingShout",
     ],
@@ -66,12 +66,12 @@ const CLASSIC_TBC_DEBUFF_GROUPS: ClassicTbcDebuffGroup[] = [
 function resolveApReductionTier(
   rowById: Map<string, RaidDebuffCoverageRow>,
 ): RaidDebuffCoverageTier {
-  const impRoar = rowById.get("improvedDemoralizingRoar")?.covered ?? false;
-  const impShout = rowById.get("improvedDemoralizingShout")?.covered ?? false;
-  const roar = rowById.get("demoralizingRoar")?.covered ?? false;
-  const shout = rowById.get("demoralizingShout")?.covered ?? false;
-  if (impRoar || impShout) return "improved";
-  if (roar || shout) return "base";
+  const feralAggression = rowById.get("feralAggression")?.covered ?? false;
+  const improvedDemoralizingShout = rowById.get("improvedDemoralizingShout")?.covered ?? false;
+  const demoralizingShout = rowById.get("demoralizingShout")?.covered ?? false;
+  const demoralizingRoar = rowById.get("demoralizingRoar")?.covered ?? false;
+  if (feralAggression || improvedDemoralizingShout) return "improved";
+  if (demoralizingShout || demoralizingRoar) return "base";
   return "none";
 }
 

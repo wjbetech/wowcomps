@@ -30,6 +30,7 @@ export type RightSidebarData = {
   };
   raidDebuffs: {
     coverage: RaidDebuffCoverageRow[];
+    memberRows: RaidDebuffCoverageRow[];
     summary: {
       state: CoverageSummaryState;
       covered: number;

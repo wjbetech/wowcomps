@@ -1,10 +1,11 @@
 import type { SpecId } from "./classesSpecs";
+import type { Expansion } from "./expansions";
+import type { WoWTooltipContent } from "./tooltips";
 
 export type ClassicRaidDebuffId =
   | "demoralizingRoar"
   | "faerieFire"
   | "exposeArmor"
-  | "improvedHuntersMark"
   | "improvedScorch"
   | "wintersChill"
   | "shadowWeaving"
@@ -22,7 +23,7 @@ export type TbcRaidDebuffId =
   | "insectSwarm"
   | "mangle(Bear)"
   | "mangle(Cat)"
-  | "improvedDemoralizingRoar"
+  | "feralAggression"
   | "exposeWeakness"
   | "exposeArmor"
   | "improvedScorch"
@@ -91,4 +92,13 @@ export type RaidDebuffCoverageRow = RaidDebuffDefinition & {
 
 export type RaidDebuffPanel = {
   raidDebuffs: RaidDebuffCoverageRow[];
+  memberRows: RaidDebuffCoverageRow[];
+  selectedExpansion: Expansion;
+};
+
+export type RaidDebuffDisplayItem = {
+  key: string;
+  row: RaidDebuffCoverageRow;
+  tooltip: WoWTooltipContent;
+  showUpgradeBadge: boolean;
 };

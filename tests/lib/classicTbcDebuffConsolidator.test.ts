@@ -17,13 +17,39 @@ describe("classicTbcDebuffConsolidator", () => {
       row("demoralizingShout", true),
       row("demoralizingRoar", false),
       row("improvedDemoralizingShout", false),
-      row("improvedDemoralizingRoar", false),
+      row("feralAggression", false),
     ]);
 
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe("demoralizingShout");
     expect(result[0].tier).toBe("base");
     expect(result[0].covered).toBe(true);
+  });
+
+  it("should not emit feral aggression separately from AP reduction", () => {
+    const result = consolidateClassicTbcDebuffs([
+      row("demoralizingRoar", true),
+      row("feralAggression", true),
+      row("demoralizingShout", false),
+      row("improvedDemoralizingShout", false),
+    ]);
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe("feralAggression");
+    expect(result[0].tier).toBe("improved");
+  });
+
+  it("should prefer improved demoralizing shout over feral aggression", () => {
+    const result = consolidateClassicTbcDebuffs([
+      row("demoralizingRoar", true),
+      row("feralAggression", true),
+      row("demoralizingShout", true),
+      row("improvedDemoralizingShout", true),
+    ]);
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe("improvedDemoralizingShout");
+    expect(result[0].tier).toBe("improved");
   });
 
   it("should consolidate imp demo over regular demo", () => {

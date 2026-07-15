@@ -1,7 +1,8 @@
+// core
 import { getClassBreakdown } from "./classesHandler";
 import { getCoverageSummary } from "./getCoverageSummary";
 import { getRaidBuffMemberRows, getRaidBuffCoverageFromRows } from "./raidBuffHandler";
-import { getRaidDebuffCoverage } from "./raidDebuffHandler";
+import { getRaidDebuffMembersRows, getRaidDebuffCoverageFromRows } from "./raidDebuffHandler";
 
 // types
 import type { RightSidebarData } from "../types/rightSection";
@@ -15,9 +16,11 @@ export function getRightSidebarData(
 ): RightSidebarData {
   const classBreakdown = getClassBreakdown(raidSlots, expansion, raidSize);
 
-  const memberRows = getRaidBuffMemberRows(raidSlots, expansion, raidSize);
-  const raidBuffCoverage = getRaidBuffCoverageFromRows(memberRows, expansion);
-  const raidDebuffCoverage = getRaidDebuffCoverage(raidSlots, expansion, raidSize);
+  const buffMemberRows = getRaidBuffMemberRows(raidSlots, expansion, raidSize);
+  const raidBuffCoverage = getRaidBuffCoverageFromRows(buffMemberRows, expansion);
+
+  const debuffMemberRows = getRaidDebuffMembersRows(raidSlots, expansion, raidSize);
+  const raidDebuffCoverage = getRaidDebuffCoverageFromRows(debuffMemberRows, expansion);
 
   const buffSummary = getCoverageSummary(raidBuffCoverage);
   const debuffSummary = getCoverageSummary(raidDebuffCoverage);
@@ -26,11 +29,12 @@ export function getRightSidebarData(
     classBreakdown,
     raidBuffs: {
       coverage: raidBuffCoverage,
-      memberRows,
+      memberRows: buffMemberRows,
       summary: buffSummary,
     },
     raidDebuffs: {
       coverage: raidDebuffCoverage,
+      memberRows: debuffMemberRows,
       summary: debuffSummary,
     },
   };

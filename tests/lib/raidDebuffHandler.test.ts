@@ -53,4 +53,40 @@ describe("getRaidDebuffCoverage", () => {
   it("report base AP reduction for feral tank in Classic WoW", () => {
     expect(getClassicApReduction("feralTank", "druid")).toBe("base");
   });
+
+  it("consolidates tbc AP reduction into a single debuff row", () => {
+    const armsSlots = createInitialRaidSlots(25);
+    armsSlots["1-1"] = { specId: "arms", classId: "warrior" };
+
+    const armsCoverage = getRaidDebuffCoverage(armsSlots, "tbc", 25);
+    const apRows = armsCoverage.filter((row) =>
+      [
+        "demoralizingRoar",
+        "feralAggression",
+        "demoralizingShout",
+        "improvedDemoralizingShout",
+      ].includes(row.id),
+    );
+
+    expect(apRows).toHaveLength(1);
+    expect(apRows[0]?.id).toBe("improvedDemoralizingShout");
+    expect(apRows[0]?.tier).toBe("improved");
+
+    const mixedSlots = createInitialRaidSlots(25);
+    mixedSlots["1-1"] = { specId: "arms", classId: "warrior" };
+    mixedSlots["1-2"] = { specId: "feralTank", classId: "druid" };
+
+    const mixedCoverage = getRaidDebuffCoverage(mixedSlots, "tbc", 25);
+    const mixedApRows = mixedCoverage.filter((row) =>
+      [
+        "demoralizingRoar",
+        "feralAggression",
+        "demoralizingShout",
+        "improvedDemoralizingShout",
+      ].includes(row.id),
+    );
+
+    expect(mixedApRows).toHaveLength(1);
+    expect(mixedApRows[0]?.id).toBe("improvedDemoralizingShout");
+  });
 });
