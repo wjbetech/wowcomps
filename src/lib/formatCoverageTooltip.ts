@@ -52,14 +52,38 @@ export function formatRaidCoverageTooltip(row: CoverageTooltip): WoWTooltipConte
 
 // Party buffs — no tier, always covered when shown
 export function formatPartyBuffTooltip(
-  row: Pick<CoverageTooltip, "label" | "sourceSpecIds" | "iconPath" | "meta" | "description">,
+  row: Pick<
+    CoverageTooltip,
+    | "label"
+    | "sourceSpecIds"
+    | "iconPath"
+    | "meta"
+    | "description"
+    | "range"
+    | "rightCooldown"
+    | "talent"
+    | "tools"
+    | "extra"
+  >,
 ): WoWTooltipContent {
+  const { cost, cast, requires } = splitMeta(row.meta);
   const providers = getSpecLabels(row.sourceSpecIds);
+  const description =
+    row.description && row.extra
+      ? `${row.description}\n\n${row.extra}`
+      : (row.description ?? row.extra);
   return {
     iconPath: row.iconPath,
     title: row.label,
+    talent: row.talent,
+    cost,
+    cast,
+    requires,
+    tools: row.tools,
     meta: row.meta,
-    description: row.description,
+    range: row.range,
+    rightCooldown: row.rightCooldown,
+    description,
     footerLines: providers.length ? [`Provided by: ${providers.join(", ")}`] : ["Active in party"],
   };
 }

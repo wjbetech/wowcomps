@@ -10,6 +10,8 @@ export type CoverageTooltip = {
   description?: string;
   meta?: string[];
   talent?: boolean;
+  tools?: string;
+  extra?: string;
   range?: string;
   rightCooldown?: string;
   offsetDescription?: string;
@@ -33,6 +35,7 @@ export type WoWTooltipContent = {
   range?: string;
   rightCooldown?: string;
   offsetDescription?: string;
+  tools?: string;
   requires?: string[];
   meta?: string[];
   description?: string;

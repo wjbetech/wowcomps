@@ -42,6 +42,12 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
               {line}
             </p>
           ))}
+          {content.tools && (
+            <div className="text-xs leading-snug text-white">
+              <p>Tools:</p>
+              <p className="pl-2">{content.tools}</p>
+            </div>
+          )}
           {content.description && (
             <p className="mt-1 whitespace-pre-line text-xs leading-snug text-[#ffd100]">
               {content.description}

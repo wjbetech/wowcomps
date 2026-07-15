@@ -93,8 +93,9 @@
 - [x] Add tooltips for debuffs.
 - [x] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
 - [x] Fix the rendering of different texts in the debuff tooltips.
-- [ ] Fix tooltips to render both the base and improved versions when both provided.
+- [x] Fix tooltips to render both the base and improved versions when both provided.
 - [ ] Fix the party specific tooltips to also include the buff information.
+- [ ] Fix the party specific tooltips to include tools, extra, etc. information.
 - [ ] Fix the diagonal icon tooltips to render both referenced buffs.
 - [x] Make the arrows signifying an improved version stand out more.
 - [ ] Final manual pass of all icons.

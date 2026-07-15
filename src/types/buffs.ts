@@ -5,13 +5,13 @@ export type PartyBuffId =
   | "leaderOfThePack"
   | "moonkinAura"
   | "aspectOfTheWild"
-  | "trueshot"
-  | "ferociousInspiration"
+  | "trueshotAura"
   | "furiousHowl"
   | "battleShout"
   | "improvedBattleShout"
   | "devotionAura"
   | "sanctityAura"
+  | "ferociousInspiration"
   | "resistanceAuras"
   | "resistanceTotems"
   | "strengthOfEarthTotem"
@@ -32,6 +32,13 @@ export type PartyBuffDefinition = {
   label: string;
   iconPath: string;
   sourceSpecIds: SpecId[];
+  meta?: string[];
+  tools?: string;
+  description?: string;
+  range?: string;
+  rightCooldown?: string;
+  talent?: boolean;
+  extra?: string;
 };
 
 export type PartyBuffFamilyId = "paladinAura" | "shamanResistanceTotems";
@@ -59,6 +66,13 @@ export type PartyBuffCoverageRow = {
   iconPath: string;
   covered: boolean;
   sourceSpecIds: SpecId[];
+  meta?: string[];
+  description?: string;
+  range?: string;
+  rightCooldown?: string;
+  talent?: boolean;
+  extra?: string;
+  tools?: string;
 };
 
 export type GroupPartyBuffIcons = {

@@ -30,6 +30,13 @@ export function getPartyBuffCoverage(
       label: buff.label,
       iconPath: buff.iconPath,
       sourceSpecIds: buff.sourceSpecIds,
+      meta: buff.meta,
+      description: buff.description,
+      range: buff.range,
+      rightCooldown: buff.rightCooldown,
+      talent: buff.talent,
+      tools: buff.tools,
+      extra: buff.extra,
       covered: buff.sourceSpecIds.some((specId) => groupSpecIds.has(specId)),
     }));
 
