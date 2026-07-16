@@ -11,6 +11,7 @@ export type PartyBuffId =
   | "improvedBattleShout"
   | "devotionAura"
   | "sanctityAura"
+  | "improvedSanctityAura"
   | "ferociousInspiration"
   | "resistanceAuras"
   | "resistanceTotems"

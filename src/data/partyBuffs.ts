@@ -160,138 +160,229 @@ const tbcPartyBuffs: PartyBuffDefinition[] = [
     id: "leaderOfThePack",
     label: "Leader of the Pack",
     iconPath: ZAMIMG_ICON("spell_nature_unyeildingstamina"),
+    talent: true,
+    meta: ["Requires Druid"],
+    description:
+      "While in Cat, Bear or Dire Bear Form, the Leader of the Pack increases ranged and melee critical chance of all party members within 45 yards by 5%.",
     sourceSpecIds: ["feralDps", "feralTank"],
   },
   {
     id: "moonkinAura",
     label: "Moonkin Aura",
     iconPath: ZAMIMG_ICON("spell_nature_moonglow"),
+    talent: true,
+    meta: ["22% of base mana", "Instant", "Requires Druid"],
+    description:
+      "Shapeshift into Moonkin Form.  While in this form the armor contribution from items is increased by 400%, attack power is increased by 150% of your level and all party members within 30 yards have their spell critical chance increased by 5%.  Melee attacks in this form have a chance on hit to regenerate mana based on attack power.  The Moonkin can only cast Balance and Remove Curse spells while shapeshifted. \n\nThe act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
     sourceSpecIds: ["balance"],
   },
   {
     id: "treeOfLife",
     label: "Tree of Life",
     iconPath: ZAMIMG_ICON("ability_druid_treeoflife"),
+    talent: true,
+    meta: ["28% of base mana", "Instant", "Requires Druid"],
+    description:
+      "Shapeshift into the Tree of Life.  While in this form you increase healing received by 25% of your total Spirit for all party members within 45 yards, your movement speed is reduced by 20%, and you can only cast Swiftmend, Innervate, Nature's Swiftness, Rebirth, Barkskin, poison removing and healing over time spells, but the mana cost of these spells is reduced by 20%. \n\nThe act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
     sourceSpecIds: ["restorationDruid"],
   },
   {
     id: "aspectOfTheWild",
     label: "Aspect of the Wild",
     iconPath: ZAMIMG_ICON("spell_nature_protectionformnature"),
+    meta: ["150 Mana", "Instant", "Requires Hunter", "Requires level 68"],
+    description:
+      "The hunter and group members within 30 yards take on the aspect of the wild, increasing Nature resistance by 70.  Only one Aspect can be active at a time.",
     sourceSpecIds: ["beastMastery", "marksmanship", "survival"],
   },
   {
     id: "trueshotAura",
     label: "Trueshot Aura",
     iconPath: ZAMIMG_ICON("ability_trueshot"),
+    talent: true,
+    meta: ["Instant", "Requires Hunter", "Requires level 70"],
+    description:
+      "Increases the attack power of party members within 45 yards by 125.  Lasts 30 min.",
     sourceSpecIds: ["marksmanship"],
   },
   {
     id: "ferociousInspiration",
     label: "Ferocious Inspiration",
     iconPath: ZAMIMG_ICON("ability_hunter_ferociousinspiration"),
+    talent: true,
+    meta: ["Requires Hunter"],
+    description:
+      "When your pet scores a critical hit, all party members have all damage increased by 3% for 10 sec.",
     sourceSpecIds: ["beastMastery"],
   },
   {
     id: "devotionAura",
     label: "Devotion Aura",
     iconPath: ZAMIMG_ICON("spell_holy_devotionaura"),
+    meta: ["Instant", "Requires Paladin", "Requires level 70"],
+    description:
+      "Gives 861 additional armor to party members within 30 yards.  Players may only have one Aura on them per Paladin at any one time.",
     sourceSpecIds: ["holyPaladin", "protectionPaladin"],
   },
   {
     id: "sanctityAura",
     label: "Sanctity Aura",
     iconPath: ZAMIMG_ICON("spell_holy_mindvision"),
+    talent: true,
+    meta: ["Instant", "Requires Paladin"],
+    description:
+      "Increases Holy damage done by party members within 30 yards by 10%.  Players may only have one Aura on them per Paladin at any one time.",
+    sourceSpecIds: ["retribution"],
+  },
+  {
+    id: "improvedSanctityAura",
+    label: "Improved Sanctity Aura",
+    iconPath: ZAMIMG_ICON("spell_holy_mindvision"),
+    talent: true,
+    meta: ["Instant", "Requires Paladin"],
+    description:
+      "The amount of damage caused by targets affected by Sanctity Aura is increased by 2%.",
     sourceSpecIds: ["retribution"],
   },
   {
     id: "resistanceAuras",
     label: "Resistance Auras",
     iconPath: ZAMIMG_ICON("spell_fire_sealoffire"),
+    meta: ["Instant", "Requires Paladin", "Requires level 70"],
+    description:
+      "Gives 70 additional Fire resistance to all party members within 30 yards.  Players may only have one Aura on them per Paladin at any one time.",
     sourceSpecIds: ["holyPaladin", "protectionPaladin", "retribution"],
   },
   {
     id: "vampiricEmbrace",
     label: "Vampiric Embrace",
     iconPath: ZAMIMG_ICON("spell_shadow_unsummonbuilding"),
+    talent: true,
+    meta: ["2% of base mana", "Instant", "Requires Priest"],
+    range: "30 yd range",
+    rightCooldown: "10 sec cooldown",
+    description:
+      "Afflicts your target with Shadow energy that causes all party members to be healed for 15% of any Shadow spell damage you deal for 1 min.",
     sourceSpecIds: ["shadow"],
   },
   {
     id: "vampiricTouch",
     label: "Vampiric Touch",
     iconPath: ZAMIMG_ICON("spell_holy_stoicism"),
+    talent: true,
+    meta: ["425 Mana", "1.5 sec cast", "Requires Priest", "Requires level 70"],
+    range: "30 yd range",
+    description:
+      "Causes 650 Shadow damage over 15 sec to your target and causes all party members to gain mana equal to 5% of any Shadow spell damage you deal.",
     sourceSpecIds: ["shadow"],
   },
   {
     id: "totemOfWrath",
     label: "Totem of Wrath",
     iconPath: ZAMIMG_ICON("spell_fire_totemofwrath"),
+    talent: true,
+    meta: ["5% of base mana", "Instant", "Requires Shaman"],
+    tools: "Fire Totem",
+    description:
+      "Summons a Totem of Wrath with 5 health at the feet of the caster.  The totem increases the chance to hit and critically strike with spells by 3% for all party members within 20 yards.  Lasts 2 min.",
     sourceSpecIds: ["elemental"],
   },
   {
     id: "wrathOfAirTotem",
     label: "Wrath of Air Totem",
     iconPath: ZAMIMG_ICON("spell_nature_slowingtotem"),
+    meta: ["320 Mana", "Instant", "Requires Shaman", "Requires level 64"],
+    tools: "Air Totem",
+    description:
+      "Summons a Wrath of Air Totem with 5 health at the feet of the caster.  Party members within 20 yards of the totem have their spell damage and healing increased by up to 101.  Lasts 2 min.",
     sourceSpecIds: ["elemental", "restorationShaman"],
   },
   {
     id: "resistanceTotems",
     label: "Resistance Totems",
     iconPath: ZAMIMG_ICON("spell_nature_natureresistancetotem"),
+    meta: ["245 Mana", "Instant", "Requires Shaman", "Requires level 69"],
+    tools: "Air Totem",
+    description:
+      "Summons a Nature Resistance Totem with 5 health at the feet of the caster for 2 min that increases the nature resistance of party members within 20 yards by 70.",
     sourceSpecIds: ["elemental", "restorationShaman", "enhancement"],
   },
   {
     id: "strengthOfEarthTotem",
     label: "Strength of Earth Totem",
     iconPath: ZAMIMG_ICON("spell_nature_earthbindtotem"),
+    meta: ["300 Mana", "Instant", "Requires Shaman", "Requires level 65"],
+    tools: "Earth Totem",
+    description:
+      "Summons a Strength of Earth Totem with 5 health at the feet of the caster.  The totem increases the strength of party members within 20 yards by 86.  Lasts 2 min.",
     sourceSpecIds: ["enhancement", "restorationShaman"],
   },
   {
     id: "graceOfAirTotem",
     label: "Grace of Air Totem",
     iconPath: ZAMIMG_ICON("spell_nature_invisibilitytotem"),
+    meta: ["310 Mana", "Instant", "Requires Shaman", "Requires level 60"],
+    tools: "Air Totem",
+    description:
+      "Summons a Grace of Air Totem with 5 health at the feet of the caster.  The totem increases the agility of party members within 20 yards by 77.  Lasts 2 min.",
     sourceSpecIds: ["enhancement", "restorationShaman"],
   },
   {
     id: "manaSpringtotem",
     label: "Mana Spring Totem",
     iconPath: ZAMIMG_ICON("spell_nature_manaregentotem"),
+    meta: ["120 Mana", "Instant", "Requires Shaman", "Requires level 65"],
+    tools: "Water Totem",
+    description:
+      "Summons a Mana Spring Totem with 5 health at the feet of the caster for 2 min that restores 20 mana every 2 seconds to group members within 20 yards.",
     sourceSpecIds: ["enhancement", "restorationShaman", "elemental"],
   },
   {
     id: "windfuryTotem",
     label: "Windfury Totem",
     iconPath: ZAMIMG_ICON("spell_nature_windfury"),
+    meta: ["325 Mana", "Instant", "Requires Shaman", "Requires level 70"],
+    tools: "Air Totem",
+    description:
+      "Summons a Windfury Totem with 5 health at the feet of the caster.  The totem enchants all party members main-hand weapons with wind, if they are within 20 yards.  Each hit has a 20% chance of granting the attacker 1 extra attack with 445 extra attack power.  Lasts 2 min.",
     sourceSpecIds: ["enhancement", "elemental"],
   },
   {
     id: "manaTideTotem",
     label: "Mana Tide Totem",
     iconPath: ZAMIMG_ICON("spell_frost_summonwaterelemental"),
+    talent: true,
+    meta: ["3% of base mana", "Instant", "Requires Shaman"],
+    rightCooldown: "5 min cooldown",
+    tools: "Water Totem",
+    description:
+      "Summons a Mana Tide Totem with 5 health at the feet of the caster for 12 sec that restores 6% of total mana every 3 seconds to group members within 20 yards.",
     sourceSpecIds: ["restorationShaman"],
   },
   {
     id: "bloodPact",
     label: "Blood Pact",
     iconPath: ZAMIMG_ICON("spell_shadow_bloodboil"),
+    meta: ["20 yd range", "Instant", "Requires Warlock", "Requires level 62"],
+    description: "Increases party members' Stamina by 70.",
     sourceSpecIds: ["affliction", "demonology", "destruction"],
   },
   {
     id: "battleShout",
     label: "Battle Shout",
     iconPath: ZAMIMG_ICON("ability_warrior_battleshout"),
-    sourceSpecIds: ["arms", "fury"],
-  },
-  {
-    id: "improvedBattleShout",
-    label: "Improved Battle Shout",
-    iconPath: ZAMIMG_ICON("ability_warrior_battleshout"),
+    meta: ["10 Rage", "Instant cast", "Requires Warrior", "Requires level 69"],
+    description:
+      "The warrior shouts, increasing the melee attack power of all party members within 20 yards by 306.  Lasts 2 min.",
     sourceSpecIds: ["arms", "fury"],
   },
   {
     id: "commandingShout",
     label: "Commanding Shout",
     iconPath: ZAMIMG_ICON("ability_warrior_rallyingcry"),
+    meta: ["10 Rage", "Instant cast", "Requires Warrior", "Requires level 68"],
+    description:
+      "Increases maximum health of all party members within 20 yards by 1080.  Lasts 2 min.",
     sourceSpecIds: ["protectionWarrior"],
   },
 ];
