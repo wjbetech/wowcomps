@@ -94,7 +94,7 @@
 - [x] Fix Bloodlust to be a diagonal Bloodlust/Heroism icon.
 - [x] Fix the rendering of different texts in the debuff tooltips.
 - [x] Fix tooltips to render both the base and improved versions when both provided.
-- [ ] Fix the party specific tooltips to also include the buff information.
+- [x] Fix the party specific tooltips to also include the buff information.
 - [ ] Fix rendering of certain buffs (Ferocious Inspiration, Wrath of Air, Totem of Wrath) in TBC.
 - [ ] Fix rendering of tooltips for diagonal split icons.
 - [ ] Fix the party specific tooltips to include tools, extra, etc. information.

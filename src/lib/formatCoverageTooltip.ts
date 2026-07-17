@@ -136,3 +136,33 @@ export function formatBaseAndTalentTooltip(
     footerLines: formatRaidCoverageTooltip(consolidated).footerLines,
   };
 }
+
+export function formatPaladinAuraTooltip(
+  devotion?: Parameters<typeof formatPartyBuffTooltip>[0],
+  resistance?: Parameters<typeof formatPartyBuffTooltip>[0],
+  splitIcon?: WoWTooltipContent["splitIcon"],
+): WoWTooltipContent {
+  const sections = [devotion, resistance]
+    .filter((row): row is NonNullable<typeof row> => !!row)
+    .map((row) => {
+      const part = formatPartyBuffTooltip(row);
+      return {
+        title: part.title,
+        talent: part.talent,
+        cost: part.cost,
+        cast: part.cast,
+        range: part.range,
+        rightCooldown: part.rightCooldown,
+        requires: part.requires,
+        tools: part.tools,
+        description: part.description,
+        footerLines: part.footerLines,
+      };
+    });
+  return {
+    splitIcon,
+    hideTitle: true,
+    title: sections[0]?.title ?? "",
+    sections,
+  };
+}

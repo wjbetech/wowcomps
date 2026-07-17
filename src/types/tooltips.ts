@@ -25,6 +25,11 @@ export type CoverageRow = {
 
 export type CoverageSummaryState = "empty" | "partial" | "complete";
 
+export type WoWTooltip = {
+  content: WoWTooltipContent;
+  children: React.ReactNode;
+};
+
 export type WoWTooltipContent = {
   iconPath?: string;
   title: string;
@@ -41,9 +46,31 @@ export type WoWTooltipContent = {
   description?: string;
   talentDescription?: string;
   footerLines?: string[];
+  sections?: WoWTooltipSection[];
+  splitIcon?: {
+    topLeft: {
+      iconPath: string;
+      label: string;
+      active?: boolean;
+    };
+    bottomRight: {
+      iconPath: string;
+      label: string;
+      active?: boolean;
+    };
+  };
+  hideTitle?: boolean;
 };
 
-export type WoWTooltip = {
-  content: WoWTooltipContent;
-  children: React.ReactNode;
+export type WoWTooltipSection = {
+  title: string;
+  talent?: boolean;
+  cost?: string;
+  cast?: string;
+  range?: string;
+  rightCooldown?: string;
+  requires?: string[];
+  tools?: string;
+  description?: string;
+  footerLines?: string[];
 };

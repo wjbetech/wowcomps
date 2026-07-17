@@ -1,5 +1,5 @@
 import { getPaladinAuraFamily } from "../data/partyBuffs";
-import { formatPartyBuffTooltip } from "../lib/formatCoverageTooltip";
+import { formatPaladinAuraTooltip, formatPartyBuffTooltip } from "../lib/formatCoverageTooltip";
 import type { DiagonalBuffVariant } from "../types/buffs";
 import CoverageIconTooltip from "./CoverageIconTooltip";
 import SplitDiagonalBuffIcon from "./SplitDiagonalBuffIcon";
@@ -17,24 +17,31 @@ export default function GroupPartyBuffIcons({ buffs, expansion }: DiagonalBuffVa
       {showPaladinSplit && family && (
         <CoverageIconTooltip
           key="paladin-auras"
-          content={{
-            title: "Paladin Auras",
-            footerLines: [
-              ...(devotion?.covered ? (formatPartyBuffTooltip(devotion).footerLines ?? []) : []),
-              ...(resistance?.covered
-                ? (formatPartyBuffTooltip(resistance).footerLines ?? [])
-                : []),
-            ],
-          }}
+          content={formatPaladinAuraTooltip(
+            devotion?.covered ? devotion : undefined,
+            resistance?.covered ? resistance : undefined,
+            {
+              topLeft: {
+                iconPath: family.devotionAura.iconPath,
+                label: family.devotionAura.label,
+                active: devotion?.covered,
+              },
+              bottomRight: {
+                iconPath: family.resistanceAuras.iconPath,
+                label: family.resistanceAuras.label,
+                active: resistance?.covered,
+              },
+            },
+          )}
         >
           <SplitDiagonalBuffIcon
             triangleClassName="border-2 border-green-600"
-            bottomLeft={{
+            topLeft={{
               iconPath: family.devotionAura.iconPath,
               label: family.devotionAura.label,
               active: devotion?.covered,
             }}
-            topRight={{
+            bottomRight={{
               iconPath: family.resistanceAuras.iconPath,
               label: family.resistanceAuras.label,
               active: resistance?.covered,

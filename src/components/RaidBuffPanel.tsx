@@ -23,12 +23,12 @@ export default function RaidBuffPanel({ buffs, memberRows, selectedExpansion }: 
               <div className="h-8 w-8 [&>div]:h-full [&>div]:w-full">
                 <SplitDiagonalBuffIcon
                   triangleClassName="border-0"
-                  bottomLeft={{
+                  topLeft={{
                     iconPath: item.bottomLeft.iconPath,
                     label: item.bottomLeft.label,
                     active: true,
                   }}
-                  topRight={{
+                  bottomRight={{
                     iconPath: item.topRight.iconPath,
                     label: item.topRight.label,
                     active: true,
