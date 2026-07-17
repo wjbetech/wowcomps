@@ -100,8 +100,7 @@ const classicPartyBuffs: PartyBuffDefinition[] = [
     meta: ["310 Mana", "Instant", "Requires Shaman", "Requires level 60"],
     tools: "Air Totem",
     description:
-      "Summons a Grace of Air Totem with 5 health at the feet of the caster.  The totem increases the stealth detection radius of party members within 20 yards by 8.",
-    extra: "Lasts 2 min.",
+      "Summons a Grace of Air Totem with 5 health at the feet of the caster.  The totem increases the stealth detection radius of party members within 20 yards by 8. Lasts 2 min.",
     sourceSpecIds: ["enhancement", "restorationShaman"],
   },
   {

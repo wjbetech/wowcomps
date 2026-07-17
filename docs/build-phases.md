@@ -101,7 +101,7 @@
 - [x] Consolidate Grace of Air/Windfury totems into a diagonal split icon.
 - [x] Fix the diagonal icon tooltips to render both referenced buffs.
 - [x] Make the arrows signifying an improved version stand out more.
-- [] Final manual pass of all icons.
+- [x] Final manual pass of all icons.
 
 ### Phase 7: Persistence And Saved Comps
 

@@ -457,7 +457,7 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
   {
     id: "greaterBlessingOfMight",
     label: "Greater Blessing of Might",
-    iconPath: ZAMIMG_ICON("spell_holy_fistofjustice"),
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofkings"),
     meta: ["10% of base mana", "Instant", "Requires Paladin", "Requires level 79"],
     range: "40 yd range",
     reagent: "Symbol of Kings",
@@ -468,22 +468,11 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
   {
     id: "improvedBlessingOfMight",
     label: "Improved Blessing of Might",
-    iconPath: ZAMIMG_ICON("spell_holy_fistofjustice"),
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofkings"),
     talent: true,
     meta: ["Requires Paladin"],
     description: "Increases the attack power bonus of your Blessing of Might by 25%.",
     sourceSpecIds: ["retribution"],
-  },
-  {
-    id: "greaterBlessingOfSanctuary",
-    label: "Greater Blessing of Sanctuary",
-    meta: ["14% of base mana", "Instant", "Requires Paladin", "Requires level 60"],
-    range: "40 yd range",
-    reagent: "Symbol of Kings",
-    description:
-      "Gives all members of the raid or group that share the same class with the target the Greater Blessing of Sanctuary, reducing damage taken from all sources by 3% for 30 min and increasing strength and stamina by 10%.  In addition, when the target blocks, parries, or dodges a melee attack the target will gain 2% of maximum displayed mana.  Players may only have one Blessing on them per Paladin at any one time.",
-    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofsanctuary"),
-    sourceSpecIds: ["protectionPaladin"],
   },
   {
     id: "greaterBlessingOfWisdom",
@@ -499,11 +488,22 @@ const wotlkRaidBuffs: RaidBuffDefinition[] = [
   {
     id: "improvedBlessingOfWisdom",
     label: "Improved Blessing of Wisdom",
-    iconPath: ZAMIMG_ICON("spell_holy_mindsooth"),
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofwisdom"),
     talent: true,
     meta: ["Requires Paladin"],
     description: "Increases the effect of your Blessing of Wisdom spell by 20%.",
     sourceSpecIds: ["holyPaladin"],
+  },
+  {
+    id: "greaterBlessingOfSanctuary",
+    label: "Greater Blessing of Sanctuary",
+    meta: ["14% of base mana", "Instant", "Requires Paladin", "Requires level 60"],
+    range: "40 yd range",
+    reagent: "Symbol of Kings",
+    description:
+      "Gives all members of the raid or group that share the same class with the target the Greater Blessing of Sanctuary, reducing damage taken from all sources by 3% for 30 min and increasing strength and stamina by 10%.  In addition, when the target blocks, parries, or dodges a melee attack the target will gain 2% of maximum displayed mana.  Players may only have one Blessing on them per Paladin at any one time.",
+    iconPath: ZAMIMG_ICON("spell_holy_greaterblessingofsanctuary"),
+    sourceSpecIds: ["protectionPaladin"],
   },
   {
     id: "judgementsOfTheWise",
