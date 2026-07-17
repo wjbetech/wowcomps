@@ -38,14 +38,30 @@ function TooltipSectionFields({ section }: { section: WoWTooltipSection }) {
   );
 }
 
-function TooltipBody({ content }: { content: WoWTooltipContent }) {
+function useSplitRowLayout(content: WoWTooltipContent): boolean {
+  return Boolean(content.splitIcon) && (content.sections?.length ?? 0) > 1;
+}
+
+function TooltipBody({
+  content,
+  splitRowLayout,
+}: {
+  content: WoWTooltipContent;
+  splitRowLayout: boolean;
+}) {
   if (content.sections?.length) {
     return (
-      <>
+      <div className={splitRowLayout ? "mt-1 flex items-start gap-2" : undefined}>
         {content.sections.map((section, index) => (
           <div
             key={`${section.title}-${index}`}
-            className={index > 0 ? "mt-2 border-t border-gray-700 pt-2" : "mt-1"}
+            className={
+              splitRowLayout
+                ? `w-56 shrink-0 ${index > 0 ? "border-l border-gray-700 pl-2" : ""}`
+                : index > 0
+                  ? "mt-2 border-t border-gray-700 pt-2"
+                  : "mt-1"
+            }
           >
             <p className="text-xs font-semibold text-white">{section.title}</p>
             <TooltipSectionFields section={section} />
@@ -56,7 +72,7 @@ function TooltipBody({ content }: { content: WoWTooltipContent }) {
             ))}
           </div>
         ))}
-      </>
+      </div>
     );
   }
 
@@ -119,12 +135,16 @@ function TooltipBody({ content }: { content: WoWTooltipContent }) {
 }
 
 export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
+  const splitRowLayout = useSplitRowLayout(content);
+
   return (
     <div className="group relative">
       {children}
       <div
         role="tooltip"
-        className="pointer-events-none absolute bottom-full right-0 z-50 mb-1 hidden group-hover:flex group-hover:items-start group-hover:gap-1"
+        className={`pointer-events-none absolute bottom-full z-50 mb-1 hidden group-hover:flex group-hover:items-start group-hover:gap-1 ${
+          splitRowLayout ? "left-0" : "right-0"
+        }`}
       >
         {content.splitIcon ? (
           <div className="h-9 w-9 shrink-0 [&>div]:h-full [&>div]:w-full">
@@ -144,13 +164,15 @@ export default function CoverageIconTooltip({ content, children }: WoWTooltip) {
           )
         )}
         <div
-          className="min-w-0 bg-gray-950 border border-gray-600 rounded-sm py-1 px-2 w-64"
+          className={`bg-gray-950 border border-gray-600 rounded-sm py-1 px-2 ${
+            splitRowLayout ? "w-max shrink-0" : "min-w-0 w-64"
+          }`}
           style={{ fontFamily: "var(--font-wow-tooltip)" }}
         >
           {!content.hideTitle && content.title && (
             <p className="text-[13px] text-white">{content.title}</p>
           )}
-          <TooltipBody content={content} />
+          <TooltipBody content={content} splitRowLayout={splitRowLayout} />
           {!content.sections?.length &&
             content.footerLines?.map((line) => (
               <p key={line} className="mt-1 text-xs leading-snug text-cyan-500">

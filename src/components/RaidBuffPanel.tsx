@@ -1,7 +1,7 @@
 // core
 import CoverageIconTooltip from "./CoverageIconTooltip";
 import SplitDiagonalBuffIcon from "./SplitDiagonalBuffIcon";
-import UpgradeAvailableBadge from "./upgradeAvailableBadge.";
+import UpgradeAvailableBadge from "./UpgradeAvailableBadge";
 
 // lib
 import { getRaidBuffDisplayItems } from "../lib/getRaidBuffDisplayItems";

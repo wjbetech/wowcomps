@@ -1,5 +1,5 @@
 import CoverageIconTooltip from "./CoverageIconTooltip";
-import UpgradeAvailableBadge from "./upgradeAvailableBadge.";
+import UpgradeAvailableBadge from "./UpgradeAvailableBadge";
 import { getRaidDebuffDisplayItems } from "../lib/getRaidDebuffDisplayItems";
 import type { RaidDebuffPanel } from "../types/raidDebuffs";
 export default function RaidDebuffPanel({

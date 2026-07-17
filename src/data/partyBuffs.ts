@@ -122,7 +122,7 @@ const classicPartyBuffs: PartyBuffDefinition[] = [
     tools: "Air Totem",
     description:
       "Summons a Windfury Totem with 5 health at the feet of the caster.  The totem enchants all party members main-hand weapons with wind, if they are within 20 yards.  Each hit has a 20% chance of granting the attacker 1 extra attack with 315 extra melee attack power.  Lasts 2 min.",
-    sourceSpecIds: ["enhancement", "elemental"],
+    sourceSpecIds: ["enhancement"],
   },
   {
     id: "manaTideTotem",
@@ -429,4 +429,13 @@ export function getShamanBloodlustFamily(expansion: Expansion) {
   const heroism = defs.find((buff) => buff.id === "heroism");
 
   return bloodlust && heroism ? { bloodlust, heroism } : null;
+}
+
+export function getShamanAirTotemFamily(expansion: Expansion) {
+  const graceOfAirTotem = getPartyBuffById(expansion, "graceOfAirTotem");
+  const windfuryTotem = getPartyBuffById(expansion, "windfuryTotem");
+
+  if (!graceOfAirTotem || !windfuryTotem) return null;
+
+  return { graceOfAirTotem, windfuryTotem };
 }

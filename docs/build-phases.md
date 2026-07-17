@@ -95,13 +95,13 @@
 - [x] Fix the rendering of different texts in the debuff tooltips.
 - [x] Fix tooltips to render both the base and improved versions when both provided.
 - [x] Fix the party specific tooltips to also include the buff information.
-- [ ] Fix rendering of certain buffs (Ferocious Inspiration, Wrath of Air, Totem of Wrath) in TBC.
-- [ ] Fix rendering of tooltips for diagonal split icons.
-- [ ] Fix the party specific tooltips to include tools, extra, etc. information.
-- [ ] Consolidate Grace of Air/Windfury totems into a diagonal split icon.
-- [ ] Fix the diagonal icon tooltips to render both referenced buffs.
+- [x] Fix rendering of certain buffs (Ferocious Inspiration, Wrath of Air, Totem of Wrath) in TBC.
+- [x] Fix rendering of tooltips for diagonal split icons.
+- [x] Fix the party specific tooltips to include tools, extra, etc. information.
+- [x] Consolidate Grace of Air/Windfury totems into a diagonal split icon.
+- [x] Fix the diagonal icon tooltips to render both referenced buffs.
 - [x] Make the arrows signifying an improved version stand out more.
-- [ ] Final manual pass of all icons.
+- [] Final manual pass of all icons.
 
 ### Phase 7: Persistence And Saved Comps
 
