@@ -105,6 +105,7 @@
 
 ### Phase 7: Persistence And Saved Comps
 
+- [ ] Fix page refresh reloading to Classic.
 - [ ] Replace slots-only storage with a RaidComposition object.
 - [ ] Store expansion, raidSize, slots, name, createdAt, and updatedAt.
 - [ ] Separate working raid storage from saved raid storage.
