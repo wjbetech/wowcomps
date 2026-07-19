@@ -2,16 +2,16 @@
 import type { Expansion, RaidSize } from "./expansions";
 import type { RaidSlots } from "./raidGrid";
 
-export type StoredWorkingRaid = {
-  storageVersion: number;
+export type StorableRaidComposition = {
+  name: string;
   expansion: Expansion;
   raidSize: RaidSize;
-  raidSlots: RaidSlots;
-  updatedAt: string;
+  slots: RaidSlots;
 };
 
-export type WorkingRaidSnapshot = {
-  raidSlots: RaidSlots;
-  raidSize: RaidSize;
-  expansion: Expansion;
+export type StoredWorkingRaid = {
+  storageVersion: number;
+  composition: StorableRaidComposition;
 };
+
+export type WorkingRaidSnapshot = StorableRaidComposition;

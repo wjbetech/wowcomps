@@ -3,7 +3,11 @@ import { createInitialRaidSlots } from "./grid";
 
 // types
 import type { PlacedSpec, RaidSlotId, RaidSlots } from "../types/raidGrid";
-import type { StoredWorkingRaid, WorkingRaidSnapshot } from "../types/raids";
+import type {
+  StorableRaidComposition,
+  StoredWorkingRaid,
+  WorkingRaidSnapshot,
+} from "../types/raids";
 import type { Expansion, RaidSize } from "../types/expansions";
 
 const WORKING_RAID_STORAGE_KEY = "wowcomps:workingRaid";
@@ -61,7 +65,8 @@ export function normalizeRaidSlots(value: unknown, raidSize: RaidSize): RaidSlot
 export function readWorkingRaidSlots(raidSize: RaidSize): WorkingRaidSnapshot {
   const defaultSlots = createInitialRaidSlots(raidSize);
   const defaultSnapshot: WorkingRaidSnapshot = {
-    raidSlots: defaultSlots,
+    name: "New Raid",
+    slots: defaultSlots,
     raidSize,
     expansion: "classic",
   };
@@ -75,24 +80,39 @@ export function readWorkingRaidSlots(raidSize: RaidSize): WorkingRaidSnapshot {
     const parsed = JSON.parse(raw) as Partial<StoredWorkingRaid>;
 
     if (parsed.storageVersion === 3) {
+      const composition = parsed.composition;
+      const raidSizeValue =
+        composition?.raidSize ?? (parsed as { raidSize?: RaidSize }).raidSize ?? raidSize;
+      const slotsSource =
+        composition?.slots ??
+        (parsed as { raidSlots?: unknown }).raidSlots ??
+        (parsed as { composition?: { raidSlots?: unknown } }).composition?.raidSlots;
+      const expansionSource =
+        composition?.expansion ?? (parsed as { expansion?: unknown }).expansion;
       return {
-        raidSlots: normalizeRaidSlots(parsed.raidSlots, parsed.raidSize ?? raidSize),
-        raidSize: parsed.raidSize ?? raidSize,
-        expansion: normalizeExpansion(parsed.expansion),
+        name: composition?.name ?? "",
+        slots: normalizeRaidSlots(slotsSource, raidSizeValue),
+        raidSize: raidSizeValue,
+        expansion: normalizeExpansion(expansionSource),
       };
     }
 
     if (parsed.storageVersion === 2) {
+      const raidSizeValue = (parsed as { raidSize?: RaidSize }).raidSize ?? raidSize;
+      const slotsSource = (parsed as { raidSlots?: unknown }).raidSlots;
       return {
-        raidSlots: normalizeRaidSlots(parsed.raidSlots, parsed.raidSize ?? raidSize),
-        raidSize: parsed.raidSize ?? raidSize,
+        name: "",
+        slots: normalizeRaidSlots(slotsSource, raidSizeValue),
+        raidSize: raidSizeValue,
         expansion: "classic",
       };
     }
 
     if (parsed.storageVersion === 1) {
+      const slotsSource = (parsed as { raidSlots?: unknown }).raidSlots;
       return {
-        raidSlots: normalizeRaidSlots(parsed.raidSlots, raidSize),
+        name: "",
+        slots: normalizeRaidSlots(slotsSource, raidSize),
         raidSize,
         expansion: "classic",
       };
@@ -115,10 +135,12 @@ export function writeWorkingRaidSlots(
 
   const payload: StoredWorkingRaid = {
     storageVersion: WORKING_RAID_STORAGE_VERSION,
-    expansion,
-    raidSize,
-    raidSlots,
-    updatedAt: new Date().toISOString(),
+    composition: {
+      name: "New Raid",
+      expansion,
+      raidSize,
+      slots: raidSlots,
+    },
   };
 
   try {
@@ -126,6 +148,19 @@ export function writeWorkingRaidSlots(
   } catch {
     return;
   }
+}
+
+export function readWorkingRaid(fallbackRaidSize: RaidSize): WorkingRaidSnapshot {
+  return readWorkingRaidSlots(fallbackRaidSize);
+}
+
+export function writeWorkingRaid(composition: StorableRaidComposition): void {
+  const payload: StoredWorkingRaid = {
+    storageVersion: WORKING_RAID_STORAGE_VERSION,
+    composition,
+  };
+
+  window.localStorage.setItem(WORKING_RAID_STORAGE_KEY, JSON.stringify(payload));
 }
 
 export function clearWorkingRaidSlots(): void {
@@ -138,4 +173,13 @@ export function clearWorkingRaidSlots(): void {
   } catch {
     return;
   }
+}
+
+export function createDefaultComposition(raidSize: RaidSize): StorableRaidComposition {
+  return {
+    name: "",
+    expansion: "classic",
+    raidSize,
+    slots: createInitialRaidSlots(raidSize),
+  };
 }

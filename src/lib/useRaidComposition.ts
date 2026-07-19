@@ -1,6 +1,6 @@
 // core
 import { useState, useEffect } from "react";
-import { readWorkingRaidSlots, writeWorkingRaidSlots } from "./raidStorage";
+import { readWorkingRaidSlots, writeWorkingRaid } from "./raidStorage";
 
 // data
 import { getExpansionConfig } from "../data/expansionData";
@@ -24,12 +24,17 @@ import type { Expansion, RaidSize } from "../types/expansions";
 
 export function useRaidComposition(raidSize: RaidSize) {
   const initialSnapshot = readWorkingRaidSlots(raidSize);
-  const [raidSlots, setRaidSlots] = useState(initialSnapshot.raidSlots);
+  const [raidSlots, setRaidSlots] = useState(initialSnapshot.slots);
   const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(initialSnapshot.raidSize);
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>(initialSnapshot.expansion);
 
   useEffect(() => {
-    writeWorkingRaidSlots(selectedRaidSize, raidSlots, selectedExpansion);
+    writeWorkingRaid({
+      name: initialSnapshot.name || "",
+      expansion: selectedExpansion,
+      raidSize: selectedRaidSize,
+      slots: raidSlots,
+    });
   }, [raidSlots, selectedRaidSize, selectedExpansion]);
 
   return {

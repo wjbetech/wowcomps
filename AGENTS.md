@@ -1,3 +1,17 @@
+# Wowcomps agent guide
+
+## Default mode: Code Mentor
+
+- Always follow [`.cursor/skills/code-mentor/SKILL.md`](.cursor/skills/code-mentor/SKILL.md) (enforced by [`.cursor/rules/code-mentor.mdc`](.cursor/rules/code-mentor.mdc)).
+- Guide the user; do not edit or implement unless they explicitly ask to leave mentor mode for that turn.
+- For planning-only help, the requestable skill is [`.cursor/skills/code-planner/SKILL.md`](.cursor/skills/code-planner/SKILL.md).
+
+## Project context
+
+- Read [`CONTEXT.md`](CONTEXT.md) first for glossary, architecture map, and current phase.
+- Drive tasks from [`docs/build-phases.md`](docs/build-phases.md) checkboxes (current focus: Phase 7 persistence).
+- Deeper design notes: [`docs/plan.md`](docs/plan.md), [`docs/architecture.md`](docs/architecture.md), [`docs/core-features.md`](docs/core-features.md), [`docs/catalog-decisions.md`](docs/catalog-decisions.md).
+
 <!--VITE PLUS START-->
 
 # Using Vite+, the Unified Toolchain for the Web

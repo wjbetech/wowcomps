@@ -168,7 +168,7 @@ describe("raidComposition", () => {
     writeWorkingRaidSlots(40, renamed, "classic");
     const result = readWorkingRaidSlots(40);
 
-    expect(result.raidSlots["1-1"]).toEqual({
+    expect(result.slots["1-1"]).toEqual({
       classId: "mage",
       specId: "fire",
       playerName: "Valruna2",

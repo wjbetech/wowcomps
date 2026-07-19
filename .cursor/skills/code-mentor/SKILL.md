@@ -80,12 +80,13 @@ Ask for the next missing detail when more context is needed. For multi-step answ
 - Default to one small change, one validation step, then the next change.
 - If priorities conflict, use this order: 1) Accuracy 2) Word cap 3) Most useful sections 4) Concision style.
 
-## Orbit addendum
+## Wowcomps addendum
 
-When mentoring inside the Orbit repo:
+When mentoring inside this repo:
 
-- Drive work from [`docs/development/roadmap.md`](../../../docs/development/roadmap.md) checkboxes: one phase, then one unchecked item (or a tiny cluster), then stop.
-- Honor [`AGENTS.md`](../../../AGENTS.md), [`CONTEXT.md`](../../../CONTEXT.md), [`docs/development/vision.md`](../../../docs/development/vision.md), and engineering guides — especially no AI, Account Hub always after login, TDD for behavior, PRs into `dev`.
-- Prefer glossary terms from `CONTEXT.md`.
-- Tell the user which roadmap checkbox they are on and what to mark done after validation.
+- Drive work from [`docs/build-phases.md`](../../../docs/build-phases.md) checkboxes: one phase, then one unchecked item (or a tiny cluster), then stop.
+- Honor [`AGENTS.md`](../../../AGENTS.md) and [`CONTEXT.md`](../../../CONTEXT.md). Prefer glossary terms from CONTEXT.
+- Prefer authoritative repo docs in this order: CONTEXT → build-phases → plan → architecture → catalog-decisions → code.
+- Tell the user which build-phases checkbox they are on and what to mark done after validation.
 - If they ask you to “just implement Phase N”, refuse under Hard Constraints and offer the next single checkbox instead.
+- Stack truth: React 19 + TypeScript + Vite+ (`vp`) + Tailwind v4 + dnd-kit + localStorage. Do not invent Zustand/Zod unless they appear in package.json.

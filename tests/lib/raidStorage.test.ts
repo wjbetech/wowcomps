@@ -77,12 +77,12 @@ describe("normalizeRaidSlots, raid storage", () => {
 
     expect(result.raidSize).toBe(20);
     expect(result.expansion).toBe("classic");
-    expect(result.raidSlots["1-1"]).toEqual({
+    expect(result.slots["1-1"]).toEqual({
       classId: "mage",
       specId: "fire",
       playerName: "Valruna",
     });
-    expect(result.raidSlots["2-1"]).toEqual({
+    expect(result.slots["2-1"]).toEqual({
       classId: "rogue",
       specId: "combat",
       playerName: "Easton",
@@ -107,7 +107,7 @@ describe("normalizeRaidSlots, raid storage", () => {
 
     expect(result.expansion).toBe("tbc");
     expect(result.raidSize).toBe(25);
-    expect(result.raidSlots["1-1"]).toEqual({
+    expect(result.slots["1-1"]).toEqual({
       classId: "shaman",
       specId: "enhancement",
       playerName: "Totem",
@@ -131,12 +131,12 @@ describe("normalizeRaidSlots, raid storage", () => {
 
     expect(result.raidSize).toBe(40);
     expect(result.expansion).toBe("classic");
-    expect(result.raidSlots["1-1"]).toEqual({
+    expect(result.slots["1-1"]).toEqual({
       classId: "mage",
       specId: "fire",
       playerName: "Valruna",
     });
-    expect(result.raidSlots["2-1"]).toEqual({
+    expect(result.slots["2-1"]).toEqual({
       classId: "rogue",
       specId: "combat",
       playerName: "Easton",
