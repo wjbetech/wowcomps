@@ -76,6 +76,7 @@ describe("normalizeRaidSlots, raid storage", () => {
     const result = readWorkingRaidSlots(40);
 
     expect(result.raidSize).toBe(20);
+    expect(result.expansion).toBe("classic");
     expect(result.raidSlots["1-1"]).toEqual({
       classId: "mage",
       specId: "fire",
@@ -85,6 +86,31 @@ describe("normalizeRaidSlots, raid storage", () => {
       classId: "rogue",
       specId: "combat",
       playerName: "Easton",
+    });
+  });
+
+  it("reads a v3 working raid snapshot with persisted expansion", () => {
+    window.localStorage.setItem(
+      "wowcomps:workingRaid",
+      JSON.stringify({
+        storageVersion: 3,
+        expansion: "tbc",
+        raidSize: 25,
+        raidSlots: {
+          "1-1": { classId: "shaman", specId: "enhancement", playerName: "Totem" },
+        },
+        updatedAt: "2026-06-10T00:00:00.000Z",
+      }),
+    );
+
+    const result = readWorkingRaidSlots(40);
+
+    expect(result.expansion).toBe("tbc");
+    expect(result.raidSize).toBe(25);
+    expect(result.raidSlots["1-1"]).toEqual({
+      classId: "shaman",
+      specId: "enhancement",
+      playerName: "Totem",
     });
   });
 
@@ -104,6 +130,7 @@ describe("normalizeRaidSlots, raid storage", () => {
     const result = readWorkingRaidSlots(40);
 
     expect(result.raidSize).toBe(40);
+    expect(result.expansion).toBe("classic");
     expect(result.raidSlots["1-1"]).toEqual({
       classId: "mage",
       specId: "fire",

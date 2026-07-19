@@ -105,7 +105,7 @@
 
 ### Phase 7: Persistence And Saved Comps
 
-- [ ] Fix page refresh reloading to Classic.
+- [x] Fix page refresh reloading to Classic.
 - [ ] Replace slots-only storage with a RaidComposition object.
 - [ ] Store expansion, raidSize, slots, name, createdAt, and updatedAt.
 - [ ] Separate working raid storage from saved raid storage.
@@ -141,3 +141,8 @@
 - [ ] Add Classic+ raid sizes when available.
 - [ ] Add Classic+ templates.
 - [ ] Validate that catalog-driven data supports new expansion content without component rewrites.
+
+### Bugs
+
+- [ ] Adding and removing a balance druid in Wrath of the Lich King breaks the raid debuff for -5% armor.
+  - [ ] It also persists across expansions.

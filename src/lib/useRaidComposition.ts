@@ -26,11 +26,11 @@ export function useRaidComposition(raidSize: RaidSize) {
   const initialSnapshot = readWorkingRaidSlots(raidSize);
   const [raidSlots, setRaidSlots] = useState(initialSnapshot.raidSlots);
   const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(initialSnapshot.raidSize);
-  const [selectedExpansion, setSelectedExpansion] = useState<Expansion>("classic");
+  const [selectedExpansion, setSelectedExpansion] = useState<Expansion>(initialSnapshot.expansion);
 
   useEffect(() => {
-    writeWorkingRaidSlots(selectedRaidSize, raidSlots);
-  }, [raidSlots, selectedRaidSize]);
+    writeWorkingRaidSlots(selectedRaidSize, raidSlots, selectedExpansion);
+  }, [raidSlots, selectedRaidSize, selectedExpansion]);
 
   return {
     raidSlots,

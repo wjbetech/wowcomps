@@ -165,7 +165,7 @@ describe("raidComposition", () => {
     slots["1-1"] = { classId: "mage", specId: "fire", playerName: "Valruna" };
     const renamed = renameSlot(slots, "1-1", "Valruna2");
 
-    writeWorkingRaidSlots(40, renamed);
+    writeWorkingRaidSlots(40, renamed, "classic");
     const result = readWorkingRaidSlots(40);
 
     expect(result.raidSlots["1-1"]).toEqual({
