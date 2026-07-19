@@ -21,21 +21,32 @@ import {
 // types
 import type { PlacedSpec, RaidSlotId } from "../types/raidGrid";
 import type { Expansion, RaidSize } from "../types/expansions";
+import { createInitialRaidSlots } from "./grid";
 
 export function useRaidComposition(raidSize: RaidSize) {
   const initialSnapshot = readWorkingRaidSlots(raidSize);
   const [raidSlots, setRaidSlots] = useState(initialSnapshot.slots);
   const [selectedRaidSize, setSelectedRaidSize] = useState<RaidSize>(initialSnapshot.raidSize);
   const [selectedExpansion, setSelectedExpansion] = useState<Expansion>(initialSnapshot.expansion);
+  const [raidName, setRaidName] = useState(initialSnapshot.name || "New Raid");
+  const [loadedSavedCompId, setLoadedSavedCompId] = useState<string | null>(null);
 
   useEffect(() => {
     writeWorkingRaid({
-      name: initialSnapshot.name || "",
+      name: raidName,
       expansion: selectedExpansion,
       raidSize: selectedRaidSize,
       slots: raidSlots,
     });
   }, [raidSlots, selectedRaidSize, selectedExpansion]);
+
+  const startNewComp = () => {
+    setLoadedSavedCompId(null);
+    setRaidName("New Raid");
+    setSelectedExpansion("classic");
+    setSelectedRaidSize(40);
+    setRaidSlots(createInitialRaidSlots(40));
+  };
 
   return {
     raidSlots,
@@ -70,5 +81,9 @@ export function useRaidComposition(raidSize: RaidSize) {
     },
     selectedExpansion,
     selectedRaidSize,
+    raidName,
+    renameRaid: (name: string) => setRaidName(name.trim().slice(0, 40)),
+    loadedSavedCompId,
+    startNewComp,
   };
 }

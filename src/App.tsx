@@ -26,6 +26,7 @@ import { useRaidComposition } from "./lib/useRaidComposition";
 
 // types
 import type { PlacedSpec, RaidSlotId } from "./types/raidGrid";
+import LeftCompsPanel from "./components/LeftCompsPanel";
 
 export function App() {
   const {
@@ -38,6 +39,10 @@ export function App() {
     selectRaidSize,
     clearSlot,
     renameSlot,
+    raidName,
+    renameRaid,
+    loadedSavedCompId,
+    startNewComp,
   } = useRaidComposition(40);
 
   const [activeRaidSlot, setActiveRaidSlot] = useState<{
@@ -116,10 +121,20 @@ export function App() {
             selectedExpansion={selectedExpansion}
             onSelectExpansion={selectExpansion}
           />
-
           <div className="pt-16">
             <div className="mx-auto grid w-full gap-8 px-4 py-8 lg:grid-cols-5 lg:px-6">
-              <div className="lg:col-span-1"></div>
+              <div className="lg:col-span-1">
+                <LeftCompsPanel
+                  raidName={raidName}
+                  onRenameRaid={renameRaid}
+                  selectedExpansion={selectedExpansion}
+                  selectedRaidSize={selectedRaidSize}
+                  loadedSavedCompId={loadedSavedCompId}
+                  onNew={startNewComp}
+                  onSave={() => {}}
+                  onExport={() => {}}
+                />
+              </div>
               <div className="lg:col-span-3 min-w-0">
                 <div className="mx-auto w-full max-w-5xl">
                   <SpecsPanel
